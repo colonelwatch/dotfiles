@@ -1,0 +1,40 @@
+sudo pacman -S acpi alsa-utils bolt brightnessctl intel-undervolt playerctl --noconfirm
+
+sudo cp system/intel-undervolt.conf /etc
+sudo chmod 644 /etc/intel-undervolt.conf
+sudo intel-undervolt apply
+sudo systemctl start intel-undervolt.service
+
+
+install_from_aur(){ # first arg is package name, second is git repo name
+    git clone https://aur.archlinux.org/$1.git
+    cd $1
+    makepkg --syncdeps --rmdeps --noconfirm
+    sudo pacman -U *.pkg.tar.zst --noconfirm
+    cd ..
+    rm -rf $1
+}
+
+sudo pacman -S firefox neofetch vim man rofi --noconfirm
+install_from_aur zoom
+install_from_aur visual-studio-code-bin
+install_from_aur google-chrome
+
+sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
+sudo chmod 644 /usr/share/applications/google-chrome.desktop
+
+
+git submodule update --init --recursive
+mkdir -p ~/.config
+
+ln -s -f ~/.dotfiles/.bashrc ~/.bashrc
+ln -s ~/.dotfiles/.config/awesome ~/.config/awesome
+ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/.Xresources ~/.Xresources
+
+
+echo "Remaining MANUAL actions:"
+echo "* authorize thunderbolt devices through boltctl"
+echo "* add \'mitigations=off i915.enable_fbc=1\' flags to kernel"
+echo "* configure firefox in permanent privacy mode"
+echo "* restart"
