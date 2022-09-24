@@ -21,7 +21,6 @@ command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
     * `Audio`: `pipewire`
     * `Network configuration`: `Copy ISO configuration`
     * `Timezone`: self-explanatory
-    * `Optional repositories`: `['multilib']`
 
 4. Install `git` with the command `sudo pacman -S git`
 
