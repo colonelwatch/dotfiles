@@ -1,6 +1,6 @@
 sudo pacman -S acpi alsa-utils bolt brightnessctl intel-undervolt playerctl --noconfirm
 
-sudo cp system/intel-undervolt.conf /etc
+sudo cp -f system/intel-undervolt.conf /etc
 sudo chmod 644 /etc/intel-undervolt.conf
 sudo intel-undervolt apply
 sudo systemctl start intel-undervolt.service
