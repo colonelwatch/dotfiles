@@ -1,3 +1,8 @@
+sudo cp -f system/pacman.conf /etc
+sudo chmod 644 /etc/pacman.conf
+sudo pacman -Syuu
+
+sudo pacman -S nvidia-lts udiskie udisks2 --noconfirm
 sudo pacman -S acpi alsa-utils bolt brightnessctl intel-undervolt playerctl --noconfirm
 
 sudo cp -f system/intel-undervolt.conf /etc
@@ -16,6 +21,7 @@ install_from_aur(){ # first arg is package name, second is git repo name
 }
 
 sudo pacman -S firefox neofetch vim man rofi --noconfirm
+sudo pacman -S steam lutris --noconfirm
 install_from_aur zoom
 install_from_aur visual-studio-code-bin
 install_from_aur google-chrome
@@ -35,6 +41,7 @@ ln -s ~/.dotfiles/.Xresources ~/.Xresources
 
 echo "Remaining MANUAL actions:"
 echo "* authorize thunderbolt devices through boltctl"
+echo "* Set PCM29000C as default audio device in pactl"
 echo "* add \'mitigations=off i915.enable_fbc=1\' flags to kernel"
 echo "* configure firefox in permanent privacy mode"
 echo "* restart"

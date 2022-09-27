@@ -19,6 +19,7 @@ command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
     * `User account`: self-explanatory
     * `Profile`: `desktop`, `awesome`, `Intel (open source)`
     * `Audio`: `pipewire`
+    * `kernels`: `['linux-lts']`
     * `Network configuration`: `Copy ISO configuration`
     * `Timezone`: self-explanatory
 
