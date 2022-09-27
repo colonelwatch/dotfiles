@@ -22,9 +22,11 @@ install_from_aur(){ # first arg is package name, second is git repo name
 
 sudo pacman -S firefox neofetch vim man rofi --noconfirm
 sudo pacman -S steam lutris --noconfirm
+sudo pacman -S discord --noconfirm
 install_from_aur zoom
 install_from_aur visual-studio-code-bin
 install_from_aur google-chrome
+install_from_aur slack-desktop
 
 sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
 sudo chmod 644 /usr/share/applications/google-chrome.desktop
