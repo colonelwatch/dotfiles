@@ -5,7 +5,7 @@ everything I need to get back up and running again, including a bootstrap script
 that automates as much of the process as possible. This includes things that 
 are specific to my hardware.
 
-## Setup
+## Install
 
 1. Booting from the Live USB, immediately connect to a wifi network using the 
 command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
@@ -23,8 +23,20 @@ command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
     * `Network configuration`: `Copy ISO configuration`
     * `Timezone`: self-explanatory
 
+## Post-Install
+
 4. Install `git` with the command `sudo pacman -S git`
 
 5. `git clone` this repository and execute `bootstrap.sh`
 
-6. Follow any of the remaining manual steps and react to any errors
+## Post-Bootstrap
+
+6. Authorize thunderbolt devices through `boltctl`
+
+7. Set the PCM29000C as the default audio device through `pactl`
+
+8. Add \'mitigations=off i915.enable_fbc=1\' flags to kernel
+
+9. Configure firefox in permanent privacy mode
+
+10. Restart

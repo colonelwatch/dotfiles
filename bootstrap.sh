@@ -39,11 +39,3 @@ ln -s -f ~/.dotfiles/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/.config/awesome ~/.config/awesome
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.Xresources ~/.Xresources
-
-
-echo "Remaining MANUAL actions:"
-echo "* authorize thunderbolt devices through boltctl"
-echo "* Set PCM29000C as default audio device in pactl"
-echo "* add \'mitigations=off i915.enable_fbc=1\' flags to kernel"
-echo "* configure firefox in permanent privacy mode"
-echo "* restart"
