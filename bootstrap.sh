@@ -30,6 +30,8 @@ install_from_aur slack-desktop
 
 sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
 sudo chmod 644 /usr/share/applications/google-chrome.desktop
+sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
+sudo chmod 644 /usr/share/applications/steam.desktop
 
 
 git submodule update --init --recursive
