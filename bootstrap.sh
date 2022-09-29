@@ -8,7 +8,7 @@ sudo pacman -S acpi alsa-utils bolt brightnessctl intel-undervolt playerctl --no
 sudo cp -f system/intel-undervolt.conf /etc
 sudo chmod 644 /etc/intel-undervolt.conf
 sudo intel-undervolt apply
-sudo systemctl start intel-undervolt.service
+sudo systemctl enable intel-undervolt.service
 
 
 install_from_aur(){ # first arg is package name, second is git repo name
