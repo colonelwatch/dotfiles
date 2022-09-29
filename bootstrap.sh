@@ -10,6 +10,9 @@ sudo chmod 644 /etc/intel-undervolt.conf
 sudo intel-undervolt apply
 sudo systemctl enable intel-undervolt.service
 
+sudo cp -f system/zram-generator.conf /etc/systemd
+sudo chmod 644 /etc/systemd/zram-generator.conf
+
 
 install_from_aur(){ # first arg is package name, second is git repo name
     git clone https://aur.archlinux.org/$1.git
