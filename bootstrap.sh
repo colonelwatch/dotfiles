@@ -1,17 +1,14 @@
 sudo cp -f system/pacman.conf /etc
-sudo chmod 644 /etc/pacman.conf
 sudo pacman -Syuu
 
 sudo pacman -S nvidia-lts udiskie udisks2 --noconfirm
 sudo pacman -S acpi alsa-utils bolt brightnessctl intel-undervolt playerctl --noconfirm
 
 sudo cp -f system/intel-undervolt.conf /etc
-sudo chmod 644 /etc/intel-undervolt.conf
 sudo intel-undervolt apply
 sudo systemctl enable intel-undervolt.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd
-sudo chmod 644 /etc/systemd/zram-generator.conf
 
 
 install_from_aur(){ # first arg is package name, second is git repo name
@@ -32,9 +29,7 @@ install_from_aur google-chrome
 install_from_aur slack-desktop
 
 sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
-sudo chmod 644 /usr/share/applications/google-chrome.desktop
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
-sudo chmod 644 /usr/share/applications/steam.desktop
 
 
 git submodule update --init --recursive
