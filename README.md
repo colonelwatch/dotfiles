@@ -1,16 +1,13 @@
 # dotfiles
 
-If I ever need to nuke the Linux install on my XPS, this repo documents 
-everything I need to get back up and running again, including a bootstrap script 
-that automates as much of the process as possible. This includes things that 
-are specific to my hardware.
+If I ever need to nuke the Linux install on my XPS, this repo documents everything I need to get back up and running again, including a bootstrap script that automates as much of the process as possible. This includes things that are specific to my hardware.
 
 ## Install
 
-1. Booting from the Live USB, immediately connect to a wifi network using the 
-command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
+1. Booting from the Live USB with `archinstall` 2.5.0, immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
+    * Currently, using `archinstall` 2.5.1 is bugged for my configuration
 
-2. Grab the latest copy of archinstall using the command `pacman -Sy archinstall`
+2. The GPG key database usually gets corrupted, so ignore signatures by calling `vim /etc/pacman.conf` then changing the line `SigLevel    = Required DatabaseOptional` to `SigLevel    = Never`.
 
 3. Choose the following settings in `archinstall` (all else default):
     * `Mirror region`: self-explanatory
@@ -35,7 +32,7 @@ command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
 
 7. Set the PCM29000C as the default audio device through `pactl`
 
-8. Add \'mitigations=off i915.enable_fbc=1\' flags to kernel
+8. Add `mitigations=off i915.enable_fbc=1` flags to kernel
 
 9. Configure firefox in permanent privacy mode
 

@@ -1,7 +1,7 @@
 # SYSTEM CONFIGURATION
 
 sudo cp -f system/pacman.conf /etc
-sudo pacman -Syuu
+sudo pacman -Syuu --noconfirm
 
 sudo pacman -S bolt nvidia-lts udiskie udisks2 --noconfirm # necessary for eGPU setup
 
