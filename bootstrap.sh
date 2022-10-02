@@ -1,15 +1,22 @@
+# SYSTEM CONFIGURATION
+
 sudo cp -f system/pacman.conf /etc
 sudo pacman -Syuu
 
-sudo pacman -S nvidia-lts udiskie udisks2 --noconfirm
-sudo pacman -S acpi alsa-utils bolt brightnessctl intel-undervolt playerctl --noconfirm
+sudo pacman -S bolt nvidia-lts udiskie udisks2 --noconfirm # necessary for eGPU setup
 
+sudo pacman -S intel-undervolt --noconfirm
 sudo cp -f system/intel-undervolt.conf /etc
 sudo intel-undervolt apply
 sudo systemctl enable intel-undervolt.service
 
-sudo cp -f system/zram-generator.conf /etc/systemd
+sudo cp -f system/zram-generator.conf /etc/systemd # expands swap space to RAM size
 
+sudo pacman -S acpi alsa-utils brightnessctl playerctl --noconfirm # used by AwesomeWM exts
+
+
+
+# PROGRAM INSTALLATION
 
 install_from_aur(){ # first arg is package name, second is git repo name
     git clone https://aur.archlinux.org/$1.git
@@ -31,6 +38,9 @@ install_from_aur slack-desktop
 sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
 
+
+
+# USER-SPACE CONFIGURATION
 
 git submodule update --init --recursive
 mkdir -p ~/.config
