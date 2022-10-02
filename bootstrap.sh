@@ -18,6 +18,8 @@ sudo pacman -S acpi alsa-utils brightnessctl playerctl --noconfirm # used by Awe
 
 # PROGRAM INSTALLATION
 
+sudo pacman -S gnome-keyring --noconfirm # deps not covered in proceeding installs
+
 install_from_aur(){ # first arg is package name, second is git repo name
     git clone https://aur.archlinux.org/$1.git
     cd $1
