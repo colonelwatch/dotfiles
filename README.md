@@ -37,3 +37,5 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 9. Configure firefox in permanent privacy mode
 
 10. Restart
+
+11. Load backed-up home files (`Zotero`, `Calibre Library`, etc) from USB or Google Drive

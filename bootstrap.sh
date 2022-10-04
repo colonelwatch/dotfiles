@@ -33,14 +33,16 @@ install_from_aur(){ # first arg is package name, second is git repo name
     rm -rf $1
 }
 
-sudo pacman -S neofetch vim man rofi --noconfirm # desktop essentials
+sudo pacman -S neofetch vim man rofi pcmanfm vlc --noconfirm # desktop essentials
 sudo pacman -S firefox discord --noconfirm # web essentials
 install_from_aur google-chrome
 install_from_aur slack-desktop
 install_from_aur zoom
+install_from_aur webex-bin
 sudo pacman -S steam lutris --noconfirm # gaming
 install_from_aur visual-studio-code-bin # programming
-sudo pacman -S audacity # other tools
+sudo pacman -S audacity calibre gimp libreoffice-fresh --noconfirm # other tools
+install_from_aur zotero
 
 sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
