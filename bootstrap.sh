@@ -12,6 +12,10 @@ sudo systemctl enable intel-undervolt.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd # expands swap space to RAM size
 
+sudo pacman -S bluez bluez-utils --noconfirm
+sudo cp -f system/main.conf /etc/bluetooth/main.conf
+sudo systemctl enable bluetooth.service
+
 sudo pacman -S acpi alsa-utils brightnessctl playerctl --noconfirm # used by AwesomeWM exts
 
 

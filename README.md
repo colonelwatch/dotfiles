@@ -30,7 +30,7 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 6. Authorize thunderbolt devices through `boltctl`
 
-7. Set the PCM29000C as the default audio device through `pactl`
+7. `connect` and `trust` the Samsung Galaxy Buds Plus (`80:7B:3E:52:53:F4`) through `bluetoothctl`
 
 8. Add `mitigations=off i915.enable_fbc=1` flags to kernel
 

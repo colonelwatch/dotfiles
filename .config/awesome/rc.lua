@@ -90,7 +90,21 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
+btmenu = {
+    {"connect BT IEMs", 
+        function() 
+            awful.spawn.with_shell("bluetoothctl power on && bluetoothctl connect 80:7B:3E:52:53:F4")
+        end
+    },
+    {"disconn BT IEMs", 
+        function()
+            awful.spawn.with_shell("bluetoothctl power off")
+        end
+    },
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "bluetooth", btmenu },
                                     { "open terminal", terminal }
                                   }
                         })
@@ -627,5 +641,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Autorun on start of AwesomeWM 
 awful.spawn.with_shell('amixer')
+awful.spawn.with_shell('pactl load-module module-switch-on-connect')
 awful.spawn.with_shell('udiskie')
 -- }}}
