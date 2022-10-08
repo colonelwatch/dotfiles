@@ -24,25 +24,24 @@ sudo pacman -S acpi alsa-utils brightnessctl playerctl --noconfirm # used by Awe
 
 sudo pacman -S gnome-keyring --noconfirm # deps not covered in proceeding installs
 
-install_from_aur(){ # first arg is package name, second is git repo name
-    git clone https://aur.archlinux.org/$1.git
-    cd $1
-    makepkg --syncdeps --rmdeps --noconfirm
-    sudo pacman -U *.pkg.tar.zst --noconfirm
-    cd ..
-    rm -rf $1
-}
+# installing yay manually before using yay to get other AUR programs
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg --syncdeps --rmdeps --noconfirm
+sudo pacman -U *.pkg.tar.zst --noconfirm
+cd ..
+rm -rf yay
 
 sudo pacman -S neofetch vim man rofi pcmanfm vlc --noconfirm # desktop essentials
 sudo pacman -S firefox discord --noconfirm # web essentials
-install_from_aur google-chrome
-install_from_aur slack-desktop
-install_from_aur zoom
-install_from_aur webex-bin
+yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=None
 sudo pacman -S steam lutris --noconfirm # gaming
-install_from_aur visual-studio-code-bin # programming
+yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None # programming
 sudo pacman -S audacity calibre gimp libreoffice-fresh --noconfirm # other tools
-install_from_aur zotero
+yay -S zotero --noconfirm --removemake --answerdiff=None
+
+sudo pacman -Sc --noconfirm
+yay -Sc --noconfirm
 
 sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
