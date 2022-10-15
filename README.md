@@ -10,10 +10,11 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 ## Install
 
-1. Booting from the Live USB with `archinstall` 2.5.0, immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
-    * Currently, using `archinstall` 2.5.1 is bugged for my configuration
+1. Booting from the *latest* Live USB, immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
 
-2. The GPG key database usually gets corrupted, so ignore signatures by calling `vim /etc/pacman.conf` then changing the line `SigLevel    = Required DatabaseOptional` to `SigLevel    = Never`.
+2. Install the latest `archinstall` with the command `sudo pacman -Sy archinstall`
+    * `archinstall` 2.5.1 is bugged for my configuration, `archinstall` 2.5.2 is not
+    * Follow any instructions about GPG keys, or else ignore signatures by calling `vim /etc/pacman.conf` then changing the line `SigLevel    = Required DatabaseOptional` to `SigLevel    = Never`
 
 3. Choose the following settings in `archinstall` (all else default):
     * `Mirror region`: self-explanatory
