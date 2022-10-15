@@ -39,7 +39,8 @@ rm -rf yay
 
 sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
 
-sudo pacman -S neofetch vim man rofi pcmanfm vlc --noconfirm # desktop essentials
+sudo pacman -S vim man rofi pcmanfm vlc --noconfirm # desktop essentials
+yay -S macchina-bin --noconfirm --removemake --answerdiff=None
 sudo pacman -S firefox discord --noconfirm # web essentials
 yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=None
 sudo pacman -S steam lutris --noconfirm # gaming
@@ -68,5 +69,6 @@ cp -f ~/.dotfiles/.config/rclone/rclone.conf ~/.config/rclone/rclone.conf # not 
 
 ln -s -f ~/.dotfiles/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/.config/awesome ~/.config/awesome
+ln -s ~/.dotfiles/.config/macchina ~/.config/macchina
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.Xresources ~/.Xresources
