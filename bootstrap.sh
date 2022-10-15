@@ -13,8 +13,9 @@ sudo systemctl enable intel-undervolt.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd # expands swap space to RAM size
 
-sudo pacman -S cronie --noconfirm # system essentials
+sudo pacman -S cronie networkmanager --noconfirm # system essentials
 sudo systemctl enable cronie.service
+sudo systemctl enable NetworkManager.service
 
 sudo pacman -S bluez bluez-utils --noconfirm
 sudo cp -f system/main.conf /etc/bluetooth/main.conf

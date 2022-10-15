@@ -40,9 +40,11 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 8. Restart
 
-9. Restore home from Google Drive by executing `recovery.sh` or pulling from USB
+9. Connect to WiFi network through `nmtui` and manually set DNS to `1.1.1.1`, `1.0.0.1`, and `8.8.8.8`
 
-10. `connect` and `trust` the Samsung Galaxy Buds Plus (`80:7B:3E:52:53:F4`) through `bluetoothctl`
+10. Restore home from Google Drive by executing `recovery.sh` or pulling from USB
+
+11. `connect` and `trust` the Samsung Galaxy Buds Plus (`80:7B:3E:52:53:F4`) through `bluetoothctl`
 
 ## Manual Program Configurations
 Besides signing in, some programs need specific configurations that cannot be just carried over.
