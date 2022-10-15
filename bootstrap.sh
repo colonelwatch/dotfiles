@@ -50,6 +50,7 @@ yay -S zotero-bin --noconfirm --removemake --answerdiff=None
 
 sudo pacman -Sc --noconfirm
 yay -Sc --noconfirm
+rm -rf ~/.cargo # remove leftover rust files
 
 sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
