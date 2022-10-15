@@ -2,6 +2,12 @@
 
 If I ever need to nuke the Linux install on my XPS, this repo documents everything I need to get back up and running again, including a bootstrap script that automates as much of the process as possible. This includes things that are specific to my hardware.
 
+## Pre-Install
+
+0. Manually backup home
+    * Desginate new directories to backup by editing `~/Automations/run_rclone_sync.sh` (currently hosted on Google Drive, not Github)
+    * Execute `~/Automations/run_rclone_sync.sh` with the argument `-P`
+
 ## Install
 
 1. Booting from the Live USB with `archinstall` 2.5.0, immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
@@ -38,4 +44,4 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 10. Restart
 
-11. Load backed-up home files (`Zotero`, `Calibre Library`, etc) from USB or Google Drive
+11. Restore home from Google Drive by executing `recovery.sh` or pulling from USB

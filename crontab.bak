@@ -1,0 +1,1 @@
+* 23 * * * bash /home/kenny/Automations/run_rclone_sync.sh

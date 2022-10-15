@@ -12,6 +12,9 @@ sudo systemctl enable intel-undervolt.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd # expands swap space to RAM size
 
+sudo pacman -S cronie --noconfirm # system essentials
+sudo systemctl enable cronie.service
+
 sudo pacman -S bluez bluez-utils --noconfirm
 sudo cp -f system/main.conf /etc/bluetooth/main.conf
 sudo systemctl enable bluetooth.service
@@ -32,6 +35,8 @@ sudo pacman -U *.pkg.tar.zst --noconfirm
 cd ..
 rm -rf yay
 
+sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
+
 sudo pacman -S neofetch vim man rofi pcmanfm vlc --noconfirm # desktop essentials
 sudo pacman -S firefox discord --noconfirm # web essentials
 yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=None
@@ -50,8 +55,13 @@ sudo cp -f system/audacity.desktop /usr/share/applications/audacity.desktop
 
 # USER-SPACE CONFIGURATION
 
+crontab crontab.bak
+
 git submodule update --init --recursive
 mkdir -p ~/.config
+
+cp -f ~/.dotfiles/.config/rclone/rclone.conf ~/.config/rclone/rclone.conf # not symlink b/c will contain keys
+# rclone is not authorized yet, so authorize manually in recovery.sh
 
 ln -s -f ~/.dotfiles/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/.config/awesome ~/.config/awesome
