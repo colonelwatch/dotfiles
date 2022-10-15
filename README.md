@@ -34,14 +34,18 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 ## Post-Bootstrap
 
-6. Authorize thunderbolt devices through `boltctl`
+6. Add `mitigations=off i915.enable_fbc=1` flags to kernel
 
-7. `connect` and `trust` the Samsung Galaxy Buds Plus (`80:7B:3E:52:53:F4`) through `bluetoothctl`
+7. Authorize thunderbolt dock through `boltctl`
 
-8. Add `mitigations=off i915.enable_fbc=1` flags to kernel
+8. Restart
 
-9. Configure firefox in permanent privacy mode
+9. Restore home from Google Drive by executing `recovery.sh` or pulling from USB
 
-10. Restart
+10. `connect` and `trust` the Samsung Galaxy Buds Plus (`80:7B:3E:52:53:F4`) through `bluetoothctl`
 
-11. Restore home from Google Drive by executing `recovery.sh` or pulling from USB
+## Manual Program Configurations
+Besides signing in, some programs need specific configurations that cannot be just carried over.
+* Configure Firefox into its permanent privacy mode
+* Sign into the Chrome browser with my personal email
+    * Sign into Google with my personal email *and* my school email

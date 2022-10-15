@@ -53,6 +53,7 @@ sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
 sudo cp -f system/audacity.desktop /usr/share/applications/audacity.desktop
 
 
+
 # USER-SPACE CONFIGURATION
 
 crontab crontab.bak
