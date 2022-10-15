@@ -71,5 +71,6 @@ cp ~/.dotfiles/.config/rclone/rclone.conf ~/.config/rclone
 ln -s -f ~/.dotfiles/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/.config/awesome ~/.config/awesome
 ln -s ~/.dotfiles/.config/macchina ~/.config/macchina
+ln -s ~/.dotfiles/.config/lutris ~/.config/
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.Xresources ~/.Xresources

@@ -1,0 +1,4 @@
+system:
+  env:
+    PIPEWIRE_LATENCY: '"128/48000"'
+  prime: true
