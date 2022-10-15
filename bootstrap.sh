@@ -46,7 +46,7 @@ yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=No
 sudo pacman -S steam lutris --noconfirm # gaming
 yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None # programming
 sudo pacman -S audacity calibre gimp libreoffice-fresh --noconfirm # other tools
-yay -S zotero --noconfirm --removemake --answerdiff=None
+yay -S zotero-bin --noconfirm --removemake --answerdiff=None
 
 sudo pacman -Sc --noconfirm
 yay -Sc --noconfirm
