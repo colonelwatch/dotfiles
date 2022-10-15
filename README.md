@@ -46,6 +46,11 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 11. `connect` and `trust` the Samsung Galaxy Buds Plus (`80:7B:3E:52:53:F4`) through `bluetoothctl`
 
+12. Configure line-in levels through `pactl` by device:
+    * Built-in microphones: 16384
+    * PCM2900C Audio Codec: 65536
+    * Samsung Galaxy Buds Plus: *currently uncalibrated*
+
 ## Manual Program Configurations
 Besides signing in, some programs need specific configurations that cannot be just carried over.
 * Configure Firefox into its permanent privacy mode
