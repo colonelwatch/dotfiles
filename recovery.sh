@@ -1,2 +1,2 @@
 rclone config reconnect remote: --auto-confirm
-rclone copy remote: ~ -P --fast-list --checkers=16 --transfers=8
+rclone copy remote: ~ -P --fast-list --checkers=32 --transfers=16
