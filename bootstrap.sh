@@ -1,24 +1,24 @@
 # SYSTEM CONFIGURATION
 
-sudo cp -f system/pacman.conf /etc
+sudo cp -f system/pacman.conf /etc/
 sudo pacman -Syuu --noconfirm
 
 sudo pacman -S bolt nvidia-lts udiskie udisks2 xf86-video-intel --noconfirm # necessary for eGPU setup
-sudo cp -f system/20-intel.conf /etc/X11/xorg.conf.d # sets tearfree
+sudo cp -f system/20-intel.conf /etc/X11/xorg.conf.d/ # sets tearfree
 
 sudo pacman -S intel-undervolt --noconfirm
-sudo cp -f system/intel-undervolt.conf /etc
+sudo cp -f system/intel-undervolt.conf /etc/
 sudo intel-undervolt apply
 sudo systemctl enable intel-undervolt.service
 
-sudo cp -f system/zram-generator.conf /etc/systemd # expands swap space to RAM size
+sudo cp -f system/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
 
 sudo pacman -S cronie networkmanager --noconfirm # system essentials
 sudo systemctl enable cronie.service
 sudo systemctl enable NetworkManager.service
 
 sudo pacman -S bluez bluez-utils --noconfirm
-sudo cp -f system/main.conf /etc/bluetooth/main.conf
+sudo cp -f system/main.conf /etc/bluetooth/
 sudo systemctl enable bluetooth.service
 
 sudo pacman -S acpi alsa-utils brightnessctl playerctl --noconfirm # used by AwesomeWM exts
@@ -66,12 +66,12 @@ git submodule update --init --recursive
 mkdir -p ~/.config
 
 mkdir -p ~/.config/rclone # not symlink b/c will contain keys
-cp ~/.dotfiles/.config/rclone/rclone.conf ~/.config/rclone
+cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
 # rclone is not authorized yet, so authorize manually in recovery.sh
 
-ln -s -f ~/.dotfiles/.bashrc ~/.bashrc
-ln -s ~/.dotfiles/.config/awesome ~/.config/awesome
-ln -s ~/.dotfiles/.config/macchina ~/.config/macchina
-ln -s ~/.dotfiles/.config/lutris ~/.config/
-ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/.Xresources ~/.Xresources
+ln -s -f ~/.dotfiles/.bashrc ~/
+ln -s ~/.dotfiles/config/awesome ~/.config/
+ln -s ~/.dotfiles/config/macchina ~/.config/
+ln -s ~/.dotfiles/config/lutris ~/.config/
+ln -s ~/.dotfiles/.gitconfig ~/
+ln -s ~/.dotfiles/.Xresources ~/
