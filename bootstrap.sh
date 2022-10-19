@@ -3,8 +3,7 @@
 sudo cp -f system/pacman.conf /etc/
 sudo pacman -Syuu --noconfirm
 
-sudo pacman -S bolt nvidia-lts udiskie udisks2 xf86-video-intel --noconfirm # necessary for eGPU setup
-sudo cp -f system/20-intel.conf /etc/X11/xorg.conf.d/ # sets tearfree
+sudo pacman -S bolt nvidia-lts udiskie udisks2 --noconfirm # necessary for eGPU setup
 
 sudo pacman -S intel-undervolt --noconfirm
 sudo cp -f system/intel-undervolt.conf /etc/
