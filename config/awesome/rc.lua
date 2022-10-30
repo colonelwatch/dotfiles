@@ -93,7 +93,7 @@ myawesomemenu = {
 btmenu = {
     {"connect BT IEMs", 
         function() 
-            awful.spawn.with_shell("bluetoothctl power on && bluetoothctl connect 80:7B:3E:52:53:F4")
+            awful.spawn.with_shell("bluetoothctl power on && bluetoothctl connect C0:95:6D:A7:F1:4D")
         end
     },
     {"disconn BT IEMs", 

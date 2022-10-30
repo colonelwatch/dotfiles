@@ -45,15 +45,15 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 10. Restore home from Google Drive by executing `recovery.sh` or pulling from USB
 
-11. `connect` and `trust` the Samsung Galaxy Buds Plus (`80:7B:3E:52:53:F4`) through `bluetoothctl`
+11. `connect` and `trust` the Airpods Pro 2 (`C0:95:6D:A7:F1:4D`) through `bluetoothctl`
 
 12. Configure line-in and line-out levels through `pactl` by device:
     * Built-in microphones: 16384
     * Built-in speakers: *controlled by hand*
     * PCM2900C Audio Codec Line-in: 65536
     * PCM2900C Audio Codec Line-out: 65536
-    * Samsung Galaxy Buds Plus: *currently uncalibrated*
-    * Samsung Galaxy Buds Plus: *controlled by hand*
+    * Airpods Pro 2: *currently uncalibrated*
+    * Airpods Pro 2: *controlled by hand*
 
 ## Manual Program Configurations
 Besides signing in, some programs need specific configurations that cannot be just carried over.
