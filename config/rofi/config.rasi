@@ -1,10 +1,10 @@
 * {
     border-color: transparent;
     font: "Liberation Sans 8";
-    background: #222222;
-    foreground: #aaaaaa;
-    selected-normal-background: #535d6c;
-    selected-normal-foreground: #ffffff;
+    background: #00212b;
+    foreground: #93a1a1;
+    selected-normal-background: #073642;
+    selected-normal-foreground: #d6dbdb;
     alternate-normal-foreground: var(foreground);
     alternate-normal-background: var(background);
 }

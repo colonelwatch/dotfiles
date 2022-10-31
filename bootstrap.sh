@@ -39,7 +39,7 @@ rm -rf yay
 sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
 
 sudo pacman -S vim man rofi pcmanfm vlc --noconfirm # desktop essentials
-yay -S macchina --noconfirm --removemake --answerdiff=None
+yay -S macchina gtk-theme-numix-solarized --noconfirm --removemake --answerdiff=None
 sudo pacman -S firefox discord --noconfirm # web essentials
 yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=None
 sudo pacman -S steam lutris --noconfirm # gaming
@@ -68,8 +68,13 @@ mkdir -p ~/.config/rclone # not symlink b/c will contain keys
 cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
 # rclone is not authorized yet, so authorize manually in recovery.sh
 
+rm -rf ~/.config/gtk-3.0 # remove default gtk config (should be empty folder)
+
 ln -s -f ~/.dotfiles/.bashrc ~/
+ln -s -f ~/.dotfiles/.gtkrc-2.0 ~/
 ln -s ~/.dotfiles/config/awesome ~/.config/
+ln -s ~/.dotfiles/config/alacritty ~/.config/
+ln -s ~/.dotfiles/config/gtk-3.0 ~/.config/
 ln -s ~/.dotfiles/config/macchina ~/.config/
 ln -s ~/.dotfiles/config/lutris ~/.config/
 ln -s ~/.dotfiles/config/rofi ~/.config/
