@@ -22,7 +22,7 @@ physical_cores = true
 #  if theme path is /home/foo/.config/macchina/themes/Sodium.toml
 #  theme should be uncommented and set to "Sodium"
 #
-theme = "Beryllium"
+theme = "colonelfetch"
 
 # Displays only the specified readouts.
 # Accepted values (case-sensitive):
@@ -46,4 +46,8 @@ theme = "Beryllium"
 #   - Battery
 # Example:
 #   show = ["Battery", "Memory", ...]
-show = ["Host", "OperatingSystem", "Machine", "Kernel", "Uptime", "Packages", "Shell", "Resolution", "WindowManager", "Terminal", "Processor"]
+show = [
+    "Host", "Machine", "Kernel", "Distribution", "OperatingSystem", 
+    "DesktopEnvironment", "WindowManager", "Resolution", "Packages", "LocalIP", 
+    "Terminal", "Shell", "Uptime", "Processor", "Memory"
+]
