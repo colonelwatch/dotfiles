@@ -72,5 +72,6 @@ ln -s -f ~/.dotfiles/.bashrc ~/
 ln -s ~/.dotfiles/config/awesome ~/.config/
 ln -s ~/.dotfiles/config/macchina ~/.config/
 ln -s ~/.dotfiles/config/lutris ~/.config/
+ln -s ~/.dotfiles/config/rofi ~/.config/
 ln -s ~/.dotfiles/.gitconfig ~/
 ln -s ~/.dotfiles/.Xresources ~/

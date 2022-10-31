@@ -1,0 +1,54 @@
+* {
+    border-color: transparent;
+    font: "Liberation Sans 8";
+    background: #222222;
+    foreground: #aaaaaa;
+    selected-normal-background: #535d6c;
+    selected-normal-foreground: #ffffff;
+    alternate-normal-foreground: var(foreground);
+    alternate-normal-background: var(background);
+}
+
+window {
+    padding:  0px ;
+    width:    100.0000% ;
+    anchor:   north;
+    location: north;
+    border: 0px;
+    children: [ "horibox" ];
+}
+
+horibox {
+    orientation: horizontal;
+    children:    [ "prompt","entry","listview" ];
+}
+
+prompt {
+    vertical-align: 0.5; /* aligns against element, which has expanded padding */
+}
+
+entry {
+    width:  10.0000em ;
+    vertical-align: 0.5; /* aligns against element, which has expanded padding */ 
+    expand: false;
+}
+
+listview {
+    layout:  horizontal;
+    border:  0;
+    spacing: 5px ;
+    lines:   100;
+}
+
+element {
+    padding: 6px 2px ; /* expands selected-normal-background */
+    children: [ element-icon, element-text ];
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
