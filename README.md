@@ -33,17 +33,19 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 5. `git clone` this repository and execute `bootstrap.sh`
 
-## Post-Bootstrap
-
 6. Add `mitigations=off i915.enable_fbc=1` flags to kernel
 
 7. Authorize thunderbolt dock through `boltctl`
 
 8. Restart
 
+## Post-Bootstrap
+
 9. Connect to WiFi network through `nmtui` and manually set DNS to `1.1.1.1`, `1.0.0.1`, and `8.8.8.8`
 
-10. Restore home from Google Drive by executing `recovery.sh` or pulling from USB
+10. Execute `recovery.sh`, which includes manual prompts and recovery
+    * Enter user password to set `fish` as the login shell
+    * Authorize home recovery from Google Drive by logging in on the browser
 
 11. `connect` and `trust` the Airpods Pro 2 (`C0:95:6D:A7:F1:4D`) through `bluetoothctl`
 
