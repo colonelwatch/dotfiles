@@ -62,3 +62,4 @@ Besides signing in, some programs need specific configurations that cannot be ju
 * Configure Firefox into its permanent privacy mode
 * Sign into the Chrome browser with my personal email
     * Sign into Google with my personal email *and* my school email
+* Enable Zotero syncing with zotero.org
