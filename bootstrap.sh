@@ -51,7 +51,6 @@ sudo pacman -Sc --noconfirm
 yay -Sc --noconfirm
 rm -rf ~/.cargo # remove leftover rust files
 
-sudo cp -f system/google-chrome.desktop /usr/share/applications/google-chrome.desktop
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
 sudo cp -f system/audacity.desktop /usr/share/applications/audacity.desktop
 
@@ -75,6 +74,7 @@ ln -s -f ~/.dotfiles/.bashrc ~/
 ln -s -f ~/.dotfiles/.gtkrc-2.0 ~/
 ln -s ~/.dotfiles/config/awesome ~/.config/
 ln -s ~/.dotfiles/config/alacritty ~/.config/
+ln -s ~/.dotfiles/config/chrome-flags.conf ~/.config/
 ln -s ~/.dotfiles/config/fish ~/.config/
 ln -s ~/.dotfiles/config/gtk-3.0 ~/.config/
 ln -s ~/.dotfiles/config/macchina ~/.config/
