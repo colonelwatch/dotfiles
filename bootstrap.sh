@@ -39,7 +39,7 @@ rm -rf yay
 sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
 
 sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip --noconfirm # desktop essentials
-yay -S macchina gtk-theme-numix-solarized --noconfirm --removemake --answerdiff=None
+yay -S macchina-bin gtk-theme-numix-solarized --noconfirm --removemake --answerdiff=None
 sudo pacman -S firefox discord --noconfirm # web essentials
 yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=None
 sudo pacman -S steam lutris --noconfirm # gaming
