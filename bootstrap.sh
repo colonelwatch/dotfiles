@@ -38,14 +38,16 @@ rm -rf yay
 
 sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
 
-sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip --noconfirm # desktop essentials
-yay -S macchina-bin gtk-theme-numix-solarized --noconfirm --removemake --answerdiff=None
-sudo pacman -S firefox discord --noconfirm # web essentials
-yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=None
+sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip ranger --noconfirm # desktop essentials
+yay -S macchina-bin gtk-theme-numix-solarized piavpn-bin --noconfirm --removemake --answerdiff=None
+sudo pacman -S firefox discord thunderbird --noconfirm # web essentials
+yay -S google-chrome slack-desktop zoom logseq-desktop-bin --noconfirm --removemake --answerdiff=None
 sudo pacman -S steam lutris --noconfirm # gaming
 yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None # programming
 sudo pacman -S audacity calibre gimp libreoffice-fresh qemu-full --noconfirm # other tools
 yay -S zotero-bin --noconfirm --removemake --answerdiff=None
+
+sudo systemctl enable piavpn.service
 
 sudo pacman -Sc --noconfirm
 yay -Sc --noconfirm
@@ -67,6 +69,7 @@ mkdir -p ~/.config/rclone # not symlink b/c will contain keys
 cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
 # rclone is not authorized yet, so authorize manually in recovery.sh
 
+# remove default configs (should be empty folder)
 rm -rf ~/.config/gtk-3.0 # remove default gtk config (should be empty folder)
 rm -rf ~/.config/fish
 

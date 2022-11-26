@@ -44,8 +44,9 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 9. Connect to WiFi network through `nmtui` and manually set DNS to `1.1.1.1`, `1.0.0.1`, and `8.8.8.8`
 
 10. Execute `recovery.sh`, which includes manual prompts and recovery
-    * Enter user password to set `fish` as the login shell
     * Authorize home recovery from Google Drive by logging in on the browser
+    * Accept github fingerprint to proceed with Logseq graph recovery
+    * Enter user password to set `fish` as the login shell
 
 11. `connect` and `trust` the Airpods Pro 2 (`C0:95:6D:A7:F1:4D`) through `bluetoothctl`
 
@@ -63,3 +64,4 @@ Besides signing in, some programs need specific configurations that cannot be ju
 * Sign into the Chrome browser with my personal email
     * Sign into Google with my personal email *and* my school email
 * Enable Zotero syncing with zotero.org
+* Open Logseq graph at `~/Logseq` and add the Git plugin
