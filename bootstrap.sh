@@ -12,7 +12,7 @@ sudo systemctl enable intel-undervolt.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
 
-sudo pacman -S cronie networkmanager --noconfirm # system essentials
+sudo pacman -S cronie networkmanager samba --noconfirm # system essentials
 sudo systemctl enable cronie.service
 sudo systemctl enable NetworkManager.service
 
@@ -44,7 +44,7 @@ sudo pacman -S firefox discord --noconfirm # web essentials
 yay -S google-chrome slack-desktop zoom --noconfirm --removemake --answerdiff=None
 sudo pacman -S steam lutris --noconfirm # gaming
 yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None # programming
-sudo pacman -S audacity calibre gimp libreoffice-fresh --noconfirm # other tools
+sudo pacman -S audacity calibre gimp libreoffice-fresh qemu-full --noconfirm # other tools
 yay -S zotero-bin --noconfirm --removemake --answerdiff=None
 
 sudo pacman -Sc --noconfirm
