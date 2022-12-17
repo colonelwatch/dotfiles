@@ -75,7 +75,7 @@ It may be useful to test this repository on a VM before nuking the laptop.
 
 1. Create an image file with the command `qemu-img create -f qcow2 kenny-linux-xps.img 64G`
 
-2. Download an archlinux ISO to the same directory as `kenny-linux-xps.img`
+2. Download the latest archlinux ISO at `https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-x86_64.iso` to the same directory as `kenny-linux-xps.img`
 
 3. Boot the archlinux ISO with the command `qemu-system-x86_64 -m 4G -hda kenny-linux-xps.img -cdrom archlinux-x86_64.iso -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time -smp 4 -vga qxl -net nic -net user`
 
