@@ -74,19 +74,15 @@ mkdir -p ~/.config/rclone # not symlink b/c will contain keys
 cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
 # rclone is not authorized yet, so authorize manually in recovery.sh
 
-# remove default configs (should be empty folder)
-rm -rf ~/.config/gtk-3.0 # remove default gtk config (should be empty folder)
-rm -rf ~/.config/fish
-
-ln -s -f ~/.dotfiles/.bashrc ~/
-ln -s -f ~/.dotfiles/.gtkrc-2.0 ~/
-ln -s ~/.dotfiles/config/awesome ~/.config/
-ln -s ~/.dotfiles/config/alacritty ~/.config/
-ln -s ~/.dotfiles/config/chrome-flags.conf ~/.config/
-ln -s ~/.dotfiles/config/fish ~/.config/
-ln -s ~/.dotfiles/config/gtk-3.0 ~/.config/
-ln -s ~/.dotfiles/config/macchina ~/.config/
-ln -s ~/.dotfiles/config/lutris ~/.config/
-ln -s ~/.dotfiles/config/rofi ~/.config/
-ln -s ~/.dotfiles/.gitconfig ~/
-ln -s ~/.dotfiles/.Xresources ~/
+ln -s -f ~/.dotfiles/home/.bashrc ~/
+ln -s -f ~/.dotfiles/home/.gtkrc-2.0 ~/
+ln -s -f ~/.dotfiles/home/.gitconfig ~/
+ln -s -f ~/.dotfiles/home/.Xresources ~/
+ln -s -f ~/.dotfiles/config/awesome ~/.config/
+ln -s -f ~/.dotfiles/config/alacritty ~/.config/
+ln -s -f ~/.dotfiles/config/chrome-flags.conf ~/.config/
+ln -s -f ~/.dotfiles/config/fish ~/.config/
+ln -s -f ~/.dotfiles/config/gtk-3.0 ~/.config/
+ln -s -f ~/.dotfiles/config/macchina ~/.config/
+ln -s -f ~/.dotfiles/config/lutris ~/.config/
+ln -s -f ~/.dotfiles/config/rofi ~/.config/
