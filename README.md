@@ -59,6 +59,7 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
     * Airpods Pro 2: *controlled by hand*
 
 ## Manual Program Configurations
+
 Besides signing in, some programs need specific configurations that cannot be just carried over.
 * Configure Firefox into its permanent privacy mode
 * Sign into the Chrome browser with my personal email
@@ -67,3 +68,15 @@ Besides signing in, some programs need specific configurations that cannot be ju
     * Enable Zotero syncing with zotero.org
     * Enable Zotero plugin with LibreOffice
 * Open Logseq graph at `~/Logseq` and add the Git plugin
+
+## Virtualization
+
+It may be useful to test this repository on a VM before nuking the laptop.
+
+1. Create an image file with the command `qemu-img create -f qcow2 kenny-linux-xps.img 64G`
+
+2. Download an archlinux ISO to the same directory as `kenny-linux-xps.img`
+
+3. Boot the archlinux ISO with the command `qemu-system-x86_64 -m 4G -hda kenny-linux-xps.img -cdrom archlinux-x86_64.iso -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time -smp 4 -vga qxl -net nic -net user`
+
+4. Follow the above directions with modifications as necessary
