@@ -43,15 +43,20 @@ yay -S macchina-bin gtk-theme-numix-solarized piavpn-bin --noconfirm --removemak
 sudo pacman -S firefox discord thunderbird --noconfirm # web essentials
 yay -S google-chrome slack-desktop zoom logseq-desktop-bin --noconfirm --removemake --answerdiff=None
 sudo pacman -S steam lutris --noconfirm # gaming
-yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None # programming
+sudo pacman -S ruby --noconfirm # programming
+yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
 sudo pacman -S audacity calibre gimp libreoffice-fresh qemu-full --noconfirm # other tools
 yay -S zotero-bin --noconfirm --removemake --answerdiff=None
 
 sudo systemctl enable piavpn.service
 
+gem install jekyll bundler
+bash ~/miniconda3_install.sh -b # conda will soon be intialized by importing the fish config
+
 sudo pacman -Sc --noconfirm
 yay -Sc --noconfirm
-rm -rf ~/.cargo # remove leftover rust files
+rm ~/miniconda3_install.sh
 
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
 sudo cp -f system/audacity.desktop /usr/share/applications/audacity.desktop
