@@ -109,8 +109,10 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+mylauncher = awful.widget.launcher({ image = beautiful.home_icon,
                                      menu = mymainmenu })
+myrofi =     awful.widget.launcher({ image = beautiful.apps_icon,
+                                     command = "rofi -show drun -dpi 192 -terminal alacritty"})
 
 -- Menubar configuration
 -- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -221,6 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
+            myrofi,
             s.mytaglist,
             s.mypromptbox,
         },
