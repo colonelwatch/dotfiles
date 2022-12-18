@@ -4,7 +4,6 @@ if status is-interactive
 end
 
 set fish_greeting
-set EDITOR vim
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
