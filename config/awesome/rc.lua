@@ -126,7 +126,27 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mytextclock = wibox.widget.textclock('%a %b %d, %I:%M %P')
 
 -- Create a battery widget
-local battery_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local lain = require("lain")
+local markup = lain.util.markup
+local mybattery = lain.widget.bat {
+    settings = function()
+        local symbol
+        if(bat_now.ac_status == 1) then
+            symbol = markup.fg.color("#859900", markup.bold("⚡"))
+        else
+            symbol = markup.bold("⚡")
+        end
+
+        local perc = bat_now.perc, bat_p
+        if perc ~= "N/A" and tonumber(perc) < 10 then 
+            bat_p = markup.fg.color("#dc322f", "0" .. perc .. "% ")
+        else
+            bat_p = perc .. "% "
+        end
+
+        widget:set_markup(" " .. symbol .. " " .. bat_p .. " ")
+    end
+}
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -230,7 +250,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            battery_widget(),
+            mybattery.widget,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
