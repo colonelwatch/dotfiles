@@ -6,7 +6,7 @@ configuration {
 
 * {
     border-color: transparent;
-    font: "Liberation Sans 8";
+    font: "Jetbrains Mono 8";
     background: #00212b;
     foreground: #93a1a1;
     selected-normal-background: #073642;
@@ -47,7 +47,7 @@ listview {
 }
 
 element {
-    padding: 6px 2px ; /* expands selected-normal-background */
+    padding: 6px 2px 7px; /* expands selected-normal-background */
     children: [ element-icon, element-text ];
 }
 element-text {

@@ -12,7 +12,7 @@ sudo systemctl enable intel-undervolt.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
 
-sudo pacman -S cronie networkmanager samba jre-openjdk libimobiledevice --noconfirm # system essentials
+sudo pacman -S cronie networkmanager samba jre-openjdk libimobiledevice ttf-jetbrains-mono --noconfirm # system essentials
 sudo systemctl enable cronie.service
 sudo systemctl enable NetworkManager.service
 

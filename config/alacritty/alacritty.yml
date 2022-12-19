@@ -1,3 +1,7 @@
+font:
+  normal:
+    family: JetBrains Mono
+
 # Colors (Solarized Dark)
 colors:
   # Default colors
