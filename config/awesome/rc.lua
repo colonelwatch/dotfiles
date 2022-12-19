@@ -148,6 +148,18 @@ local mybattery = lain.widget.bat {
     end
 }
 
+local myvolume = lain.widget.alsa {
+    settings = function()
+        local level_str
+        if volume_now.status == "on" then
+            level_str = volume_now.level .. "% "
+        else
+            level_str = markup.strike(volume_now.level .. "% ")
+        end
+        widget:set_markup(" Vol " .. level_str .. " ")
+    end
+}
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -250,6 +262,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            myvolume.widget,
             mybattery.widget,
             wibox.widget.systray(),
             mytextclock,
@@ -284,19 +297,22 @@ globalkeys = gears.table.join(
     ), 
     awful.key({}, "XF86AudioRaiseVolume",
         function ()
-            awful.spawn.with_shell("amixer sset Master 5%+")
+            awful.spawn("amixer sset Master 5%+")
+            myvolume.update()
         end,
         {description = "increase volume by 5%", group = "multimedia"}
     ),
     awful.key({}, "XF86AudioLowerVolume",
         function ()
-            awful.spawn.with_shell("amixer sset Master 5%-")
+            awful.spawn("amixer sset Master 5%-")
+            myvolume.update()
         end,
         {description = "decrease volume by 5%", group = "multimedia"}
     ),
     awful.key({}, "XF86AudioMute",
         function ()
-            awful.spawn.with_shell("amixer sset Master toggle")
+            awful.spawn("amixer sset Master toggle")
+            myvolume.update()
         end,
         {description = "toggle mute", group = "multimedia"}
     ),
