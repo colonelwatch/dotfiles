@@ -123,7 +123,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock('%a %b %d, %I:%M %P')
+mytextclock = wibox.widget.textclock(" " .. "%a %b %d, %I:%M %P" .. " ")
 
 -- Create a battery widget
 local lain = require("lain")
