@@ -129,6 +129,7 @@ mytextclock = wibox.widget.textclock(" " .. "%a %b %d, %I:%M %P" .. " ")
 local lain = require("lain")
 local markup = lain.util.markup
 local mybattery = lain.widget.bat {
+    notify = "off",
     settings = function()
         local symbol
         if(bat_now.ac_status == 1) then
