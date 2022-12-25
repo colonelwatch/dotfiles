@@ -46,7 +46,7 @@ sudo pacman -S steam lutris --noconfirm # gaming
 sudo pacman -S ruby --noconfirm # programming
 yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
-sudo pacman -S audacity calibre gimp libreoffice-fresh qemu-full --noconfirm # other tools
+sudo pacman -S audacity calibre gimp inkscape libreoffice-fresh qemu-full --noconfirm # other tools
 yay -S zotero-bin --noconfirm --removemake --answerdiff=None
 
 sudo systemctl enable piavpn.service
@@ -60,6 +60,7 @@ rm ~/miniconda3_install.sh
 
 sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
 sudo cp -f system/audacity.desktop /usr/share/applications/audacity.desktop
+sudo cp -f system/org.inkscape.Inkscape.desktop /usr/share/applications/
 
 
 
