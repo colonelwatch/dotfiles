@@ -12,7 +12,7 @@ sudo systemctl enable intel-undervolt.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
 
-sudo pacman -S cronie networkmanager samba jre-openjdk libimobiledevice ttf-jetbrains-mono --noconfirm # system essentials
+sudo pacman -S cronie networkmanager samba jre-openjdk libimobiledevice --noconfirm # system essentials
 sudo systemctl enable cronie.service
 sudo systemctl enable NetworkManager.service
 
@@ -37,6 +37,9 @@ cd ..
 rm -rf yay
 
 sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
+
+sudo pacman -S ttf-jetbrains-mono --noconfirm # fonts
+yay -S ttf-ms-win10-auto --noconfirm --removemake --answerdiff=None
 
 sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip ranger --noconfirm # desktop essentials
 yay -S macchina-bin gtk-theme-numix-solarized piavpn-bin --noconfirm --removemake --answerdiff=None
