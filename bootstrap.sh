@@ -20,7 +20,7 @@ sudo pacman -S bluez bluez-utils --noconfirm
 sudo cp -f system/main.conf /etc/bluetooth/
 sudo systemctl enable bluetooth.service
 
-sudo pacman -S acpi alsa-utils brightnessctl ttf-font-awesome playerctl --noconfirm # used by AwesomeWM exts
+sudo pacman -S acpi alsa-utils brightnessctl ttf-font-awesome playerctl xclip --noconfirm # used by AwesomeWM exts
 
 
 

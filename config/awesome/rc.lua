@@ -364,6 +364,13 @@ globalkeys = gears.table.join(
         {description = "next track", group = "multimedia"}
     ),
 
+    awful.key({}, "Print",
+        function ()
+            awful.spawn.with_shell("import -window root png:- | xclip -selection clipboard -t image/png")
+        end,
+        {description = "take screenshot", group = "multimedia"}
+    ),
+
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
