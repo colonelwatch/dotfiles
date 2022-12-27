@@ -163,13 +163,23 @@ local mybattery = lain.widget.bat {
 
 local myvolume = lain.widget.alsa {
     settings = function()
+        local vol = tonumber(volume_now.level)
+        local muted = (volume_now.status == "off")
+        
+        local symbol = markup.font("Font Awesome 6 Free 8", "\u{f028}")
+
         local level_str
-        if volume_now.status == "on" then
-            level_str = volume_now.level .. "% "
+        if vol < 10 then
+            level_str = "0" .. tostring(vol) .. "%"
         else
-            level_str = markup.strike(volume_now.level .. "% ")
+            level_str = tostring(vol) .. "%"
         end
-        widget:set_markup(" Vol " .. level_str .. " ")
+
+        if muted then
+            widget:set_markup(" " .. markup.strike(symbol .. " " .. level_str) .. " ")
+        else
+            widget:set_markup(" " .. symbol .. " " .. level_str .. " ")
+        end
     end
 }
 
