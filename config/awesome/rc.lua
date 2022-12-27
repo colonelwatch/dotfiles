@@ -131,21 +131,33 @@ local markup = lain.util.markup
 local mybattery = lain.widget.bat {
     notify = "off",
     settings = function()
+        local perc = tonumber(bat_now.perc)
+        
         local symbol
-        if(bat_now.ac_status == 1) then
-            symbol = markup.fg.color("#859900", markup.bold("⚡"))
+        if bat_now.ac_status == 1 or perc == nil then
+            symbol = markup.font("Font Awesome 6 Free 8", "\u{f1e6}")
+        elseif perc < 10 then
+            symbol = markup.fontfg("Font Awesome 6 Free 8", "#dc322f", "\u{f244}")
+        elseif perc < 30 then
+            symbol = markup.font("Font Awesome 6 Free 8", "\u{f243}")
+        elseif perc < 60 then
+            symbol = markup.font("Font Awesome 6 Free 8", "\u{f242}")
+        elseif perc < 90 then
+            symbol = markup.font("Font Awesome 6 Free 8", "\u{f241}")
         else
-            symbol = markup.bold("⚡")
+            symbol = markup.font("Font Awesome 6 Free 8", "\u{f240}")
         end
 
-        local perc = bat_now.perc, bat_p
-        if perc ~= "N/A" and tonumber(perc) < 10 then 
-            bat_p = markup.fg.color("#dc322f", "0" .. perc .. "% ")
+        local bat_str
+        if perc == nil then
+            bat_str = "--%"
+        elseif perc < 10 then
+            bat_str = "0" .. tostring(perc) .. "%"
         else
-            bat_p = perc .. "% "
+            bat_str = tostring(perc) .. "%"
         end
 
-        widget:set_markup(" " .. symbol .. " " .. bat_p .. " ")
+        widget:set_markup(" " .. symbol .. " " .. bat_str .. " ")
     end
 }
 
