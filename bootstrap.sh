@@ -29,12 +29,12 @@ sudo pacman -S acpi alsa-utils brightnessctl ttf-font-awesome playerctl xclip --
 sudo pacman -S gnome-keyring --noconfirm # deps not covered in proceeding installs
 
 # installing yay manually before using yay to get other AUR programs
-git clone https://aur.archlinux.org/yay.git
-cd yay
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
 makepkg --syncdeps --rmdeps --noconfirm
 sudo pacman -U *.pkg.tar.zst --noconfirm
 cd ..
-rm -rf yay
+rm -rf yay-bin
 
 sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
 
