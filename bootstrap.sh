@@ -38,7 +38,7 @@ rm -rf yay-bin
 
 sudo pacman -S rclone --noconfirm # used for restore and automatic backups of home
 
-sudo pacman -S ttf-jetbrains-mono --noconfirm # fonts
+sudo pacman -S ttf-jetbrains-mono otf-ipafont --noconfirm # fonts
 yay -S ttf-ms-win10-auto --noconfirm --removemake --answerdiff=None --sudoloop # msfonts known to need sudoloop
 
 sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip ranger --noconfirm # desktop essentials
