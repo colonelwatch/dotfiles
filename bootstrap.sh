@@ -41,7 +41,7 @@ sudo pacman -S rclone --noconfirm # used for restore and automatic backups of ho
 sudo pacman -S ttf-jetbrains-mono otf-ipafont --noconfirm # fonts
 yay -S ttf-ms-win10-auto --noconfirm --removemake --answerdiff=None --sudoloop # msfonts known to need sudoloop
 
-sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip ranger --noconfirm # desktop essentials
+sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip ranger nm-connection-editor --noconfirm # desktop essentials
 yay -S macchina-bin gtk-theme-numix-solarized piavpn-bin --noconfirm --removemake --answerdiff=None
 sudo pacman -S firefox discord thunderbird --noconfirm # web essentials
 yay -S google-chrome slack-desktop zoom logseq-desktop-bin --noconfirm --removemake --answerdiff=None
