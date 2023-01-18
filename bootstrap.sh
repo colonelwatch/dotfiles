@@ -3,7 +3,7 @@
 sudo cp -f system/pacman.conf /etc/
 sudo pacman -Syuu --noconfirm
 
-sudo pacman -S bolt nvidia-lts udiskie udisks2 --noconfirm # necessary for eGPU setup
+sudo pacman -S bolt nvidia-dkms udiskie udisks2 --noconfirm # necessary for eGPU setup
 
 sudo pacman -S intel-undervolt --noconfirm
 sudo cp -f system/intel-undervolt.conf /etc/

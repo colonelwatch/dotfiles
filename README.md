@@ -23,7 +23,7 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
     * `User account`: self-explanatory
     * `Profile`: `desktop`, `awesome`, `Intel (open source)`
     * `Audio`: `pipewire`
-    * `kernels`: `['linux-lts']`
+    * `kernels`: `['linux-zen']`
     * `Network configuration`: `Copy ISO configuration`
     * `Timezone`: self-explanatory
 
