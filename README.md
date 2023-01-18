@@ -6,7 +6,7 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 0. Manually backup home
     * Desginate new directories to backup by editing `~/Automations/run_rclone_sync.sh` (currently hosted on Google Drive, not Github)
-    * Execute `~/Automations/run_rclone_sync.sh` with the argument `-P`
+    * Execute `~/Automations/run_rclone_sync.sh -P --fast-list --checkers=32 --transfers=16`
 
 ## Install
 
