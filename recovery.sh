@@ -1,3 +1,5 @@
+fish -c "conda config --set auto_activate_base false" # disable conda auto-activation
+
 rm -rf ~/.thunderbird # remove default thunderbird config (should be empty folder)
 
 rclone config reconnect remote: --auto-confirm
