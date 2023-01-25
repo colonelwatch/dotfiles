@@ -1,6 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    macchina
 end
 
 set fish_greeting
@@ -10,3 +9,6 @@ set fish_greeting
 eval /home/kenny/miniconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
+if status is-interactive # macchina is called last because it seems to prevent a glitch
+    macchina
+end
