@@ -5,10 +5,17 @@ sudo pacman -Syuu --noconfirm
 
 sudo pacman -S bolt linux-zen-headers nvidia-dkms udiskie udisks2 --noconfirm # necessary for eGPU setup
 
+# setting frequency to the maximum is needed before calling the undervolt
+sudo pacman -S cpupower --noconfirm
+sudo cp -f system/cpupower /etc/default/
+sudo cpupower frequency-set --governor performance
+sudo systemctl enable cpupower.service
+
 sudo pacman -S intel-undervolt --noconfirm
 sudo cp -f system/intel-undervolt.conf /etc/
 sudo intel-undervolt apply
 sudo systemctl enable intel-undervolt.service
+sudo systemctl enable intel-undervolt-loop.service
 
 sudo cp -f system/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
 
@@ -41,6 +48,12 @@ sudo pacman -S rclone --noconfirm # used for restore and automatic backups of ho
 sudo pacman -S ttf-jetbrains-mono otf-ipafont --noconfirm # fonts
 yay -S ttf-ms-win10-auto --noconfirm --removemake --answerdiff=None --sudoloop # msfonts known to need sudoloop
 
+yay -S ncurses5-compat-libs --noconfirm --removemake --answerdiff=None
+wget https://www.passmark.com/downloads/pt_linux_x64.zip -O ~/pt_linux_x64.zip
+unzip ~/pt_linux_x64.zip
+sudo cp -f ~/PerformanceTest/pt_linux_x64 /usr/bin/pt # typical calls are: `pt` or `pt -r 1`
+rm -rf ~/pt_linux_x64.zip ~/PerformanceTest
+
 sudo pacman -S vim man rofi pcmanfm vlc fish zip unzip ranger nm-connection-editor --noconfirm # desktop essentials
 yay -S macchina-bin gtk-theme-numix-solarized piavpn-bin --noconfirm --removemake --answerdiff=None
 sudo pacman -S firefox discord thunderbird --noconfirm # web essentials
@@ -49,7 +62,7 @@ sudo pacman -S steam lutris --noconfirm # gaming
 sudo pacman -S ruby --noconfirm # programming
 yay -S visual-studio-code-bin --noconfirm --removemake --answerdiff=None
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
-sudo pacman -S audacity calibre gimp inkscape libreoffice-fresh qemu-full --noconfirm # other tools
+sudo pacman -S audacity calibre gimp inkscape imagemagick libreoffice-fresh qemu-full --noconfirm # other tools
 yay -S zotero-bin --noconfirm --removemake --answerdiff=None
 
 sudo systemctl enable piavpn.service
