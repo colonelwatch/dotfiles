@@ -105,3 +105,5 @@ ln -s -f ~/.dotfiles/config/gtk-3.0 ~/.config/
 ln -s -f ~/.dotfiles/config/macchina ~/.config/
 ln -s -f ~/.dotfiles/config/lutris ~/.config/
 ln -s -f ~/.dotfiles/config/rofi ~/.config/
+
+xdg-mime default pcmanfm.desktop inode/directory # by default, vscode seems to be the default file manager
