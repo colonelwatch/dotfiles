@@ -1,30 +1,30 @@
 # SYSTEM CONFIGURATION
 
-sudo cp -f system/pacman.conf /etc/
+sudo cp -f root/pacman.conf /etc/
 sudo pacman -Syuu --noconfirm
 
 sudo pacman -S bolt linux-zen-headers nvidia-dkms udiskie udisks2 --noconfirm # necessary for eGPU setup
 
 # setting frequency to the maximum is needed before calling the undervolt
 sudo pacman -S cpupower --noconfirm
-sudo cp -f system/cpupower /etc/default/
+sudo cp -f root/etc/default/cpupower /etc/default/
 sudo cpupower frequency-set --governor performance
 sudo systemctl enable cpupower.service
 
 sudo pacman -S intel-undervolt --noconfirm
-sudo cp -f system/intel-undervolt.conf /etc/
+sudo cp -f root/etc/intel-undervolt.conf /etc/
 sudo intel-undervolt apply
 sudo systemctl enable intel-undervolt.service
 sudo systemctl enable intel-undervolt-loop.service
 
-sudo cp -f system/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
+sudo cp -f root/etc/systemd/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
 
 sudo pacman -S cronie networkmanager samba jre-openjdk libimobiledevice --noconfirm # system essentials
 sudo systemctl enable cronie.service
 sudo systemctl enable NetworkManager.service
 
 sudo pacman -S bluez bluez-utils --noconfirm
-sudo cp -f system/main.conf /etc/bluetooth/
+sudo cp -f root/etc/bluetooth/main.conf /etc/bluetooth/
 sudo systemctl enable bluetooth.service
 
 sudo pacman -S acpi alsa-utils brightnessctl ttf-font-awesome playerctl xclip --noconfirm # used by AwesomeWM exts
@@ -74,9 +74,9 @@ sudo pacman -Sc --noconfirm
 yay -Sc --noconfirm
 rm ~/miniconda3_install.sh
 
-sudo cp -f system/steam.desktop /usr/share/applications/steam.desktop
-sudo cp -f system/audacity.desktop /usr/share/applications/audacity.desktop
-sudo cp -f system/org.inkscape.Inkscape.desktop /usr/share/applications/
+sudo cp -f root/usr/share/applications/steam.desktop /usr/share/applications/
+sudo cp -f root/usr/share/applications/audacity.desktop /usr/share/applications/
+sudo cp -f root/usr/share/applications/org.inkscape.Inkscape.desktop /usr/share/applications/
 
 
 
