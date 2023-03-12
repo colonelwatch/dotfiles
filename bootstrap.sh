@@ -11,15 +11,9 @@ sudo cp -f root/etc/default/cpupower /etc/default/
 sudo cpupower frequency-set --governor performance
 sudo systemctl enable cpupower.service
 
-sudo pacman -S intel-undervolt --noconfirm
-sudo cp -f root/etc/intel-undervolt.conf /etc/
-sudo intel-undervolt apply
-sudo systemctl enable intel-undervolt.service
-sudo systemctl enable intel-undervolt-loop.service
-
 sudo cp -f root/etc/systemd/zram-generator.conf /etc/systemd/ # expands swap space to RAM size
 
-sudo pacman -S cronie networkmanager samba jre-openjdk libimobiledevice --noconfirm # system essentials
+sudo pacman -S cronie networkmanager samba jre-openjdk libimobiledevice sof-firmware --noconfirm # system essentials
 sudo systemctl enable cronie.service
 sudo systemctl enable NetworkManager.service
 
@@ -29,6 +23,7 @@ sudo systemctl enable bluetooth.service
 
 sudo pacman -S acpi alsa-utils brightnessctl ttf-font-awesome playerctl xclip --noconfirm # used by AwesomeWM exts
 
+sudo cp -f root/etc/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
 
 
 # PROGRAM INSTALLATION
