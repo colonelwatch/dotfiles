@@ -5,6 +5,10 @@ sudo pacman -Syuu --noconfirm
 
 sudo pacman -S bolt linux-zen-headers nvidia-dkms udiskie udisks2 --noconfirm # necessary for eGPU setup
 
+# configure bootloader
+sudo cp -f root/boot/loader/entries/arch.conf /boot/loader/entries/
+sudo cp -f root/boot/loader/loader.conf /boot/loader/
+
 # setting frequency to the maximum is needed before calling the undervolt
 sudo pacman -S cpupower --noconfirm
 sudo cp -f root/etc/default/cpupower /etc/default/

@@ -33,7 +33,7 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 5. `git clone` this repository and execute `bootstrap.sh`
 
-6. Add `mitigations=off i915.enable_fbc=1 intel_pstate=passive` flags to kernel
+6. ~~Add `mitigations=off i915.enable_fbc=1 intel_pstate=passive` flags to kernel~~
 
 7. Authorize thunderbolt dock through `boltctl`
 
