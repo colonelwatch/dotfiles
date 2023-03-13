@@ -13,8 +13,6 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 1. Booting from the *latest* Live USB, immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
 
 2. Install the latest `archinstall` with the command `sudo pacman -Sy archinstall`
-    * `archinstall` 2.5.1 is bugged for my configuration, `archinstall` 2.5.2 is not
-    * Follow any instructions about GPG keys, or else ignore signatures by calling `vim /etc/pacman.conf` then changing the line `SigLevel    = Required DatabaseOptional` to `SigLevel    = Never`
 
 3. Choose the following settings in `archinstall` (all else default):
     * `Mirror region`: self-explanatory
@@ -33,26 +31,22 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 
 5. `git clone` this repository and execute `bootstrap.sh`
 
-6. ~~Add `mitigations=off i915.enable_fbc=1 intel_pstate=passive` flags to kernel~~
+6. Authorize thunderbolt dock through `boltctl`
 
-7. Authorize thunderbolt dock through `boltctl`
-
-8. Restart
+7. Restart
 
 ## Post-Bootstrap
 
-9. Connect to WiFi network through `nmtui` and manually set DNS to `1.1.1.1`, `1.0.0.1`, and `8.8.8.8`
+8. Connect to WiFi network through `nmtui` and manually set DNS to `1.1.1.1`, `1.0.0.1`, and `8.8.8.8`
 
-10. Execute `recovery.sh`, which includes manual prompts and recovery
+9. Execute `recovery.sh`, which includes manual prompts and recovery
     * Enter user password to set `fish` as the login shell
     * Authorize home recovery from Google Drive by logging in on the browser
     * Accept github fingerprint (if necessary) to proceed with Logseq graph recovery
 
-11. `connect` and `trust` the Airpods Pro 2 (`C0:95:6D:A7:F1:4D`) through `bluetoothctl`
+10. `connect` and `trust` the Airpods Pro 2 (`C0:95:6D:A7:F1:4D`) through `bluetoothctl`
 
-12. Configure line-in and line-out levels through `pactl` by device:
-    * Built-in microphones: 16384
-    * Built-in speakers: *controlled by hand*
+11. Configure line-in and line-out levels through `pactl` by device:
     * PCM2900C Audio Codec Line-in: 65536
     * PCM2900C Audio Codec Line-out: 65536
     * Airpods Pro 2: *currently uncalibrated*
@@ -73,10 +67,8 @@ Besides signing in, some programs need specific configurations that cannot be ju
 
 It may be useful to test this repository on a VM before nuking the laptop.
 
-1. Create an image file with the command `qemu-img create -f qcow2 kenny-linux-xps.img 64G`
+1. Download the latest archlinux ISO at https://mirrors.mit.edu/archlinux/iso/2023.03.01/archlinux-x86_64.iso
 
-2. Download the latest archlinux ISO at `https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-x86_64.iso` to the same directory as `kenny-linux-xps.img`
+2. Create a new virtual machine using `virt-manager` using `archlinux-x86_64.iso` as the CD ISO
 
-3. Boot the archlinux ISO with the command `qemu-system-x86_64 -m 4G -hda kenny-linux-xps.img -cdrom archlinux-x86_64.iso -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time -smp 4 -vga qxl -net nic -net user`
-
-4. Follow the above directions with modifications as necessary
+3. Proceed with the above directions
