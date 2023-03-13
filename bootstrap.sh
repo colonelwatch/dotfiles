@@ -61,11 +61,14 @@ sudo pacman -S steam lutris --noconfirm # gaming
 sudo pacman -S ruby --noconfirm # programming
 yay -S visual-studio-code-bin teensyduino --noconfirm --removemake --answerdiff=None
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
-sudo pacman -S audacity calibre gimp inkscape imagemagick libreoffice-fresh qemu-full --noconfirm # other tools
+sudo pacman -S audacity calibre gimp inkscape imagemagick libreoffice-fresh virt-manager qemu-desktop --noconfirm # other tools
 yay -S zotero-bin --noconfirm --removemake --answerdiff=None
 
 sudo systemctl enable piavpn.service
 sudo usermod -a -G uucp kenny
+
+sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/
+sudo usermod -a -G libvirt kenny
 
 gem install jekyll bundler
 bash ~/miniconda3_install.sh -b # conda will soon be intialized by importing the fish config
