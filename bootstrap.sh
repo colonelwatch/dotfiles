@@ -47,24 +47,17 @@ sudo systemctl enable \
 # <USER>
 
 # install packages
-yay -S \
+MAKEFLAGS="-j$(nproc)" yay -S \
     audacity calibre discord firefox fish gimp gnome-keyring google-chrome \
     gtk-theme-numix-solarized imagemagick inkscape libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
-    pcmanfm piavpn-bin qemu-desktop ranger rclone rofi ruby steam teensyduino \
+    passmark-performancetest-bin pcmanfm piavpn-bin qemu-desktop ranger rclone rofi ruby steam teensyduino \
     thunderbird ttf-jetbrains-mono ttf-ms-win10-auto unzip vim virt-manager \
     visual-studio-code-bin vlc zip zoom zotero-bin \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
 # install jekyll through ruby
 gem install jekyll bundler
-
-# install passmark performance test
-yay -S ncurses5-compat-libs --noconfirm --removemake --answerdiff=None
-wget https://www.passmark.com/downloads/pt_linux_x64.zip -O ~/pt_linux_x64.zip
-unzip ~/pt_linux_x64.zip
-sudo cp -f ~/PerformanceTest/pt_linux_x64 /usr/bin/pt # typical calls are: `pt` or `pt -r 1`
-rm -rf ~/pt_linux_x64.zip ~/PerformanceTest
 
 # download and execute miniconda install script
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
