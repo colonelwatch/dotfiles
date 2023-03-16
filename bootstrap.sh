@@ -27,6 +27,8 @@ rm -rf yay-bin
 
 # <ROOT>
 
+yay -Rs pipewire-pulse --noconfirm
+
 yay -S \
     acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie \
     jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-dkms \
