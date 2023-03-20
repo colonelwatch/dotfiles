@@ -31,7 +31,7 @@ yay -Rs pipewire-pulse --noconfirm
 
 yay -S \
     acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie \
-    jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-dkms \
+    jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-open-dkms \
     playerctl samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
