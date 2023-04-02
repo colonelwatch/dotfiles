@@ -50,12 +50,12 @@ sudo systemctl enable \
 
 # install packages
 MAKEFLAGS="-j$(nproc)" yay -S \
-    audacity calibre discord firefox fish gimp gnome-keyring google-chrome \
+    audacity calibre discord firefox fish ghostscript gimp gnome-keyring google-chrome \
     gtk-theme-numix-solarized imagemagick inkscape libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
     passmark-performancetest-bin pcmanfm piavpn-bin qemu-desktop ranger rclone rofi ruby steam teensyduino \
     thunderbird ttf-jetbrains-mono ttf-ms-win10-auto unzip vim virt-manager \
-    visual-studio-code-bin vlc zip zoom zotero-bin \
+    visual-studio-code-bin vlc zip zoom zopfli zotero-bin \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
 # install jekyll through ruby
