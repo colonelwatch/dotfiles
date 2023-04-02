@@ -36,6 +36,7 @@ yay -S \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
 # install config files
+sudo rm /boot/loader/entries/* # remove default entries
 sudo cp -rvf --no-preserve=mode,ownership root/boot/loader/* /boot/loader/
 sudo cp -rvf --no-preserve=mode,ownership root/etc/* /etc/
 
