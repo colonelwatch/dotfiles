@@ -55,7 +55,7 @@ MAKEFLAGS="-j$(nproc)" yay -S \
     gtk-theme-numix-solarized imagemagick inkscape libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
     passmark-performancetest-bin pcmanfm piavpn-bin qemu-desktop ranger rclone rofi ruby steam teensyduino \
-    thunderbird ttf-jetbrains-mono ttf-ms-win10-auto unzip vim virt-manager \
+    thunderbird ttf-jetbrains-mono ttf-ms-win10-auto turbostat unzip vim virt-manager \
     visual-studio-code-bin vlc zip zoom zopfli zotero-bin \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
