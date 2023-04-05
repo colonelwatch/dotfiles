@@ -2,5 +2,3 @@ steam: {}
 system:
   env:
     GDK_SCALE: '1'
-  reset_desktop: true
-  resolution: 1600x900
