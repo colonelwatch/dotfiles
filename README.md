@@ -12,7 +12,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 1. Booting from the *latest* Live USB, immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
 
-2. Install the latest `archinstall` with the command `sudo pacman -Sy archinstall`
+2. Install the latest `archinstall`
 
 3. Choose the following settings in `archinstall` (all else default):
     * `Mirror region`: self-explanatory
