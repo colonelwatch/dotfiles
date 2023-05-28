@@ -1,6 +1,6 @@
 # dotfiles
 
-If I ever need to nuke the Linux install on my XPS, this repo documents everything I need to get back up and running again, including a bootstrap script that automates as much of the process as possible. This includes things that are specific to my hardware.
+If I ever need to nuke the Linux install on my laptop, this repo documents everything I need to get back up and running again, including a bootstrap script that automates as much of the process as possible. This includes things that are specific to my hardware.
 
 ## Pre-Install
 
@@ -17,7 +17,7 @@ If I ever need to nuke the Linux install on my XPS, this repo documents everythi
 3. Choose the following settings in `archinstall` (all else default):
     * `Mirror region`: self-explanatory
     * `Drives`: Main HDD, nuke all partitions, and no separate home partition
-    * `hostname`: `kenny-xps`
+    * `hostname`: `kenny-laptop`
     * `User account`: self-explanatory
     * `Profile`: `desktop`, `awesome`, `Intel (open source)`
     * `Audio`: `pipewire`
