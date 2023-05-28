@@ -25,13 +25,13 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
     * `Network configuration`: `Copy ISO configuration`
     * `Timezone`: self-explanatory
 
+4. *Do not* restart yet. Select "yes" when asked to chroot, call `sudo su - kenny` to switch users, then call `cd ~`
+
 ## Post-Install
 
-4. Install `git` with the command `sudo pacman -S git`
+5. Install `git` with the command `sudo pacman -S git`
 
-5. `git clone` this repository and execute `bootstrap.sh`
-
-6. Authorize thunderbolt dock through `boltctl`
+6. `git clone` this repository and execute `bootstrap.sh`
 
 7. Restart
 
