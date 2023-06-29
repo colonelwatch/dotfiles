@@ -42,4 +42,7 @@ fi
 
 xrandr --newmode "1440x900" 182.75  1440 1488 1520 1600  900 903 909 953 +hsync -vsync
 xrandr --addmode eDP-1 1440x900
+
+cd $HOME/Automations/anti_burn_in && python3 ./set_and_apply_shift.py
+
 exec awesome

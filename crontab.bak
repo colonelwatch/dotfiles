@@ -1,1 +1,2 @@
 * 23 * * * bash /home/kenny/Automations/run_rclone_sync.sh
+0 * * * * bash -c "cd /home/kenny/Automations/anti_burn_in && python3 ./set_and_apply_shift.py"
