@@ -31,7 +31,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 5. Install `git` with the command `sudo pacman -S git`
 
-6. `git clone` this repository and execute `bootstrap.sh`
+6. Clone this repository with the command `git clone https://github.com/colonelwatch/dotfiles .dotfiles`, call `cd .dotfiles && bash ./bootstrap.sh`
 
 7. Restart
 
@@ -39,7 +39,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 8. Connect to WiFi network through `nmtui` and manually set DNS to `1.1.1.1`, `1.0.0.1`, and `8.8.8.8`
 
-9. Execute `recovery.sh`, which includes manual prompts and recovery
+9. Call `cd .dotfiles && bash ./recovery.sh`, which includes manual prompts and recovery
     * Enter user password to set `fish` as the login shell
     * Authorize home recovery from Google Drive by logging in on the browser
     * Accept github fingerprint (if necessary) to proceed with Logseq graph recovery
