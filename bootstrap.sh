@@ -54,7 +54,7 @@ MAKEFLAGS="-j$(nproc)" yay -S \
     audacity calibre discord firefox fish gcc12 ghostscript gimp gnome-keyring google-chrome \
     gtk-theme-numix-solarized imagemagick inkscape libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
-    passmark-performancetest-bin pcmanfm piavpn-bin qemu-desktop ranger rclone rofi ruby steam teensyduino \
+    passmark-performancetest-bin pcmanfm piavpn-bin qemu-desktop ranger rclone rsync rofi ruby steam teensyduino \
     thunderbird ttf-jetbrains-mono ttf-ms-win10-auto turbostat unzip vim virt-manager \
     visual-studio-code-bin vlc zip zoom zopfli zotero-bin \
     --noconfirm --removemake --answerdiff=None --sudoloop
@@ -76,12 +76,6 @@ ln -s -f $PWD/home/* ~/ # we explicitly need to write out the pwd
 ln -s -f $PWD/home/.* ~/
 ln -s -f $PWD/config/* ~/.config/
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ # libvirt is actually a root service!
-
-# deal with rclone config edge case
-unlink ~/.config/rclone # undo symlink b/c it eventually contains keys we don't want to commit...
-mkdir ~/.config/rclone  #  ...so we'll only copy the config files
-cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
-# rclone is not authorized yet, so authorize manually in recovery.sh
 
 # other config
 sudo systemctl enable piavpn.service
