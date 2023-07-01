@@ -77,6 +77,12 @@ ln -s -f $PWD/home/.* ~/
 ln -s -f $PWD/config/* ~/.config/
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ # libvirt is actually a root service!
 
+# deal with rclone config edge case
+unlink ~/.config/rclone # undo symlink b/c it eventually contains keys we don't want to commit...
+mkdir ~/.config/rclone  #  ...so we'll only copy the config files
+cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
+# rclone is not authorized yet, so authorize manually in recovery.sh
+
 # other config
 sudo systemctl enable piavpn.service
 sudo usermod -a -G uucp,libvirt kenny # needed for arduino and virt-manager
