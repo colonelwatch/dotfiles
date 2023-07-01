@@ -1,6 +1,7 @@
 system:
   env:
     PIPEWIRE_LATENCY: '"128/48000"'
+  postexit_command: /home/kenny/Automations/anti_burn_in/set_and_apply_shift.py
   prime: true
-  reset_desktop: true
+  reset_desktop: false
   resolution: 1440x900
