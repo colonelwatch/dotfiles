@@ -30,7 +30,7 @@ rm -rf yay-bin
 yay -Rs pipewire-pulse --noconfirm
 
 yay -S \
-    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie \
+    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie gksu \
     jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-open-dkms \
     playerctl samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
     --noconfirm --removemake --answerdiff=None --sudoloop
@@ -51,7 +51,7 @@ sudo systemctl enable \
 
 # install packages
 MAKEFLAGS="-j$(nproc)" yay -S \
-    audacity calibre discord firefox fish gcc12 ghostscript gimp gnome-keyring google-chrome \
+    audacity calibre discord firefox fish gcc12 ghostscript gimp gnome-keyring google-chrome gparted \
     gtk-theme-numix-solarized imagemagick inkscape libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
     passmark-performancetest-bin pcmanfm piavpn-bin qemu-desktop ranger rclone rsync rofi ruby steam teensyduino \
