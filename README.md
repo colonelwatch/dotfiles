@@ -59,6 +59,7 @@ Besides signing in, some programs need specific configurations that cannot be ju
 * Sign into the Chrome browser with my personal email
     * Sign into Google with my personal email *and* my school email
 * Set up Zotero integration
+    * Disable syncing attachment files
     * Enable Zotero syncing with zotero.org
     * Enable Zotero plugin with LibreOffice
 * Open Logseq graph at `~/Logseq` and add the Git plugin
