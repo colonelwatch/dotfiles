@@ -1,2 +1,2 @@
 * 23 * * * bash /home/kenny/Automations/run_rsync.sh
-0 * * * * bash -c "cd /home/kenny/Automations/anti_burn_in && python3 ./set_and_apply_shift.py"
+0 * * * * bash -c "cd /home/kenny/Automations/anti_burn_in && python3 ./inc_counters.py"
