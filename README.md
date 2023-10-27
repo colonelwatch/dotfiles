@@ -57,7 +57,6 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 Besides signing in, some programs need specific configurations that cannot be just carried over.
 * Configure Firefox into its permanent privacy mode
 * Sign into the Chrome browser with my personal email
-    * Sign into Google with my personal email *and* my school email
 * Set up Zotero integration
     * Disable syncing attachment files
     * Enable Zotero syncing with zotero.org
