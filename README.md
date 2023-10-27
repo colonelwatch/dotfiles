@@ -10,7 +10,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 ## Install
 
-1. Booting from the *latest* Live USB, immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
+1. Booting from the *latest* Live USB (can always be found at https://mirrors.mit.edu/archlinux/iso/latest/archlinux-x86_64.iso), immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
 
 2. Install the latest `archinstall`
 
@@ -68,7 +68,7 @@ Besides signing in, some programs need specific configurations that cannot be ju
 
 It may be useful to test this repository on a VM before nuking the laptop.
 
-1. Download the latest archlinux ISO at https://mirrors.mit.edu/archlinux/iso/2023.03.01/archlinux-x86_64.iso
+1. Download the latest archlinux ISO at https://mirrors.mit.edu/archlinux/iso/latest/archlinux-x86_64.iso
 
 2. Create a new virtual machine using `virt-manager` using `archlinux-x86_64.iso` as the CD ISO
 
