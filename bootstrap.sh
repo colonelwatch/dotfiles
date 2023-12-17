@@ -28,7 +28,7 @@ rm -rf yay-bin
 # <ROOT>
 
 yay -S \
-    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie gksu \
+    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie dnsmasq gksu \
     jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-open-dkms \
     playerctl samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
     --noconfirm --removemake --answerdiff=None --sudoloop
@@ -91,6 +91,7 @@ cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
 # other config
 sudo systemctl enable piavpn.service
 sudo usermod -a -G uucp,libvirt kenny # needed for arduino and virt-manager
+sudo systemctl enable libvirtd.service
 xdg-mime default pcmanfm.desktop inode/directory # by default, vscode seems to be the default file manager
 crontab crontab.bak
 
