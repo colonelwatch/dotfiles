@@ -50,7 +50,7 @@ sudo systemctl enable \
 # install packages
 MAKEFLAGS="-j$(nproc)" yay -S \
     audacity calibre discord firefox fish freecad fuse2 gcc12 ghostscript gimp gnome-keyring google-chrome gparted \
-    gtk-theme-numix-solarized imagemagick inkscape kicad kicad-library libreoffice-fresh \
+    imagemagick inkscape kicad kicad-library libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
     pcmanfm piavpn-bin qemu-desktop ranger rclone rsync rofi rpcs3-bin ruby steam \
     teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono ttf-ms-win10-auto turbostat unzip vim virt-manager \
@@ -71,6 +71,12 @@ unzip ~/pt_linux_x64.zip -d ~/
 sudo mv ~/PerformanceTest/pt_linux_x64 /usr/local/bin/pt
 rm -rf ~/PerformanceTest
 rm ~/pt_linux_x64.zip
+
+# download and install latest (as of 2023-12-23) version of adw-gtk3
+wget https://github.com/lassekongo83/adw-gtk3/releases/download/v5.2/adw-gtk3v5-2.tar.xz -O ~/adw-gtk3v5-2.tar.xz
+mkdir ~/.local/share/themes
+tar -xf ~/adw-gtk3v5-2.tar.xz -C ~/.local/share/themes
+rm ~/adw-gtk3v5-2.tar.xz
 
 # override .desktops with custom ones
 sudo cp -rvf --no-preserve=mode,ownership root/usr/share/applications/* /usr/share/applications/
