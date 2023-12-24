@@ -57,10 +57,11 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 Besides signing in, some programs need specific configurations that cannot be just carried over.
 * Configure Firefox into its permanent privacy mode
 * Sign into the Chrome browser with my personal email
-* Set up Zotero integration
+* Set up Zotero
     * Disable syncing attachment files
     * Enable Zotero syncing with zotero.org
     * Enable Zotero plugin with LibreOffice
+    * Run `bash patch_zotero.sh` in `Automations/patch_zotero`
 * Open Logseq graph at `~/Logseq` and add the Git plugin
 
 ## Virtualization
