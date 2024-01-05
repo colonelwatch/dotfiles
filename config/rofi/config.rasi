@@ -6,7 +6,7 @@ configuration {
 
 * {
     border-color: transparent;
-    font: "Jetbrains Mono 8";
+    font: "iA Writer Duo S 8.1";
     background: #00212b;
     foreground: #93a1a1;
     selected-normal-background: #073642;
