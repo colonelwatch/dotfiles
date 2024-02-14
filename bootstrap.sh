@@ -29,7 +29,7 @@ rm -rf yay-bin
 
 yay -S \
     acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie dnsmasq gksu \
-    jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-open-dkms \
+    jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-dkms \
     playerctl samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
