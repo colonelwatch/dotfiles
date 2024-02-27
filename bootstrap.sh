@@ -49,8 +49,8 @@ sudo systemctl enable \
 
 # install packages
 MAKEFLAGS="-j$(nproc)" yay -S \
-    audacity calibre discord firefox fish freecad fuse2 gcc12 ghostscript gimp gnome-keyring google-chrome gparted \
-    imagemagick inkscape kicad kicad-library libreoffice-fresh \
+    audacity calibre discord firefox fish freecad fuse2 gcc12 ghostscript gimp git-lfs gnome-keyring google-chrome \
+    gparted imagemagick inkscape kicad kicad-library libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
     pcmanfm piavpn-bin prusa-slicer qemu-desktop ranger rclone rsync rofi rpcs3-bin ruby steam \
     teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono ttf-ms-win10-auto turbostat unzip vim virt-manager \
