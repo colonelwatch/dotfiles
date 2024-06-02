@@ -49,7 +49,7 @@ sudo systemctl enable \
 
 # install packages
 MAKEFLAGS="-j$(nproc)" yay -S \
-    audacity calibre discord firefox fish freecad fuse2 gcc12 ghostscript gimp git-lfs gnome-keyring google-chrome \
+    audacity calibre discord firefox fish freecad fuse2 ghostscript gimp git-lfs gnome-keyring google-chrome \
     gparted imagemagick inkscape kicad kicad-library libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
     pcmanfm prusa-slicer qemu-desktop ranger rclone rsync rofi rpcs3-bin ruby steam \
@@ -95,7 +95,6 @@ cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
 # rclone is not authorized yet, so authorize manually in recovery.sh
 
 # other config
-sudo systemctl enable piavpn.service
 sudo usermod -a -G uucp,libvirt kenny # needed for arduino and virt-manager
 sudo systemctl enable libvirtd.service
 xdg-mime default pcmanfm.desktop inode/directory # by default, vscode seems to be the default file manager
