@@ -83,8 +83,8 @@ sudo cp -rvf --no-preserve=mode,ownership root/usr/share/applications/* /usr/sha
 
 # install config files
 mkdir -p ~/.config
-ln -s -f $PWD/home/* ~/ # we explicitly need to write out the pwd
-ln -s -f $PWD/home/.* ~/
+# ln -s -f $PWD/home/* ~/ # uncomment if files besides dotfiles are added to home
+ln -s -f $PWD/home/.* ~/ # we explicitly need to write out the pwd
 ln -s -f $PWD/config/* ~/.config/
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ # libvirt is actually a root service!
 
