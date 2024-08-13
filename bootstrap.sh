@@ -52,7 +52,7 @@ MAKEFLAGS="-j$(nproc)" yay -S \
     audacity calibre discord firefox fish freecad fuse2 ghostscript gimp git-lfs gnome-keyring google-chrome \
     gparted imagemagick inkscape kicad kicad-library libreoffice-fresh \
     logseq-desktop-bin lutris macchina-bin man nm-connection-editor otf-ipafont \
-    pcmanfm prusa-slicer qemu-desktop ranger rclone rsync rofi rpcs3-bin ruby steam \
+    pcmanfm perl-image-exiftool prusa-slicer qemu-desktop ranger rclone rsync rofi rpcs3-bin ruby steam \
     teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono ttf-ms-win10-auto turbostat unzip vim virt-manager \
     visual-studio-code-bin vlc zip zopfli zotero-bin \
     --noconfirm --removemake --answerdiff=None --sudoloop
