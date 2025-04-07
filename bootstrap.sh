@@ -30,7 +30,7 @@ rm -rf yay-bin
 yay -S \
     acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie dnsmasq gksu \
     jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-open-dkms \
-    playerctl samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
+    playerctl reflector samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
 # install config files
@@ -39,7 +39,8 @@ sudo cp -rvf --no-preserve=mode,ownership root/boot/loader/* /boot/loader/
 sudo cp -rvf --no-preserve=mode,ownership root/etc/* /etc/
 
 sudo systemctl enable \
-    bluetooth.service cpupower.service cronie.service NetworkManager.service
+    bluetooth.service cpupower.service cronie.service NetworkManager.service \
+    reflector.service
 
 # </ROOT>
 
