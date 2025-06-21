@@ -52,7 +52,7 @@ sudo systemctl enable \
 MAKEFLAGS="-j$(nproc)" yay -S \
     audacity discord firefox fish freecad fd fuse2 ghostscript gimp git-lfs gnome-keyring google-chrome \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh \
-    logseq-desktop-bin lutris macchina man neovim nm-connection-editor otf-ipafont parallel \
+    logseq-desktop-bin lutris macchina man ncurses5-compat-libs neovim nm-connection-editor otf-ipafont parallel \
     pcmanfm perl-image-exiftool prusa-slicer qemu-desktop ranger ripgrep rclone rsync rofi rpcs3-bin ruby steam \
     teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono ttf-ms-win10-cdn turbostat unzip virt-manager \
     visual-studio-code-bin vlc xclip zip zopfli zotero-bin \
