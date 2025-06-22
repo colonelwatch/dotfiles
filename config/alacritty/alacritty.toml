@@ -27,4 +27,4 @@ background = "#002b36"
 foreground = "#839496"
 
 [font.normal]
-family = "Jetbrains Mono"
+family = "JetBrainsMono NFM"
