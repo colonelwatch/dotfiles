@@ -289,6 +289,9 @@ require('lazy').setup({
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
+
+      -- Pull in stubs maintained by Microsoft
+      'microsoft/python-type-stubs'
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -441,7 +444,15 @@ require('lazy').setup({
             },
           },
         },
-        pyrefly = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+              }
+            }
+          }
+        },
         ruff = {},
       }
 
