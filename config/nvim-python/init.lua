@@ -214,27 +214,10 @@ require('lazy').setup({
           prompt_title = 'Live Grep in Open Files',
         }
       end, { desc = '[S]earch [/] in Open Files' })
-
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
     end,
   },
 
   -- LSP Plugins
-  {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
@@ -397,15 +380,6 @@ require('lazy').setup({
 
       -- Enable the following language servers
       local servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-            },
-          },
-        },
         pyright = {
           settings = {
             python = {
@@ -420,9 +394,6 @@ require('lazy').setup({
 
       -- Ensure the servers and tools above are installed
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-      })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
@@ -473,7 +444,6 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
-        lua = { 'stylua' },
         python = { 'ruff_format', 'ruff_organize_imports' },
       },
     },
@@ -500,7 +470,6 @@ require('lazy').setup({
         dependencies = {},
         opts = {},
       },
-      'folke/lazydev.nvim',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -520,10 +489,7 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
-        providers = {
-          lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-        },
+        default = { 'lsp', 'path', 'snippets' },
       },
 
       snippets = { preset = 'luasnip' },
