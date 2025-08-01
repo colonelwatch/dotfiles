@@ -1,4 +1,4 @@
 config/lutris/games
 config/lutris/lutris.conf
 config/fish/fish_variables
-config/nvim-python/lazy-lock.json
+lazy-lock.json
