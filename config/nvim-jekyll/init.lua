@@ -316,7 +316,7 @@ require('lazy').setup({
 
       -- Enable the following language servers
       local servers = {
-
+        ltex_plus = {},
       }
 
       -- Ensure the servers and tools above are installed
