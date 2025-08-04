@@ -283,7 +283,7 @@ require('lazy').setup({
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
-        underline = { severity = vim.diagnostic.severity.ERROR },
+        underline = { severity = { min = vim.diagnostic.severity.INFO } },
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
@@ -333,6 +333,11 @@ require('lazy').setup({
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
+      require('NeoSolarized').setup {
+        on_highlights = function(highlights, colors)
+          highlights.InfoText = { sp = colors.blue, style = "undercurl" }
+        end
+      }
       vim.cmd.colorscheme 'NeoSolarized'
     end,
   },
