@@ -334,6 +334,7 @@ require('lazy').setup({
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       require('NeoSolarized').setup {
+        transparent = false,
         on_highlights = function(highlights, colors)
           highlights.InfoText = { sp = colors.blue, style = "undercurl" }
         end
