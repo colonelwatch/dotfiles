@@ -310,7 +310,7 @@ require('lazy').setup({
       require('NeoSolarized').setup {
         transparent = false,
         on_highlights = function(highlights, colors)
-          highlights.InfoText = { sp = colors.blue, style = "undercurl" }
+          highlights.DiagnosticUnderlineInfo = { sp = colors.blue, style = "undercurl" }
         end
       }
       vim.cmd.colorscheme 'NeoSolarized'
