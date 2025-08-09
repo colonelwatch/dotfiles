@@ -230,7 +230,6 @@ require('lazy').setup({
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
       { 'mason-org/mason.nvim', opts = {} },
       'mason-org/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
@@ -280,27 +279,24 @@ require('lazy').setup({
         virtual_text = { source = 'if_many', spacing = 2 },
       }
 
-      -- Enable the following language servers
-      local servers = {
-        ltex_plus = {},
-      }
+      -- Install and enable language servers
+      require('mason-lspconfig').setup { ensure_installed = { "ltex_plus" } }
 
-      -- Ensure the servers and tools above are installed
-      local ensure_installed = vim.tbl_keys(servers or {})
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
+      vim.lsp.config("ltex_plus", {
+        settings = {
+          ltex = {
+            diagnosticSeverity = {
+              ["MORFOLOGIK_RULE_EN_US"] = "error",
+              ["default"] = "information",
+            },
+          }
+        }
+      })
     end,
   },
+
+  -- ltex LSP helper
+  { "barreiroleo/ltex_extra.nvim", branch = "dev", opts = { path = ".ltex" } },
 
   { -- color scheme
     'Tsuzat/NeoSolarized.nvim',
