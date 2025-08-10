@@ -1,0 +1,15 @@
+return {
+    name = "mdformat",
+    description = "CommonMark compliant Markdown formatter.",
+    homepage = "https://github.com/executablebooks/mdformat",
+    licenses = { "MIT" },
+    languages = { "Markdown" },
+    categories = { "Formatter" },
+    source = {
+        id = "pkg:pypi/mdformat@0.7.22",
+        extra_packages = { "mdformat-frontmatter==2.0.8" },
+    },
+    bin = {
+        ["mdformat"] = "pypi:mdformat",
+    },
+}

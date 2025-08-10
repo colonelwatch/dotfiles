@@ -228,13 +228,42 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = {} },
-      'mason-org/mason-lspconfig.nvim',
+      {
+        'mason-org/mason.nvim',
+        opts = {
+          registries = {
+            "lua:mason-registry-override",
+            "github:mason-org/mason-registry",
+          },
+        },
+      },
+      { 'mason-org/mason-lspconfig.nvim', opts = { ensure_installed = {} } },
+      {
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        opts = {
+          ensure_installed = { 'ltex_plus', 'mdformat' }
+        },
+      },
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
+      vim.lsp.config("ltex_plus", {
+        settings = {
+          ltex = {
+            diagnosticSeverity = {
+              ["MORFOLOGIK_RULE_EN_US"] = "error",
+              ["default"] = "information",
+            },
+            additionalRules = {
+              -- n-grams model can also be tested with "I flu to Los Angeles."
+              languageModel = "~/.local/share/ngrams",
+            },
+          }
+        }
+      })
+
       -- Diagnostic Config
       vim.diagnostic.config {
         severity_sort = true,
@@ -250,23 +279,6 @@ require('lazy').setup({
         },
         virtual_text = { source = 'if_many', spacing = 2 },
       }
-
-      -- Install and enable language servers
-      require('mason-lspconfig').setup { ensure_installed = { "ltex_plus" } }
-
-      vim.lsp.config("ltex_plus", {
-        settings = {
-          ltex = {
-            diagnosticSeverity = {
-              ["MORFOLOGIK_RULE_EN_US"] = "error",
-              ["default"] = "information",
-            },
-            additionalRules = {
-              languageModel = "~/.local/share/ngrams",
-            },
-          }
-        }
-      })
     end,
   },
 
