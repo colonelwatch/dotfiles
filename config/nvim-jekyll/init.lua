@@ -65,9 +65,6 @@ vim.o.confirm = true
 -- Set the window border (across all plugins)
 vim.o.winborder = 'single'
 
--- Set the rulers
-vim.o.colorcolumn = '81,89'
-
 -- [[ Basic Keymaps ]]
 
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -277,13 +274,39 @@ require('lazy').setup({
             [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
         },
-        virtual_text = { source = 'if_many', spacing = 2 },
+        virtual_text = false,
       }
     end,
   },
 
   -- ltex LSP helper
   { "barreiroleo/ltex_extra.nvim", branch = "dev", opts = { path = ".ltex" } },
+
+  { -- Autoformat
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        '<leader>f',
+        function()
+          require('conform').format { async = true, lsp_format = 'fallback' }
+        end,
+        mode = '',
+        desc = '[F]ormat buffer',
+      },
+    },
+    opts = {
+      notify_on_error = false,
+      format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
+      formatters_by_ft = { markdown = { 'mdformat' } },
+      formatters = {
+        mdformat = {
+          prepend_args = { "--number", "--wrap=no" },
+        },
+      },
+    },
+  },
 
   { -- color scheme
     'Tsuzat/NeoSolarized.nvim',
