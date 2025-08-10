@@ -289,6 +289,9 @@ require('lazy').setup({
               ["MORFOLOGIK_RULE_EN_US"] = "error",
               ["default"] = "information",
             },
+            additionalRules = {
+              languageModel = "~/.local/share/ngrams",
+            },
           }
         }
       })
