@@ -65,6 +65,9 @@ vim.o.confirm = true
 -- Set the window border (across all plugins)
 vim.o.winborder = 'single'
 
+-- Set linebreak, since the content is mostly text
+vim.o.linebreak = true
+
 -- [[ Basic Keymaps ]]
 
 -- Clear highlights on search when pressing <Esc> in normal mode
