@@ -62,6 +62,9 @@ Besides signing in, some programs need specific configurations that cannot be ju
     * Enable Zotero syncing with zotero.org
     * Enable Zotero plugin with LibreOffice
     * Run `bash patch_zotero.sh` in `Automations/patch_zotero`
+* Configure the Logseq repository at `~/Logseq`:
+    * Checkout the `dev` branch
+    * Enable the pre-commit scripts with `pre-commit install`
 * Open Logseq graph at `~/Logseq` and add the Git plugin
 
 ## Virtualization
