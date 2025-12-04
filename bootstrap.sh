@@ -28,7 +28,7 @@ rm -rf yay-bin
 # <ROOT>
 
 yay -S \
-    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie dnsmasq gksu \
+    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie dnsmasq exfatprogs gksu \
     jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-open-dkms \
     playerctl reflector samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
     --noconfirm --removemake --answerdiff=None --sudoloop
