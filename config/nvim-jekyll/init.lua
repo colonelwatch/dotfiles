@@ -126,10 +126,8 @@ rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 
 require('lazy').setup({
-  { -- Detect tabstop and shiftwidth automatically
-    'NMAC427/guess-indent.nvim',
-    opts = {},
-  },
+  -- Detect tabstop and shiftwidth automatically
+  { 'NMAC427/guess-indent.nvim', opts = {} },
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -143,6 +141,8 @@ require('lazy').setup({
       },
     },
   },
+
+  { 'tpope/vim-fugitive' },
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
