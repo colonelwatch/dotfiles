@@ -26,5 +26,8 @@ yellow = "#b58900"
 background = "#002b36"
 foreground = "#839496"
 
+[font]
+size = 10.0
+
 [font.normal]
 family = "JetBrainsMono NFM"
