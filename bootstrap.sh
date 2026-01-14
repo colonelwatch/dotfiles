@@ -54,7 +54,7 @@ MAKEFLAGS="-j$(nproc)" yay -S \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh \
     logseq-desktop-electron-bin ltspice lutris macchina man ncurses5-compat-libs neovim nm-connection-editor otf-ipafont parallel \
     pcmanfm perl-image-exiftool pre-commit prusa-slicer qdirstat qemu-desktop ranger ripgrep rclone rsync rofi rpcs3-bin ruby steam \
-    teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree turbostat unzip virt-manager \
+    teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree tree-sitter-cli turbostat unzip virt-manager \
     visual-studio-code-bin vlc wine xclip zip zopfli zotero-bin \
     --noconfirm --removemake --answerdiff=None --sudoloop
 
