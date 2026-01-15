@@ -4,7 +4,7 @@ end
 
 set fish_greeting
 
-set -gx EDITOR vim
+set -gx EDITOR nvim
 set -gx GEM_HOME "$(gem env user_gemhome)"
 
 fish_add_path -g "$GEM_HOME/bin"

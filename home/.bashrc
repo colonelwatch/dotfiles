@@ -8,6 +8,7 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-export EDITOR=vim
+alias vim='NVIM_APPNAME=nvim-vim nvim'
+export EDITOR="nvim"
 
 macchina
