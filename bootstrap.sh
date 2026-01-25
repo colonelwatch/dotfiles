@@ -50,7 +50,7 @@ sudo systemctl enable \
 
 # install packages
 MAKEFLAGS="-j$(nproc)" yay -S \
-    audacity bc discord firefox fish freecad fd fuse2 ghostscript gimp git-lfs gnome-keyring google-chrome \
+    audacity bc discord firefox fish freecad fd fuse2 github-cli ghostscript gimp git-lfs gnome-keyring google-chrome \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh \
     logseq-desktop-electron-bin ltspice lutris macchina man ncurses5-compat-libs neovim nm-connection-editor otf-ipafont parallel \
     pcmanfm perl-image-exiftool pre-commit prusa-slicer qdirstat qemu-desktop ranger ripgrep rclone rsync rofi rpcs3-bin ruby steam \

@@ -14,3 +14,5 @@ chmod +x ~/Automations/anti_burn_in/*.py # make sure the scripts here are execut
 
 chmod 600 ~/.ssh/id_rsa # set the correct permissions for private keys
 git clone git@github.com:colonelwatch/logseq ~/Logseq # only works after ssh key is recovered
+
+gh auth login -p https -h github.com -w
