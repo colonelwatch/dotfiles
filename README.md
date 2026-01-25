@@ -31,7 +31,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 5. Install `git` with the command `sudo pacman -S git`
 
-6. Clone this repository with the command `git clone https://github.com/colonelwatch/dotfiles .dotfiles`, call `cd .dotfiles && bash ./bootstrap.sh`
+6. Clone this repository with the command `git clone --recurse-submodules https://github.com/colonelwatch/dotfiles .dotfiles`, call `cd .dotfiles && bash ./bootstrap.sh`
 
 7. Restart
 
