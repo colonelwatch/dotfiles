@@ -7,10 +7,10 @@ configuration {
 * {
     border-color: transparent;
     font: "iA Writer Duo S 8.1";
-    background: #00212b;
-    foreground: #93a1a1;
-    selected-normal-background: #073642;
-    selected-normal-foreground: #d6dbdb;
+    background: #eee8d5;
+    foreground: #657b83;
+    selected-normal-background: #859900;
+    selected-normal-foreground: #ffffff;
     alternate-normal-foreground: var(foreground);
     alternate-normal-background: var(background);
 }

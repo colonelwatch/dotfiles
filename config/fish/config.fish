@@ -1,5 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+
+    fish_config theme choose solarized --color-theme=light
 end
 
 set fish_greeting

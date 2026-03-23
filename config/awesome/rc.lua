@@ -104,15 +104,9 @@ btmenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "bluetooth", btmenu },
                                     { "open terminal", terminal }
                                   }
                         })
-
-mylauncher = awful.widget.launcher({ image = beautiful.home_icon,
-                                     menu = mymainmenu })
-myrofi =     awful.widget.launcher({ image = beautiful.apps_icon,
-                                     command = "rofi -show drun -dpi 192 -terminal alacritty"})
 
 -- Menubar configuration
 -- menubar.utils.terminal = terminal -- Set the terminal for applications that require it

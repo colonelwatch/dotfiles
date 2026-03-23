@@ -50,7 +50,7 @@ sudo systemctl enable \
 
 # install packages
 MAKEFLAGS="-j$(nproc)" yay -S \
-    audacity bc discord firefox fish freecad fd fuse2 github-cli ghostscript gimp git-lfs gnome-keyring google-chrome \
+    audacity adw-gtk-theme awesome-luajit-git bc discord firefox fish freecad fd fuse2 github-cli ghostscript gimp git-lfs gnome-keyring google-chrome \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh \
     logseq-desktop-electron-bin ltspice lutris macchina man ncurses5-compat-libs neovim nm-connection-editor otf-ipafont parallel \
     pcmanfm perl-image-exiftool pre-commit prusa-slicer qdirstat qemu-desktop ranger ripgrep rclone rsync rofi rpcs3-bin ruby steam \
@@ -72,12 +72,6 @@ unzip ~/pt_linux_x64.zip -d ~/
 sudo mv ~/PerformanceTest/pt_linux_x64 /usr/local/bin/pt
 rm -rf ~/PerformanceTest
 rm ~/pt_linux_x64.zip
-
-# download and install latest (as of 2023-12-23) version of adw-gtk3
-wget https://github.com/lassekongo83/adw-gtk3/releases/download/v5.2/adw-gtk3v5-2.tar.xz -O ~/adw-gtk3v5-2.tar.xz
-mkdir ~/.local/share/themes
-tar -xf ~/adw-gtk3v5-2.tar.xz -C ~/.local/share/themes
-rm ~/adw-gtk3v5-2.tar.xz
 
 # override .desktops with custom ones
 sudo cp -rvf --no-preserve=mode,ownership root/usr/share/applications/* /usr/share/applications/
