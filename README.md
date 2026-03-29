@@ -5,8 +5,8 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 ## Pre-Install
 
 0. Manually backup home
-   - Desginate new directories to backup by editing `~/Automations/run_rclone_sync.sh` (currently hosted on Google Drive, not Github)
-   - Execute `~/Automations/run_rclone_sync.sh -P --fast-list --checkers=32 --transfers=16`
+   - Desginate new directories to backup by editing `~/Automations/run_rsync.sh` (currently hosted on Google Drive, not Github)
+   - Execute `~/Automations/run_rsync.sh`
 
 ## Install
 
@@ -38,24 +38,17 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 ## Post-Bootstrap
 
-08. Connect to WiFi network through `nmtui` and manually set DNS to `1.1.1.1`, `1.0.0.1`, and `8.8.8.8`
+08. Connect to WiFi network again through `nmtui`
 
 09. Call `cd .dotfiles && bash ./recovery.sh`, which includes manual prompts and recovery
 
     - Enter user password to set `fish` as the login shell
-    - Authorize home recovery from Google Drive by logging in on the browser
+    - Authorize rclone recovery (though recovery will be through rsync if possible)
     - Accept github fingerprint (if necessary) to proceed with Logseq graph recovery
 
 10. `connect` and `trust` the Airpods Pro 2 (`C0:95:6D:A7:F1:4D`) through `bluetoothctl`
 
-11. Configure line-in and line-out levels through `pactl` by device:
-
-    - PCM2900C Audio Codec Line-in: 65536
-    - PCM2900C Audio Codec Line-out: 65536
-    - Airpods Pro 2: *currently uncalibrated*
-    - Airpods Pro 2: *controlled by hand*
-
-12. Call `cd .dotfiles && pre-commit install`.
+11. Call `cd .dotfiles && pre-commit install`.
 
 ## Manual Program Configurations
 
@@ -82,4 +75,3 @@ It may be useful to test this repository on a VM before nuking the laptop.
 2. Create a new virtual machine using `virt-manager` using `archlinux-x86_64.iso` as the CD ISO
 
 3. Proceed with the above directions
-
