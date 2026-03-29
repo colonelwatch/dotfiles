@@ -55,6 +55,8 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
     - Airpods Pro 2: *currently uncalibrated*
     - Airpods Pro 2: *controlled by hand*
 
+12. Call `cd .dotfiles && pre-commit install`.
+
 ## Manual Program Configurations
 
 Besides signing in, some programs need specific configurations that cannot be just carried over.

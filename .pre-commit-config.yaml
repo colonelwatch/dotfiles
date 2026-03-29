@@ -1,0 +1,9 @@
+default_stages: [pre-commit]
+repos:
+  - repo: local
+    hooks:
+    - id: test-submodules-are-http
+      name: Test submodules are HTTP
+      entry: scripts/test_submodules_are_http.sh
+      language: system
+      types: [gitmodules]
