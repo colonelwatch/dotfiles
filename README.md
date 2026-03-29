@@ -1,16 +1,16 @@
-# dotfiles
+# `.dotfiles`
 
 If I ever need to nuke the Linux install on my laptop, this repo documents everything I need to get back up and running again, including a bootstrap script that automates as much of the process as possible. This includes things that are specific to my hardware.
 
 ## Pre-Install
 
 0. Manually backup home
-   - Desginate new directories to backup by editing `~/Automations/run_rsync.sh` (currently hosted on Google Drive, not Github)
+   - Designate new directories to back up by editing `~/Automations/run_rsync.sh` (currently hosted on Google Drive, not GitHub)
    - Execute `~/Automations/run_rsync.sh`
 
 ## Install
 
-1. Booting from the *latest* Live USB (can always be found at https://mirrors.mit.edu/archlinux/iso/latest/archlinux-x86_64.iso), immediately connect to a wifi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
+1. Booting from the *latest* Live USB (can always be found at https://mirrors.mit.edu/archlinux/iso/latest/archlinux-x86_64.iso), immediately connect to a Wi-Fi network using the command `iwctl --passphrase=<PASSHRASE> station wlan0 connect <SSID>`
 
 2. Install the latest `archinstall`
 
@@ -26,7 +26,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
    - `Network configuration`: `Copy ISO configuration`
    - `Timezone`: self-explanatory
 
-4. *Do not* restart yet. Select "yes" when asked to chroot, call `sudo su - kenny` to switch users, then call `cd ~`
+4. *Do not* restart yet. Select "yes" when asked to `chroot`, call `sudo su - kenny` to switch users, then call `cd ~`
 
 ## Post-Install
 
@@ -38,13 +38,13 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 ## Post-Bootstrap
 
-08. Connect to WiFi network again through `nmtui`
+08. Connect to Wi-Fi network again through `nmtui`
 
 09. Call `cd .dotfiles && bash ./recovery.sh`, which includes manual prompts and recovery
 
     - Enter user password to set `fish` as the login shell
-    - Authorize rclone recovery (though recovery will be through rsync if possible)
-    - Accept github fingerprint (if necessary) to proceed with Logseq graph recovery
+    - Authorize `rclone` recovery (though recovery will be through `rsync` if possible)
+    - Accept GitHub fingerprint (if necessary) to proceed with Logseq graph recovery
 
 10. Call `cd .dotfiles && pre-commit install`.
 
@@ -68,7 +68,7 @@ Besides signing in, some programs need specific configurations that cannot be ju
 
 It may be useful to test this repository on a VM before nuking the laptop.
 
-1. Download the latest archlinux ISO at https://mirrors.mit.edu/archlinux/iso/latest/archlinux-x86_64.iso
+1. Download the latest Arch Linux ISO at https://mirrors.mit.edu/archlinux/iso/latest/archlinux-x86_64.iso
 
 2. Create a new virtual machine using `virt-manager` using `archlinux-x86_64.iso` as the CD ISO
 
