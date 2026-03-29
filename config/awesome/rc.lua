@@ -90,19 +90,6 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
-btmenu = {
-    {"connect BT IEMs", 
-        function() 
-            awful.spawn.with_shell("bluetoothctl power on && bluetoothctl connect C0:95:6D:A7:F1:4D")
-        end
-    },
-    {"disconn BT IEMs", 
-        function()
-            awful.spawn.with_shell("bluetoothctl power off")
-        end
-    },
-}
-
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "open terminal", terminal }
                                   }

@@ -46,9 +46,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
     - Authorize rclone recovery (though recovery will be through rsync if possible)
     - Accept github fingerprint (if necessary) to proceed with Logseq graph recovery
 
-10. `connect` and `trust` the Airpods Pro 2 (`C0:95:6D:A7:F1:4D`) through `bluetoothctl`
-
-11. Call `cd .dotfiles && pre-commit install`.
+10. Call `cd .dotfiles && pre-commit install`.
 
 ## Manual Program Configurations
 
