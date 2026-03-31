@@ -73,15 +73,20 @@ sudo mv ~/PerformanceTest/pt_linux_x64 /usr/local/bin/pt
 rm -rf ~/PerformanceTest
 rm ~/pt_linux_x64.zip
 
-# override .desktops with custom ones
-sudo cp -rvf --no-preserve=mode,ownership root/usr/share/applications/* /usr/share/applications/
-
 # install config files
 mkdir -p ~/.config
-# ln -s -f $PWD/home/* ~/ # uncomment if files besides dotfiles are added to home
-ln -s -f $PWD/home/.* ~/ # we explicitly need to write out the pwd
 ln -s -f $PWD/config/* ~/.config/
-sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ # libvirt is actually a root service!
+
+# install home files by hand (NOTE: ~/ is far less flat than ~/.config)
+ln -s -f $PWD/home/.bashrc ~/
+ln -s -f $PWD/home/.gitconfig ~/
+ln -s -f $PWD/home/.xinitrc ~/
+ln -s -f $PWD/home/.Xresources ~/
+mkdir -p ~/.local/share/applications
+ln -s -f $PWD/home/.local/share/applications/* ~/.local/share/applications/
+
+# libvirt is actually a root service!
+sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ 
 
 # deal with rclone config edge case
 unlink ~/.config/rclone # undo symlink b/c it eventually contains keys we don't want to commit...
