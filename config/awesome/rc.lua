@@ -288,16 +288,16 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     -- Custom Keys, multimedia
     awful.key({}, "XF86MonBrightnessUp",
-    	function ()
-	        awful.spawn.with_shell("brightnessctl set -e -q --min-value=100 +5%")
-	    end,
-	    {description = "raise brightness by 10%", group = "multimedia"}
+        function ()
+            awful.spawn.with_shell("brightnessctl set -e -q --min-value=5 +10%")
+        end,
+        {description = "raise brightness by 10%", group = "multimedia"}
     ),
     awful.key({}, "XF86MonBrightnessDown",
-    	function ()
-	        awful.spawn.with_shell("brightnessctl set -e -q --min-value=100 5%-")
-	    end,
-	    {description = "decrease brightness by 10%", group = "multimedia"}
+        function ()
+            awful.spawn.with_shell("brightnessctl set -e -q --min-value=5 10%-")
+        end,
+        {description = "decrease brightness by 10%", group = "multimedia"}
     ), 
     awful.key({}, "XF86AudioRaiseVolume",
         function ()
