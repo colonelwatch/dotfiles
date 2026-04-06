@@ -692,6 +692,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 -- Autorun on start of AwesomeWM 
-awful.spawn.with_shell('amixer')
-awful.spawn.with_shell('udiskie')
+awful.spawn.spawn('amixer')
+awful.spawn.spawn('udiskie')
+awful.spawn.spawn('picom')
 -- }}}
