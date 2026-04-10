@@ -100,6 +100,8 @@ sudo systemctl enable libvirtd.service
 xdg-mime default pcmanfm.desktop inode/directory # by default, vscode seems to be the default file manager
 crontab crontab.bak
 
+systemctl --user enable ssh-agent.service
+
 # </USER>
 
 

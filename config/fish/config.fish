@@ -11,6 +11,8 @@ set -gx GEM_HOME "$(gem env user_gemhome)"
 
 fish_add_path -g "$GEM_HOME/bin"
 
+eval "$(ssh-agent -c)" > /dev/null
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 eval /home/kenny/miniconda3/bin/conda "shell.fish" "hook" $argv | source
