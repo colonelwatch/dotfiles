@@ -8,10 +8,9 @@ set fish_greeting
 
 set -gx EDITOR nvim
 set -gx GEM_HOME "$(gem env user_gemhome)"
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 fish_add_path -g "$GEM_HOME/bin"
-
-eval "$(ssh-agent -c)" > /dev/null
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
