@@ -100,7 +100,7 @@ cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
 # other config
 sudo usermod -a -G uucp,libvirt kenny # needed for arduino and virt-manager
 sudo systemctl enable libvirtd.service
-xdg-mime default pcmanfm.desktop inode/directory # by default, vscode seems to be the default file manager
+xdg-mime default yazi.desktop inode/directory # by default, vscode seems to be the default file manager
 crontab crontab.bak
 
 systemctl --user enable ssh-agent.service
