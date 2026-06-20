@@ -51,18 +51,20 @@ sudo systemctl enable                                   \
 # install packages
 yay -S --noconfirm --answerdiff=None --sudoloop                             \
     audacity adw-gtk-theme bc bluetui discord firefox fish freecad fd       \
-    fuse2 github-cli ghostscript gimp git-lfs google-chrome imagemagick     \
-    inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh      \
-    logseq-desktop-electron-bin ltspice lutris macchina man neovim          \
-    otf-ipafont parallel pcmanfm perl-image-exiftool picom-git pre-commit   \
-    prismlauncher prusa-slicer pyenv qdirstat qemu-desktop ripgrep rclone   \
-    rsync rofi rpcs3-bin ruby steam thunderbird ttf-ia-writer               \
+    fuse2 github-cli ghostscript gimp git-lfs imagemagick inkscape jq kicad \
+    kicad-library kicad-library-3d libreoffice-fresh ltspice lutris         \
+    macchina man neovim otf-ipafont parallel pcmanfm perl-image-exiftool    \
+    picom-git pre-commit prismlauncher prusa-slicer pyenv qemu-desktop      \
+    ripgrep rclone rsync rofi ruby steam thunderbird ttf-ia-writer          \
     ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree tree-sitter-cli unzip     \
-    virt-manager visual-studio-code-bin vlc xclip yazi zip zopfli           \
-    zotero-bin
+    virt-manager visual-studio-code-bin vlc xclip yazi zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
+
+flatpak install --noninteractive flathub                                    \
+    com.google.Chrome org.zotero.Zotero io.github.streetpea.Chiaki4deck     \
+    io.github.shundhammer.qdirstat net.rpcs3.RPCS3 com.logseq.Logseq
 
 # install jekyll through ruby
 gem install jekyll bundler
@@ -83,6 +85,8 @@ ln -s -f $PWD/home/.xinitrc ~/
 ln -s -f $PWD/home/.Xresources ~/
 mkdir -p ~/.local/share/applications
 ln -s -f $PWD/home/.local/share/applications/* ~/.local/share/applications/
+
+cp -r -f $PWD/home/.var/app/* ~/.var/app/
 
 # libvirt is actually a root service!
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ 
