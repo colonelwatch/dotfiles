@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Antigravity
+Comment=Experience liftoff
+GenericName=Agentic Platform
+Exec=/usr/bin/antigravity --disable-gpu-driver-bug-workarounds --ignore-gpu-blacklist --enable-gpu-rasterization --enable-zero-copy %U
+Icon=antigravity
+Type=Application
+StartupNotify=false
+StartupWMClass=Antigravity
+Categories=Development;Utility;
+
