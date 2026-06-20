@@ -53,7 +53,7 @@ yay -S \
     audacity adw-gtk-theme awesome-git bc bluetui discord firefox fish freecad fd fuse2 github-cli ghostscript gimp git-lfs gnome-keyring google-chrome \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh \
     logseq-desktop-electron-bin ltspice lutris macchina man ncurses5-compat-libs neovim nm-connection-editor otf-ipafont parallel \
-    pcmanfm perl-image-exiftool picom-git pre-commit prusa-slicer pyenv qdirstat qemu-desktop ranger ripgrep rclone rsync rofi rpcs3-bin ruby steam \
+    pcmanfm perl-image-exiftool picom-git pre-commit prismlauncher prusa-slicer pyenv qdirstat qemu-desktop ranger ripgrep rclone rsync rofi rpcs3-bin ruby steam \
     teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree tree-sitter-cli turbostat unzip virt-manager \
     visual-studio-code-bin vlc wine xclip zip zopfli zotero-bin \
     --noconfirm --removemake --answerdiff=None --sudoloop
