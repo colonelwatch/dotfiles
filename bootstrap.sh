@@ -31,7 +31,7 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie    \
     dnsmasq exfatprogs jre-openjdk libimobiledevice linux-zen-headers       \
     networkmanager nvidia-open-dkms playerctl reflector samba sof-firmware  \
-    ttf-font-awesome udiskie udisks2 xclip
+    ttf-font-awesome udiskie udisks2
 
 # install config files
 sudo rm /boot/loader/entries/* # remove default entries
