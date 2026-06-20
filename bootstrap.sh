@@ -27,20 +27,20 @@ rm -rf yay-bin
 
 # <ROOT>
 
-yay -S \
-    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie dnsmasq exfatprogs gksu \
-    jre-openjdk libimobiledevice linux-zen-headers networkmanager nvidia-open-dkms \
-    playerctl reflector samba sof-firmware ttf-font-awesome udiskie udisks2 xclip \
-    --noconfirm --removemake --answerdiff=None --sudoloop
+yay -S --noconfirm --answerdiff=None --sudoloop                             \
+    acpi alsa-utils bluez bluez-utils bolt brightnessctl cpupower cronie    \
+    dnsmasq exfatprogs jre-openjdk libimobiledevice linux-zen-headers       \
+    networkmanager nvidia-open-dkms playerctl reflector samba sof-firmware  \
+    ttf-font-awesome udiskie udisks2 xclip
 
 # install config files
 sudo rm /boot/loader/entries/* # remove default entries
 sudo cp -rvf --no-preserve=mode,ownership root/boot/loader/* /boot/loader/
 sudo cp -rvf --no-preserve=mode,ownership root/etc/* /etc/
 
-sudo systemctl enable \
-    bluetooth.service cpupower.service cronie.service NetworkManager.service \
-    reflector.service
+sudo systemctl enable                                   \
+    bluetooth.service cpupower.service cronie.service   \
+    NetworkManager.service reflector.service
 
 # </ROOT>
 
@@ -49,14 +49,20 @@ sudo systemctl enable \
 # <USER>
 
 # install packages
-yay -S \
-    audacity adw-gtk-theme awesome-git bc bluetui discord firefox fish freecad fd fuse2 github-cli ghostscript gimp git-lfs gnome-keyring google-chrome \
-    gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh \
-    logseq-desktop-electron-bin ltspice lutris macchina man ncurses5-compat-libs neovim nm-connection-editor otf-ipafont parallel \
-    pcmanfm perl-image-exiftool picom-git pre-commit prismlauncher prusa-slicer pyenv qdirstat qemu-desktop ranger ripgrep rclone rsync rofi rpcs3-bin ruby steam \
-    teensyduino thunderbird ttf-ia-writer ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree tree-sitter-cli turbostat unzip virt-manager \
-    visual-studio-code-bin vlc wine xclip zip zopfli zotero-bin \
-    --noconfirm --removemake --answerdiff=None --sudoloop
+yay -S --noconfirm --answerdiff=None --sudoloop                             \
+    audacity adw-gtk-theme bc bluetui discord firefox fish freecad fd       \
+    fuse2 github-cli ghostscript gimp git-lfs google-chrome imagemagick     \
+    inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh      \
+    logseq-desktop-electron-bin ltspice lutris macchina man neovim          \
+    otf-ipafont parallel pcmanfm perl-image-exiftool picom-git pre-commit   \
+    prismlauncher prusa-slicer pyenv qdirstat qemu-desktop ripgrep rclone   \
+    rsync rofi rpcs3-bin ruby steam teensyduino thunderbird ttf-ia-writer   \
+    ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree tree-sitter-cli unzip     \
+    virt-manager visual-studio-code-bin vlc xclip yazi zip zopfli           \
+    zotero-bin
+
+# install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
+_BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
 
 # install jekyll through ruby
 gem install jekyll bundler
@@ -65,13 +71,6 @@ gem install jekyll bundler
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
 bash ~/miniconda3_install.sh -b # conda will soon be intialized by importing the fish config
 rm ~/miniconda3_install.sh
-
-# download passmark performancetest as a user binary
-wget https://www.passmark.com/downloads/pt_linux_x64.zip -O ~/pt_linux_x64.zip
-unzip ~/pt_linux_x64.zip -d ~/
-sudo mv ~/PerformanceTest/pt_linux_x64 /usr/local/bin/pt
-rm -rf ~/PerformanceTest
-rm ~/pt_linux_x64.zip
 
 # install config files
 mkdir -p ~/.config
