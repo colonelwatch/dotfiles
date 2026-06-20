@@ -56,7 +56,7 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     logseq-desktop-electron-bin ltspice lutris macchina man neovim          \
     otf-ipafont parallel pcmanfm perl-image-exiftool picom-git pre-commit   \
     prismlauncher prusa-slicer pyenv qdirstat qemu-desktop ripgrep rclone   \
-    rsync rofi rpcs3-bin ruby steam teensyduino thunderbird ttf-ia-writer   \
+    rsync rofi rpcs3-bin ruby steam thunderbird ttf-ia-writer               \
     ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree tree-sitter-cli unzip     \
     virt-manager visual-studio-code-bin vlc xclip yazi zip zopfli           \
     zotero-bin
