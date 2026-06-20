@@ -1,4 +1,0 @@
-steam: {}
-system:
-  env:
-    GDK_SCALE: '1'
