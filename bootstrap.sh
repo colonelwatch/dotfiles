@@ -50,14 +50,15 @@ sudo systemctl enable                                   \
 
 # install packages
 yay -S --noconfirm --answerdiff=None --sudoloop                             \
-    audacity adw-gtk-theme bc bluetui discord firefox fish freecad fd       \
-    fuse2 github-cli ghostscript gimp git-lfs imagemagick inkscape jq kicad \
-    kicad-library kicad-library-3d libreoffice-fresh ltspice lutris         \
-    macchina man neovim otf-ipafont parallel pcmanfm perl-image-exiftool    \
-    picom-git pre-commit prismlauncher prusa-slicer pyenv qemu-desktop      \
-    ripgrep rclone rsync rofi ruby steam thunderbird ttf-ia-writer          \
-    ttf-jetbrains-mono-nerd ttf-ms-win10-cdn tree tree-sitter-cli unzip     \
-    virt-manager visual-studio-code-bin vlc xclip yazi zip zopfli
+    audacity adw-gtk-theme antigravity antigravity-cli antigravity-ide bc   \
+    bluetui discord firefox fish freecad fd fuse2 github-cli ghostscript    \
+    gimp git-lfs imagemagick inkscape jq kicad kicad-library                \
+    kicad-library-3d libreoffice-fresh ltspice lutris macchina man neovim   \
+    otf-ipafont parallel pcmanfm perl-image-exiftool picom-git pre-commit   \
+    prismlauncher prusa-slicer pyenv qemu-desktop ripgrep rclone rsync rofi \
+    ruby steam thunderbird ttf-ia-writer ttf-jetbrains-mono-nerd            \
+    ttf-ms-win10-cdn tree tree-sitter-cli unzip virt-manager vlc xclip yazi \
+    zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
