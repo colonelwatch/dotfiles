@@ -442,6 +442,8 @@ globalkeys = gears.table.join(
         { description = "run prompt", group = "launcher" }),
     awful.key({ modkey }, "Tab", function() awful.spawn("rofi -show window -dpi 192") end,
         { description = "run switcher", group = "launcher" }),
+    awful.key({ modkey }, "b", function() awful.spawn("xdg-open https://") end,
+        { description = "open browser", group = "launcher" }),
 
     awful.key({ modkey }, "x",
         function()
