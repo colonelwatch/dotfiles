@@ -708,4 +708,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.spawn('amixer')
 awful.spawn.spawn('udiskie')
 awful.spawn.spawn('picom')
+awful.spawn.spawn('/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1')
 -- }}}

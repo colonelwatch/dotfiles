@@ -55,9 +55,9 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     firefox fish freecad fd github-cli ghostscript gimp git-lfs imagemagick \
     inkscape jq kicad kicad-library kicad-library-3d libreoffice-fresh      \
     ltspice lutris macchina man neovim parallel perl-image-exiftool         \
-    picom-git pre-commit prismlauncher prusa-slicer pyenv ripgrep rclone    \
-    rsync rofi ruby steam thunderbird tree tree-sitter-cli unzip            \
-    virt-manager vlc xclip yazi zip zopfli
+    picom-git polkit-gnome pre-commit prismlauncher prusa-slicer pyenv      \
+    rpi-imager ripgrep rclone rsync rofi ruby steam thunderbird tree        \
+    tree-sitter-cli unzip virt-manager vlc xclip yazi zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
