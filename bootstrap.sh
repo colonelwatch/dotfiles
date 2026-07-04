@@ -31,7 +31,7 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     acpi adw-gtk-theme alsa-utils bluez bolt brightnessctl cpupower cronie  \
     dnsmasq exfatprogs fuse2 jre-openjdk linux-zen-headers networkmanager   \
     nvidia-open-dkms otf-ipafont playerctl qemu-desktop reflector samba     \
-    sof-firmware ttf-font-awesome ttf-ia-writer ttf-jetbrains-mono-nerd     \
+    sof-firmware woff2-font-awesome ttf-ia-writer ttf-jetbrains-mono-nerd   \
     ttf-ms-win10-cdn udiskie udisks2
 
 # install config files
@@ -54,7 +54,7 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     audacity antigravity antigravity-cli antigravity-ide bc bluetui discord \
     firefox fish freecad fd github-cli ghostscript gimp git-lfs gparted     \
     imagemagick inkscape jq kicad kicad-library kicad-library-3d            \
-    libreoffice-fresh ltspice lutris macchina man neovim parallel           \
+    libreoffice-fresh ltspice lutris macchina man-db neovim parallel        \
     perl-image-exiftool picom-git polkit-gnome pre-commit prismlauncher     \
     prusa-slicer pyenv rpi-imager ripgrep rclone rsync rofi ruby steam      \
     thunderbird tree tree-sitter-cli unzip virt-manager vlc xclip yazi zip  \
