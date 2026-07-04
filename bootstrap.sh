@@ -54,11 +54,11 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     audacity antigravity antigravity-cli antigravity-ide bc bluetui discord \
     firefox fish freecad fd flatpak github-cli ghostscript gimp git-lfs     \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d    \
-    libreoffice-fresh ltspice lutris macchina man-db neovim parallel        \
-    perl-image-exiftool picom-git polkit-gnome pre-commit prismlauncher     \
-    prusa-slicer pyenv rpi-imager ripgrep rclone rsync rofi ruby steam      \
-    thunderbird trash-cli tree tree-sitter-cli unzip virt-manager vlc xclip \
-    yazi zip zopfli
+    libreoffice-fresh lsfg-vk ltspice lutris macchina man-db neovim         \
+    parallel perl-image-exiftool picom-git polkit-gnome pre-commit          \
+    prismlauncher prusa-slicer pyenv rpi-imager ripgrep rclone rsync rofi   \
+    ruby steam thunderbird trash-cli tree tree-sitter-cli unzip             \
+    virt-manager vlc xclip yazi zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
@@ -67,10 +67,26 @@ flatpak install --noninteractive flathub                                    \
     com.google.Chrome org.zotero.Zotero io.github.streetpea.Chiaki4deck     \
     io.github.shundhammer.qdirstat net.rpcs3.RPCS3 com.logseq.Logseq
 
+# install and set up lsfg-vk for flatpak
+ver="v1.0.0"
+prefix="https://github.com/PancakeTAS/lsfg-vk/releases/download/$ver"
+for ver in "23.08" "24.08" "25.08"; do
+    f="org.freedesktop.Platform.VulkanLayer.lsfg_vk_$ver.flatpak"
+    wget "$prefix/$f"
+    flatpak install --noninteractive --user $f
+    rm $f
+done
+for app in "io.github.streetpea.Chiaki4deck" "net.rpcs3.RPCS3"; do
+    flatpak override --user --filesystem $HOME/.config/lsfg-vk:ro "$app"
+    flatpak override --user     \
+        --env LSFG_CONFIG=$HOME/.config/lsfg-vk/conf.toml "$app"
+done
+
 # install jekyll through ruby
 gem install jekyll bundler
 
 # download and execute miniconda install script
+# TODO: remove?
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
 bash ~/miniconda3_install.sh -b # conda will soon be intialized by importing the fish config
 rm ~/miniconda3_install.sh
