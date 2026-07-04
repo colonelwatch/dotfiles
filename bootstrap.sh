@@ -82,6 +82,10 @@ for app in "io.github.streetpea.Chiaki4deck" "net.rpcs3.RPCS3"; do
         --env LSFG_CONFIG=$HOME/.config/lsfg-vk/conf.toml "$app"
 done
 
+# given Logseq access to pre-commit
+sudo flatpak override --filesystem host-os:ro com.logseq.Logseq
+sudo flatpak override --env PYTHONPATH=/run/host/lib/python3.14/site-packages
+
 # install jekyll through ruby
 gem install jekyll bundler
 
