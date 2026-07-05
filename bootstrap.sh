@@ -54,8 +54,8 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     audacity antigravity antigravity-cli antigravity-ide bc bluetui discord \
     firefox fish freecad fd flatpak github-cli ghostscript gimp git-lfs     \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d    \
-    libreoffice-fresh lsfg-vk ltspice lutris macchina man-db neovim         \
-    parallel perl-image-exiftool picom-git polkit-gnome pre-commit          \
+    libreoffice-fresh lsfg-vk ltspice lutris macchina man-db neovim nodejs  \
+    npm parallel perl-image-exiftool picom-git polkit-gnome pre-commit      \
     prismlauncher prusa-slicer pyenv rpi-imager ripgrep rclone rsync rofi   \
     ruby steam thunderbird trash-cli tree tree-sitter-cli unzip             \
     virt-manager vlc xclip yazi zip zopfli
