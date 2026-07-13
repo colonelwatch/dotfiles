@@ -39,9 +39,11 @@ sudo rm /boot/loader/entries/* # remove default entries
 sudo cp -rvf --no-preserve=mode,ownership root/boot/loader/* /boot/loader/
 sudo cp -rvf --no-preserve=mode,ownership root/etc/* /etc/
 
-sudo systemctl enable                                   \
-    bluetooth.service cpupower.service cronie.service   \
-    NetworkManager.service reflector.service
+sudo systemctl daemon-reload
+sudo systemctl enable                                       \
+    bluetooth.service cpupower.service cronie.service       \
+    intel-rapl-performance.service NetworkManager.service   \
+    reflector.service
 
 # </ROOT>
 

@@ -1,0 +1,9 @@
+[Unit]
+Description=Configure processor power for maximum performance.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c 'echo 65000000 > /sys/class/powercap/intel-rapl/intel-rapl:0/constraint_0_power_limit_uw'
+
+[Install]
+WantedBy=multi-user.target
