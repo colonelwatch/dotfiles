@@ -22,6 +22,8 @@ pyenv init - fish | source
 
 fish_add_path -g "$GEM_HOME/bin"
 
+eval "$(fnm env)"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 eval /home/kenny/miniconda3/bin/conda "shell.fish" "hook" $argv | source

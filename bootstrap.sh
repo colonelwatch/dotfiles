@@ -54,13 +54,13 @@ sudo systemctl enable                                       \
 # install packages
 yay -S --noconfirm --answerdiff=None --sudoloop                             \
     audacity antigravity antigravity-cli antigravity-ide bc bluetui discord \
-    firefox fish freecad fd flatpak github-cli ghostscript gimp git-lfs     \
-    gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d    \
-    libreoffice-fresh lsfg-vk ltspice lutris macchina man-db neovim nodejs  \
-    npm parallel perl-image-exiftool picom-git polkit-gnome pre-commit      \
-    prismlauncher prusa-slicer pyenv rpi-imager ripgrep rclone rsync rofi   \
-    ruby steam thunderbird trash-cli tree tree-sitter-cli unzip             \
-    virt-manager vlc xclip yazi zip zopfli
+    firefox fish freecad fd flatpak fnm github-cli ghostscript gimp git-lfs \
+    ggml-cuda gparted imagemagick inkscape jq kicad kicad-library           \
+    kicad-library-3d libreoffice-fresh llama-cpp ltspice lutris macchina    \
+    man-db neovim nodejs npm parallel perl-image-exiftool picom-git         \
+    polkit-gnome pre-commit prismlauncher prusa-slicer pyenv rpi-imager     \
+    ripgrep rclone rsync rofi ruby steam thunderbird trash-cli tree         \
+    tree-sitter-cli unzip virt-manager vlc xclip yazi zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
@@ -96,6 +96,12 @@ gem install jekyll bundler
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
 bash ~/miniconda3_install.sh -b # conda will soon be intialized by importing the fish config
 rm ~/miniconda3_install.sh
+
+# install pi (and extensions)
+eval "$(fnm env)"
+fnm install --lts
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+pi install npm:pi-review
 
 # install config files
 mkdir -p ~/.config
