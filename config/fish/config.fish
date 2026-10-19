@@ -11,10 +11,10 @@ set -gx GEM_HOME "$(gem env user_gemhome)"
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # set XDG spec (for life of script, so below behaves like new silent defaults)
-set XDG_DATA_HOME "$HOME"/.local/share
-set XDG_CONFIG_HOME "$HOME"/.config
-set XDG_STATE_HOME "$HOME"/.local/state
-set XDG_CACHE_HOME "$HOME"/.cache
+set -l XDG_DATA_HOME "$HOME"/.local/share
+set -l XDG_CONFIG_HOME "$HOME"/.config
+set -l XDG_STATE_HOME "$HOME"/.local/state
+set -l XDG_CACHE_HOME "$HOME"/.cache
 
 # use XDG spec
 set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME"/bundle
