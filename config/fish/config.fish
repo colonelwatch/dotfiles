@@ -10,14 +10,25 @@ set -gx EDITOR nvim
 set -gx GEM_HOME "$(gem env user_gemhome)"
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-# pyenv build options
+# set XDG spec (for life of script, so below behaves like new silent defaults)
+set XDG_DATA_HOME "$HOME"/.local/share
+set XDG_CONFIG_HOME "$HOME"/.config
+set XDG_STATE_HOME "$HOME"/.local/state
+set XDG_CACHE_HOME "$HOME"/.cache
+
+# use XDG spec
+set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME"/bundle
+set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME"/bundle/config
+set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME"/bundle
+set -gx PYENV_ROOT "$XDG_DATA_HOME"/pyenv
+set -gx SCREENRC "$XDG_CONFIG_HOME"/screen/screenrc
+set -gx SCREENDIR "$XDG_RUNTIME_DIR"/screen
+set -gx TRITON_HOME "$XDG_CACHE_HOME"/triton
+
+# pyenv setup and build options
 set -gx PYTHON_CONFIGURE_OPTS '--enable-optimizations --with-lto'
 set -gx PYTHON_CFLAGS '-march=native -mtune=native'
 set -gx MAKE_OPTS "-j$(nproc)"
-
-# pyenv setup
-set -gx PYENV_ROOT "$HOME/.pyenv"
-fish_add_path -g $PYENV_ROOT/bin
 pyenv init - fish | source
 
 fish_add_path -g "$GEM_HOME/bin"
