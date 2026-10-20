@@ -1,0 +1,5 @@
+# To avoid scanning binaries, list executables explictly
+# TODO: drop this file when PEP 723 lands in pyrefly
+project-includes = ["home/.local/bin/localai"]
+search-path = ["home/.local/bin"]
+preset = "strict"

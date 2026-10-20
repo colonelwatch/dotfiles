@@ -1,0 +1,18 @@
+model:
+  cache_size: 131072  # full context (262144) requires too much VRAM
+  cache_mode: Q8
+  tensor_parallel: false  # tensor parallelism requires too much VRAM
+  sampling:
+    override_preset: safe_defaults
+    temperature:
+      override: 1.0
+      force: true
+    top_k:
+      override: 20
+      force: true
+    min_p:
+      override: 0.0
+      force: true
+draft_model:
+  draft_mode: mtp
+  draft_cache_mode: FP16

@@ -1,0 +1,248 @@
+#!/usr/bin/python3
+
+
+# TODO: document and add short options
+# TODO: configure and run ruff before committing (do it through PEP 723? or not?)
+
+import os
+import shutil
+import subprocess
+import sys
+from collections.abc import Mapping
+from pathlib import Path
+from signal import SIGINT
+from typing import TYPE_CHECKING, Final
+
+from pydantic import AliasGenerator, BaseModel, Field, TypeAdapter
+from pydantic_settings import (
+    BaseSettings,
+    CliApp,
+    CliPositionalArg,
+    CliSubCommand,
+    CliUnknownArgs,
+)
+
+if TYPE_CHECKING:
+    from _typeshed import StrOrBytesPath
+
+APP_NAME: Final[str] = "localai"
+
+# TODO: make configurable?
+CUDA_DEVICES: Final[list[str]] = [  # triple Nvidia A2s in Sonnet Echo III
+    "GPU-9703e4b8-5383-b069-3202-7b4cd68cd15c",
+    "GPU-187f24d5-2bab-1cdd-594f-35613e20e3f1",
+    "GPU-00c784f9-5bde-20e0-fb55-21e076ffefd6",
+]
+PYTHON_VER: Final[tuple[int, int, int]] = (3, 14, 8)
+TABBYAPI_NAME: Final[str] = "tabbyAPI"
+TABBYAPI_SHA: Final[str] = "a270c555db91a5178d72f7dee7bdd34951ac1dad"
+TABBYAPI_URL: Final[str] = "https://github.com/theroyallab/tabbyAPI.git"
+
+_env_type_validator = TypeAdapter(dict[str, str | Path])
+
+
+class SystemVars(BaseSettings, frozen=True):
+    xdg_data_home: Path = Path.home() / ".local/share"
+    xdg_config_home: Path = Path.home() / ".config"
+
+
+class Env(BaseModel, frozen=True):
+    data_home: Path = Field(
+        default_factory=lambda: SystemVars.settings_cached().xdg_data_home / APP_NAME
+    )
+    config_home: Path = Field(
+        default_factory=lambda: SystemVars.settings_cached().xdg_config_home / APP_NAME
+    )
+
+    @property
+    def installed_flag(self) -> Path:
+        return self.data_home / "installed"
+
+    @property
+    def runtimes(self) -> Path:
+        return self.data_home / "runtimes"
+
+    @property
+    def models(self) -> Path:
+        return self.data_home / "models"
+
+    @property
+    def tabbyapi_repo(self) -> Path:
+        return self.runtimes / TABBYAPI_NAME
+
+    @property
+    def tabbyapi_venv(self) -> Path:
+        return self.tabbyapi_repo / ".venv"
+
+    @property
+    def tabbyapi_models(self) -> Path:
+        # not the default place, but will be injected by environment variable
+        return self.models / TABBYAPI_NAME
+
+    @property
+    def tabbyapi_config(self) -> Path:
+        return self.config_home / f"{TABBYAPI_NAME}.yml"
+
+
+class BaseOverrideVars(
+    BaseSettings,
+    frozen=True,
+    alias_generator=AliasGenerator(serialization_alias=lambda k: k.upper()),
+    serialize_by_alias=True,
+):
+    pass
+
+
+class CudaOverrideVars(BaseOverrideVars):
+    cuda_visible_devices: str | None = None
+
+
+class TabbyApiOverrideVars(BaseOverrideVars):
+    tabby_model_model_dir: Path | None = None
+
+
+def _run(
+    executable: StrOrBytesPath,
+    *args: StrOrBytesPath,
+    cwd: Path | None = None,
+    env: Mapping[str, StrOrBytesPath] | None = None,
+) -> None:
+    if cwd:
+        print("cd", cwd, "&&", end=" ")
+    if env:
+        print(" ".join(f"{name}='{value}'" for name, value in env.items()), end=" ")
+    print(executable, " ".join(str(arg) for arg in args))
+    result = subprocess.run((executable,) + args, cwd=cwd, env=os.environ | (env or {}))
+    if result.returncode > 0:
+        sys.exit(result.returncode)
+    elif result.returncode < 0:
+        sys.exit(128 - result.returncode)
+
+
+class Install(BaseSettings, frozen=True):
+    def cli_cmd(self) -> None:
+        env = Env()
+
+        env.data_home.mkdir(parents=True, exist_ok=True)
+
+        # git clone (or checkout) the specific commit
+        git = shutil.which("git")
+        if not git:
+            sys.exit("error: 'git' not found")
+        if not env.tabbyapi_repo.exists():
+            _run(
+                git,
+                "clone",
+                "--filter=blob:none",
+                f"--revision={TABBYAPI_SHA}",
+                TABBYAPI_URL,
+                env.tabbyapi_repo,
+            )
+        else:
+            _run(git, "fetch", cwd=env.tabbyapi_repo)
+            _run(git, "checkout", TABBYAPI_SHA, cwd=env.tabbyapi_repo)
+
+        # set up TabbyAPI virtual environment
+        pyenv = shutil.which("pyenv")
+        if not pyenv:
+            sys.exit("error: pyenv not found")
+        python_prefix = Path(
+            subprocess.run(
+                [pyenv, "prefix", ".".join(str(v) for v in PYTHON_VER)],
+                capture_output=True,
+                check=True,
+                text=True,
+            ).stdout.strip()
+        )
+        python = python_prefix / "bin/python"
+        _run(python, "-m", "venv", env.tabbyapi_venv)
+        if not (env.tabbyapi_venv / "bin/pip").exists():
+            raise RuntimeError("created venv but 'pip' was not found")
+        _run(
+            env.tabbyapi_venv / "bin/pip",
+            "install",
+            "-U",
+            "-e",
+            f"{env.tabbyapi_repo}[cu13]",
+        )
+
+        # config path is hardcoded, so force indirection with symlinks
+        tmp_symlink = env.tabbyapi_repo / "config.yml.tmp"
+        tmp_symlink.unlink(missing_ok=True)
+        tmp_symlink.symlink_to(env.tabbyapi_config.resolve())
+        try:
+            tmp_symlink.replace(env.tabbyapi_repo / "config.yml")
+        except:
+            tmp_symlink.unlink()
+            raise
+
+        # pre-make this directory in case tabbyAPI assumes existence
+        env.tabbyapi_models.mkdir(parents=True, exist_ok=True)
+
+        with open(env.installed_flag, "w") as f:
+            f.write(TABBYAPI_NAME)
+
+
+class Launch(BaseSettings, cli_ignore_unknown_args=True):
+    # TODO: override help formatting for this one
+    # TODO: reject anything before the last recognized argument?
+    args_implicit: CliUnknownArgs
+    args_explicit: CliPositionalArg[list[str]] = []
+
+    def cli_cmd(self):
+        env = Env()
+
+        cuda_override_vars = CudaOverrideVars()
+        cuda_vars = _env_type_validator.validate_python(
+            {
+                CudaOverrideVars.model_fields[
+                    "cuda_visible_devices"
+                ].serialization_alias: ",".join(CUDA_DEVICES)
+            }
+            | cuda_override_vars.model_dump(exclude_none=True)
+        )
+
+        tabbyapi_override_vars = TabbyApiOverrideVars()
+        tabbyapi_vars = _env_type_validator.validate_python(
+            {
+                TabbyApiOverrideVars.model_fields[
+                    "tabby_model_model_dir"
+                ].serialization_alias: env.tabbyapi_models,
+            }
+            | tabbyapi_override_vars.model_dump(exclude_none=True)
+        )
+
+        if not env.installed_flag.exists():
+            sys.exit(f"error: runtime not installed, run '{APP_NAME} install' first")
+        try:
+            _run(
+                env.tabbyapi_venv / "bin/python",
+                "main.py",
+                *self.args_implicit,
+                *self.args_explicit,
+                cwd=env.tabbyapi_repo,
+                env=cuda_vars | tabbyapi_vars,
+            )
+        except KeyboardInterrupt:
+            sys.exit(128 + SIGINT)
+
+
+class LocalAi(
+    BaseSettings,
+    frozen=True,
+    case_sensitive=True,
+    cli_hide_none_type=True,
+    cli_avoid_json=True,
+    cli_enforce_required=True,
+    cli_implicit_flags="toggle",
+    cli_kebab_case=True,
+):
+    install: CliSubCommand[Install]
+    launch: CliSubCommand[Launch]
+
+    def cli_cmd(self) -> None:
+        CliApp.run_subcommand(self)
+
+
+if __name__ == "__main__":
+    CliApp.run(LocalAi)

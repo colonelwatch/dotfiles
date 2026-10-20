@@ -1,0 +1,17 @@
+model:
+  cache_size: 262144
+  cache_mode: FP16
+  sampling:
+    override_preset: safe_defaults
+    temperature:
+      override: 1.0
+      force: true
+    top_k:
+      override: 20
+      force: true
+    min_p:
+      override: 0.0
+      force: true
+draft_model:
+  draft_mode: mtp
+  draft_cache_mode: FP16

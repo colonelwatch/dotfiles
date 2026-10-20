@@ -32,6 +32,7 @@ set -gx MAKE_OPTS "-j$(nproc)"
 pyenv init - fish | source
 
 fish_add_path -g "$GEM_HOME/bin"
+fish_add_path -g "$HOME"/.local/bin
 
 eval "$(fnm env)"
 

@@ -56,11 +56,12 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     audacity antigravity antigravity-cli bc bluetui discord firefox fish    \
     freecad fd flatpak fnm github-cli ghostscript gimp git-lfs ggml-cuda    \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d    \
-    libreoffice-fresh llama-cpp ltspice lutris macchina man-db neovim       \
-    nodejs npm parallel perl-image-exiftool picom-git polkit-gnome          \
-    pre-commit prismlauncher prusa-slicer pyenv rpi-imager ripgrep rclone   \
-    rsync rofi ruby steam thunderbird trash-cli tree tree-sitter-cli unzip  \
-    virt-manager vlc xclip yazi zip zopfli
+    libreoffice-fresh ltspice lutris macchina man-db neovim nodejs npm      \
+    parallel perl-image-exiftool picom-git polkit-gnome pre-commit          \
+    prismlauncher prusa-slicer pyenv python-pydantic                        \
+    python-pydantic-settings rpi-imager ripgrep rclone rsync rofi ruby      \
+    steam thunderbird trash-cli tree tree-sitter-cli unzip virt-manager vlc \
+    xclip yazi zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
@@ -112,10 +113,24 @@ ln -s -f $PWD/home/.bashrc ~/
 ln -s -f $PWD/home/.gitconfig ~/
 ln -s -f $PWD/home/.xinitrc ~/
 ln -s -f $PWD/home/.Xresources ~/
+mkdir -p ~/.local/bin
+ln -s -f $PWD/home/.local/bin/* ~/.local/bin/
 mkdir -p ~/.local/share/applications
 ln -s -f $PWD/home/.local/share/applications/* ~/.local/share/applications/
 
 cp -r -f $PWD/home/.var/app/* ~/.var/app/
+
+model_dirs=(
+    Ornith-1.5-35B-A3B-exl3
+    Swift-1.5-Qwen3.8-Flash-Next-EXL3-2.25bpw-48GB
+    Swift-1.5-Qwen3.8-27B-EXL3
+)
+base=$PWD/home/.local/share/localai/models/tabbyAPI
+models_root=~/.local/share/localai/models/tabbyAPI
+for m in "${model_dirs[@]}"; do
+    mkdir -p "$models_root/$m/"
+    ln -s -f "$base/$m/tabby_config.yml" "$models_root/$m/"
+done
 
 # libvirt is actually a root service!
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ 
