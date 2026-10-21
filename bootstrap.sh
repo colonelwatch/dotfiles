@@ -53,9 +53,9 @@ sudo systemctl enable                                       \
 
 # install packages
 yay -S --noconfirm --answerdiff=None --sudoloop                             \
-    audacity antigravity antigravity-cli bc bluetui discord firefox fish    \
-    freecad fd flatpak fnm github-cli ghostscript gimp git-lfs ggml-cuda    \
-    gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d    \
+    audacity antigravity antigravity-cli bc bluetui bun discord firefox     \
+    fish freecad fd flatpak github-cli ghostscript gimp git-lfs gparted     \
+    imagemagick inkscape jq kicad kicad-library kicad-library-3d            \
     libreoffice-fresh ltspice lutris macchina man-db neovim nodejs npm      \
     parallel perl-image-exiftool picom-git polkit-gnome pre-commit          \
     prismlauncher prusa-slicer pyenv python-pydantic                        \
@@ -99,10 +99,12 @@ bash ~/miniconda3_install.sh -b # conda will soon be intialized by importing the
 rm ~/miniconda3_install.sh
 
 # install pi (and extensions)
-eval "$(fnm env)"
-fnm install --lts
-npm install -g --ignore-scripts @earendil-works/pi-coding-agent
-pi install npm:pi-review
+export BUN_INSTALL_CACHE_DIR="$HOME"/.cache/bun
+export BUN_INSTALL_BIN="$HOME"/.local/bin
+export BUN_INSTALL="${XDG_DATA_HOME:-"$HOME"/.local/share}"/bun
+export PATH="$PATH:$BUN_INSTALL_BIN"
+bun add -g --ignore-scripts @earendil-works/pi-coding-agent
+pi install git:github.com/earendil-works/pi-review
 
 # install config files
 mkdir -p ~/.config
@@ -117,6 +119,8 @@ mkdir -p ~/.local/bin
 ln -s -f $PWD/home/.local/bin/* ~/.local/bin/
 mkdir -p ~/.local/share/applications
 ln -s -f $PWD/home/.local/share/applications/* ~/.local/share/applications/
+mkdir -p ~/.pi/agent
+ln -s -f $PWD/home/.pi/agent/* ~/.pi/agent/
 
 cp -r -f $PWD/home/.var/app/* ~/.var/app/
 

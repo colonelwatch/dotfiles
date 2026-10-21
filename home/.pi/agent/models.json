@@ -1,0 +1,26 @@
+{
+  "providers": {
+    "tabbyAPI": {
+      "baseUrl": "http://localhost:5000/v1",
+      "api": "openai-completions",
+      "apiKey": "no-api-key",
+      "models": [
+        {
+          "id": "Ornith-1.5-35B-A3B-exl3",
+          "contextWindow": 262144,
+          "maxTokens": 262144
+        },
+        {
+          "id": "Swift-1.5-Qwen3.8-27B-EXL3",
+          "contextWindow": 262144,
+          "maxTokens": 262144
+        },
+        {
+          "id": "Swift-1.5-Qwen3.8-Flash-Next-EXL3-2.25bpw-48GB",
+          "contextWindow": 131072,
+          "maxTokens": 131072
+        }
+      ]
+    }
+  }
+}

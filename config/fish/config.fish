@@ -24,6 +24,9 @@ set -gx PYENV_ROOT "$XDG_DATA_HOME"/pyenv
 set -gx SCREENRC "$XDG_CONFIG_HOME"/screen/screenrc
 set -gx SCREENDIR "$XDG_RUNTIME_DIR"/screen
 set -gx TRITON_HOME "$XDG_CACHE_HOME"/triton
+set -gx BUN_INSTALL_CACHE_DIR "$HOME"/.cache/bun
+set -gx BUN_INSTALL_BIN "$HOME"/.local/bin
+set -gx BUN_INSTALL "$XDG_DATA_HOME"/bun
 
 # pyenv setup and build options
 set -gx PYTHON_CONFIGURE_OPTS '--enable-optimizations --with-lto'
@@ -33,8 +36,6 @@ pyenv init - fish | source
 
 fish_add_path -g "$GEM_HOME/bin"
 fish_add_path -g "$HOME"/.local/bin
-
-eval "$(fnm env)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
