@@ -43,7 +43,11 @@ SHARP_SHA: Final[str] = "6a78b888557f8c9987f51bca98d02d8f69682044"
 _env_type_validator = TypeAdapter(dict[str, str | Path])
 
 
-class SystemVars(BaseSettings, frozen=True):
+class BaseFrozenSettings(BaseSettings, frozen=True):
+    pass
+
+
+class SystemVars(BaseFrozenSettings):
     xdg_data_home: Path = Path.home() / ".local/share"
     xdg_config_home: Path = Path.home() / ".config"
 
@@ -121,7 +125,7 @@ def _run(
         sys.exit(128 - result.returncode)
 
 
-class Install(BaseSettings, frozen=True):
+class Install(BaseFrozenSettings):
     def cli_cmd(self) -> None:
         env = Env()
 
@@ -222,7 +226,7 @@ def _replace_symlink(target: Path, location: Path) -> None:
         raise
 
 
-class Launch(BaseSettings, cli_ignore_unknown_args=True):
+class Launch(BaseFrozenSettings, cli_ignore_unknown_args=True):
     # TODO: override help formatting for this one
     # TODO: reject anything before the last recognized argument?
     args_implicit: CliUnknownArgs
