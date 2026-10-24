@@ -124,18 +124,6 @@ ln -s -f $PWD/home/.pi/agent/* ~/.pi/agent/
 
 cp -r -f $PWD/home/.var/app/* ~/.var/app/
 
-model_dirs=(
-    Ornith-1.5-35B-A3B-exl3
-    Swift-1.5-Qwen3.8-Flash-Next-EXL3-2.25bpw-48GB
-    Swift-1.5-Qwen3.8-27B-EXL3
-)
-base=$PWD/home/.local/share/localai/models/tabbyAPI
-models_root=~/.local/share/localai/models/tabbyAPI
-for m in "${model_dirs[@]}"; do
-    mkdir -p "$models_root/$m/"
-    ln -s -f "$base/$m/tabby_config.yml" "$models_root/$m/"
-done
-
 # libvirt is actually a root service!
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ 
 
