@@ -1,0 +1,9 @@
+{
+  "lastChangelogVersion": "1.4.0",
+  "theme": "system",
+  "packages": [
+    "git:github.com/earendil-works/pi-review"
+  ],
+  "defaultProvider": "tabbyAPI",
+  "defaultModel": "Ornith-1.5-35B-A3B-exl3"
+}
