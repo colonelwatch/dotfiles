@@ -92,12 +92,6 @@ sudo flatpak override --env PYTHONPATH=/run/host/lib/python3.14/site-packages
 # install jekyll through ruby
 gem install jekyll bundler
 
-# download and execute miniconda install script
-# TODO: remove?
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3_install.sh
-bash ~/miniconda3_install.sh -b # conda will soon be intialized by importing the fish config
-rm ~/miniconda3_install.sh
-
 # install pi (and extensions)
 export BUN_INSTALL_CACHE_DIR="$HOME"/.cache/bun
 export BUN_INSTALL_BIN="$HOME"/.local/bin

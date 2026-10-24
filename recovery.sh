@@ -1,7 +1,5 @@
 chsh -s /bin/fish # change default shell to fish
 
-fish -c "conda config --set auto_activate_base false" # disable conda auto-activation
-
 rm -rf ~/.thunderbird # remove default thunderbird config (should be empty folder)
 
 rclone config reconnect remote: --auto-confirm  # reconnect rclone remote...

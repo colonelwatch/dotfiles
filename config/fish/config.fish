@@ -37,11 +37,6 @@ pyenv init - fish | source
 fish_add_path -g "$GEM_HOME/bin"
 fish_add_path -g "$HOME"/.local/bin
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /home/kenny/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-
 # Unlike other interactive cmds, run macchina last to stop a graphical glitch
 if status is-interactive
     macchina
