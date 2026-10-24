@@ -58,7 +58,7 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     imagemagick inkscape jq kicad kicad-library kicad-library-3d            \
     libreoffice-fresh ltspice lutris macchina man-db neovim nodejs npm      \
     parallel perl-image-exiftool picom-git polkit-gnome pre-commit          \
-    prismlauncher prusa-slicer pyenv python-pydantic                        \
+    prismlauncher prusa-slicer pyenv python-huggingface-hub python-pydantic \
     python-pydantic-settings rpi-imager ripgrep rclone rsync rofi ruby      \
     steam thunderbird trash-cli tree tree-sitter-cli unzip virt-manager vlc \
     xclip yazi zip zopfli

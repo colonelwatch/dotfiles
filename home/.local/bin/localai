@@ -4,6 +4,7 @@
 # TODO: document and add short options
 # TODO: configure and run ruff before committing (do it through PEP 723? or not?)
 
+import json
 import os
 import shutil
 import subprocess
@@ -37,6 +38,7 @@ PYTHON_VER: Final[tuple[int, int, int]] = (3, 14, 8)
 TABBYAPI_NAME: Final[str] = "tabbyAPI"
 TABBYAPI_SHA: Final[str] = "a270c555db91a5178d72f7dee7bdd34951ac1dad"
 TABBYAPI_URL: Final[str] = "https://github.com/theroyallab/tabbyAPI.git"
+SHARP_SHA: Final[str] = "6a78b888557f8c9987f51bca98d02d8f69682044"
 
 _env_type_validator = TypeAdapter(dict[str, str | Path])
 
@@ -142,6 +144,36 @@ class Install(BaseSettings, frozen=True):
             _run(git, "fetch", cwd=env.tabbyapi_repo)
             _run(git, "checkout", TABBYAPI_SHA, cwd=env.tabbyapi_repo)
 
+        hf = shutil.which("hf")
+        if not hf:
+            sys.exit("error: hf not found")
+        sharp_download_json = json.loads(
+            subprocess.run(
+                [
+                    hf,
+                    "download",
+                    "--revision",
+                    SHARP_SHA,
+                    "--format",
+                    "json",
+                    "peculiar-ragdoll/Qwen-Sharp-Chat-Templates",
+                ],
+                capture_output=True,
+                check=True,
+                text=True,
+            ).stdout
+        )
+        sharp_path = Path(sharp_download_json["path"])
+        template_path = sharp_path / "chat_template.jinja"
+        if not template_path.exists():
+            raise RuntimeError(
+                "Qwen-Sharp-Chat-Templates downloaded but "
+                "'chat_template.jinja' was not found"
+            )
+        _replace_symlink(
+            env.tabbyapi_repo / "templates/sharp.jinja", template_path.resolve()
+        )
+
         # set up TabbyAPI virtual environment
         pyenv = shutil.which("pyenv")
         if not pyenv:
@@ -167,20 +199,27 @@ class Install(BaseSettings, frozen=True):
         )
 
         # config path is hardcoded, so force indirection with symlinks
-        tmp_symlink = env.tabbyapi_repo / "config.yml.tmp"
-        tmp_symlink.unlink(missing_ok=True)
-        tmp_symlink.symlink_to(env.tabbyapi_config.resolve())
-        try:
-            tmp_symlink.replace(env.tabbyapi_repo / "config.yml")
-        except:
-            tmp_symlink.unlink()
-            raise
+        _replace_symlink(
+            env.tabbyapi_repo / "config.yml", env.tabbyapi_config.resolve()
+        )
 
         # pre-make this directory in case tabbyAPI assumes existence
         env.tabbyapi_models.mkdir(parents=True, exist_ok=True)
 
         with open(env.installed_flag, "w") as f:
             f.write(TABBYAPI_NAME)
+
+
+def _replace_symlink(target: Path, location: Path) -> None:
+    # file system transaction with an atomic replacement
+    temp = target.parent / f"{target.name}.tmp"
+    temp.unlink(missing_ok=True)
+    temp.symlink_to(location)
+    try:
+        temp.replace(target)
+    except:
+        temp.unlink(missing_ok=True)
+        raise
 
 
 class Launch(BaseSettings, cli_ignore_unknown_args=True):
