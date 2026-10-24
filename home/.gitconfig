@@ -12,6 +12,10 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
-[hook "coauthor"]
-	command = "bash -c 'if [ -n \"$PI_MODEL\" ]; then git interpret-trailers --if-exists=doNothing --if-missing=add --trailer \"Co-Authored-By=$PI_MODEL <noreply@pi.dev>\" --in-place -- \"$0\" \"$@\"; fi'"
+[trailer "pi-trailer"]
+	ifexists = doNothing
+	key = Co-Authored-By
+	cmd = "echo \"$PI_MODEL\" \"<noreply@pi.dev>\""
+[hook "pi-trailer"]
+	command = "bash -c 'if [ -n \"$PI_MODEL\" ]; then git interpret-trailers --trailer pi-trailer --in-place -- \"$0\" \"$@\"; fi'"
 	event = commit-msg
