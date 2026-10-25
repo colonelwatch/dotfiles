@@ -106,7 +106,6 @@ ln -s -f $PWD/config/* ~/.config/
 
 # install home files by hand (NOTE: ~/ is far less flat than ~/.config)
 ln -s -f $PWD/home/.bashrc ~/
-ln -s -f $PWD/home/.gitconfig ~/
 ln -s -f $PWD/home/.xinitrc ~/
 ln -s -f $PWD/home/.Xresources ~/
 mkdir -p ~/.local/bin
