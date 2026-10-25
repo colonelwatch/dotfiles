@@ -1,5 +1,7 @@
 [Unit]
 Description=Configure processor power for maximum performance.
+Wants=modprobe@intel_rapl_msr.service
+After=modprobe@intel_rapl_msr.service
 
 [Service]
 Type=oneshot
