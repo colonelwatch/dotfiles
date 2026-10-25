@@ -39,7 +39,7 @@ ensure_model() {
 
 # restored local model backups (rsync above), fill in any gaps from HuggingFace
 ensure_model yeasah/Ornith-1.5-35B-A3B-exl3 6.00bpw
-ensure_model JRramirez-UAB/Swift-1.5-Qwen3.8-Flash-Next-EXL3-2.25bpw-48GB
+ensure_model JRamirez-UAB/Swift-1.5-Qwen3.8-Flash-Next-EXL3-2.25bpw-48GB
 ensure_model erlidev/Swift-1.5-Qwen3.8-27B-EXL3 SC_5.00bpw_H6_V6
 
 chmod +x ~/Automations/anti_burn_in/*.py # make sure the scripts here are executable
