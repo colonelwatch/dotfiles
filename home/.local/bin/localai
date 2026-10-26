@@ -214,13 +214,13 @@ class Install(BaseFrozenSettings):
             f.write(TABBYAPI_NAME)
 
 
-def _replace_symlink(target: Path, location: Path) -> None:
+def _replace_symlink(link: Path, dest: Path) -> None:
     # file system transaction with an atomic replacement
-    temp = target.parent / f"{target.name}.tmp"
+    temp = link.parent / f"{link.name}.tmp"
     temp.unlink(missing_ok=True)
-    temp.symlink_to(location)
+    temp.symlink_to(dest)
     try:
-        temp.replace(target)
+        temp.replace(link)
     except:
         temp.unlink(missing_ok=True)
         raise
