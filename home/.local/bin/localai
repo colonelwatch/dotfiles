@@ -12,7 +12,7 @@ import sys
 from collections.abc import Mapping
 from pathlib import Path
 from signal import SIGINT
-from typing import TYPE_CHECKING, Final
+from typing import TYPE_CHECKING, Any, Final, Self
 
 from pydantic import AliasGenerator, BaseModel, Field, TypeAdapter
 from pydantic_settings import (
@@ -40,7 +40,15 @@ TABBYAPI_SHA: Final[str] = "a270c555db91a5178d72f7dee7bdd34951ac1dad"
 TABBYAPI_URL: Final[str] = "https://github.com/theroyallab/tabbyAPI.git"
 SHARP_SHA: Final[str] = "6a78b888557f8c9987f51bca98d02d8f69682044"
 
-_env_type_validator = TypeAdapter(dict[str, str | Path])
+DECISIONS_CUDA_DEVICES: Final[list[str]] = [  # RTX 2060
+    "GPU-fb4c16df-3aab-5891-65e2-727aa49bc210"
+]
+LLAMA_SERVER_NAME: Final[str] = "llama-server"
+DECISIONS_HF_REPO: Final[str] = "ggml-org/Bespoke-Nimble-9B-v3-GGUF"
+DECISIONS_HF_FILE: Final[str] = "Bespoke-Nimble-9B-v3-Q4_K_M.gguf"
+
+EnvType = dict[str, str | Path]
+_env_type_validator = TypeAdapter(EnvType)
 
 
 class BaseFrozenSettings(BaseSettings, frozen=True):
@@ -89,22 +97,43 @@ class Env(BaseModel, frozen=True):
     def tabbyapi_config(self) -> Path:
         return self.config_home / f"{TABBYAPI_NAME}.yml"
 
+    @property
+    def decisions_llama_server_config(self) -> Path:
+        return self.config_home / f"decisions_{LLAMA_SERVER_NAME}.ini"
 
-class BaseOverrideVars(
+
+class BaseVars(
     BaseSettings,
     frozen=True,
     alias_generator=AliasGenerator(serialization_alias=lambda k: k.upper()),
     serialize_by_alias=True,
 ):
-    pass
+    def __or__(self, other: Self) -> Self:
+        cls = type(self)
+        kv: dict[str, Any] = {}
+        for key in cls.model_fields.keys():
+            kv[key] = (
+                other_value
+                if (other_value := getattr(other, key)) is not None
+                else getattr(self, key)
+            )
+        return cls(**kv)
+
+    def to_env(self) -> EnvType:
+        return _env_type_validator.validate_python(self.model_dump(exclude_none=True))
 
 
-class CudaOverrideVars(BaseOverrideVars):
+class CudaVars(BaseVars):
     cuda_visible_devices: str | None = None
 
 
-class TabbyApiOverrideVars(BaseOverrideVars):
+class TabbyApiVars(BaseVars):
     tabby_model_model_dir: Path | None = None
+
+
+class DecisionsLlamaServerVars(BaseVars):
+    llama_arg_cors_origins: str | None = None
+    llama_arg_models_preset: Path | None = None
 
 
 def _run(
@@ -229,32 +258,56 @@ def _replace_symlink(link: Path, dest: Path) -> None:
 class Launch(BaseFrozenSettings, cli_ignore_unknown_args=True):
     # TODO: override help formatting for this one
     # TODO: reject anything before the last recognized argument?
+    decisions: bool = False
     args_implicit: CliUnknownArgs
     args_explicit: CliPositionalArg[list[str]] = []
 
-    def cli_cmd(self):
+    def cli_cmd(self) -> None:
         env = Env()
 
-        cuda_override_vars = CudaOverrideVars()
-        cuda_vars = _env_type_validator.validate_python(
-            {
-                CudaOverrideVars.model_fields[
-                    "cuda_visible_devices"
-                ].serialization_alias: ",".join(CUDA_DEVICES)
-            }
-            | cuda_override_vars.model_dump(exclude_none=True)
+        cuda_vars = (
+            CudaVars(
+                cuda_visible_devices=",".join(
+                    DECISIONS_CUDA_DEVICES if self.decisions else CUDA_DEVICES
+                )
+            )
+            | CudaVars()
         )
 
-        tabbyapi_override_vars = TabbyApiOverrideVars()
-        tabbyapi_vars = _env_type_validator.validate_python(
-            {
-                TabbyApiOverrideVars.model_fields[
-                    "tabby_model_model_dir"
-                ].serialization_alias: env.tabbyapi_models,
-            }
-            | tabbyapi_override_vars.model_dump(exclude_none=True)
-        )
+        if self.decisions:
+            # provision model early so `llama-server` can identify it as a
+            # decisions model from the metadata and then report so in the router
+            # NOTE: once llama-server can get a default model, use that instead
+            hf = shutil.which("hf")
+            if not hf:
+                sys.exit("error: 'hf' not found")
+            _run(hf, "download", DECISIONS_HF_REPO, DECISIONS_HF_FILE)
 
+            llama_vars = (
+                DecisionsLlamaServerVars(
+                    llama_arg_cors_origins="localhost",
+                    llama_arg_models_preset=env.decisions_llama_server_config,
+                )
+                | DecisionsLlamaServerVars()
+            )
+            llama_server = shutil.which(LLAMA_SERVER_NAME)
+            if not llama_server:
+                sys.exit(f"error: {LLAMA_SERVER_NAME} not found")
+            try:
+                _run(
+                    llama_server,
+                    *self.args_implicit,
+                    *self.args_explicit,
+                    env=cuda_vars.to_env() | llama_vars.to_env(),
+                )
+            except KeyboardInterrupt:
+                sys.exit(128 + SIGINT)
+
+            return
+
+        tabbyapi_vars = (
+            TabbyApiVars(tabby_model_model_dir=env.tabbyapi_models) | TabbyApiVars()
+        )
         if not env.installed_flag.exists():
             sys.exit(f"error: runtime not installed, run '{APP_NAME} install' first")
         try:
@@ -264,7 +317,7 @@ class Launch(BaseFrozenSettings, cli_ignore_unknown_args=True):
                 *self.args_implicit,
                 *self.args_explicit,
                 cwd=env.tabbyapi_repo,
-                env=cuda_vars | tabbyapi_vars,
+                env=cuda_vars.to_env() | tabbyapi_vars.to_env(),
             )
         except KeyboardInterrupt:
             sys.exit(128 + SIGINT)
