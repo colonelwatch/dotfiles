@@ -1,0 +1,77 @@
+name: Test Bootstrap
+on:
+  push:
+    branches:
+      - main
+      - dev
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    services:
+      archlinux:
+        image: archlinux:base
+        volumes:
+          - /etc/machine-id:/etc/machine-id:ro
+          - /sys/fs/cgroup:/sys/fs/cgroup
+          - /sys/fs/fuse:/sys/fs/fuse
+        options: >-
+          --label service=archlinux
+          --privileged
+          --mount type=tmpfs,destination=/tmp
+          --mount type=tmpfs,destination=/run
+          --mount type=tmpfs,destination=/run/lock
+          --entrypoint /sbin/init
+    env:
+      ARCHLINUX_USER: kenny
+    defaults:
+      run:
+        shell: archlinux-sh {0}
+    steps:
+      - name: Create archlinux-sh
+        shell: bash
+        run: |
+          cat > /usr/local/bin/archlinux-sh <<'EOF'
+          #!/bin/bash
+          set -e
+          script="${@: -1}"  # assume script is last argument
+          chmod a+r "$script"  # ensure non-root users can read it
+          docker exec "$ARCHLINUX_ID" mkdir -p "$(dirname "$script")"
+          docker cp "$script" "$ARCHLINUX_ID":"$script"
+          docker exec -e ARCHLINUX_USER="$ARCHLINUX_USER" "$ARCHLINUX_ID"     \
+            sh "$@"
+          EOF
+          chmod +x /usr/local/bin/archlinux-sh
+          echo "ARCHLINUX_ID=$(docker ps -q -f label=service=archlinux)" >>   \
+            "$GITHUB_ENV"
+      - name: Create user ${{ env.ARCHLINUX_USER }}
+        run: useradd -m -G wheel "$ARCHLINUX_USER"
+      - name: Give all wheel users passwordless sudo
+        run: |
+          mkdir -p /etc/sudoers.d
+          echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
+      - name: Create archlinux-user-sh
+        shell: bash
+        run: |
+          cat > /usr/local/bin/archlinux-user-sh <<'EOF'
+          #!/bin/bash
+          set -e
+          login_sh_cmd=(
+            machinectl '--uid="$ARCHLINUX_USER"' shell .host
+              /bin/sh '"$0"' '"$@"'
+          )
+          archlinux-sh -c "${login_sh_cmd[*]}" "$@"
+          EOF
+          chmod +x /usr/local/bin/archlinux-user-sh
+      - uses: actions/checkout@v7
+        with:
+          submodules: true
+      - shell: bash
+        run: docker cp . "$ARCHLINUX_ID":/home/"$ARCHLINUX_USER"/.dotfiles
+      - run: |
+          chown -R "$ARCHLINUX_USER":"$ARCHLINUX_USER"  \
+                   /home/"$ARCHLINUX_USER"/.dotfiles
+      - run: pacman --noconfirm -Syu base-devel git openssh wget
+      - shell: archlinux-user-sh {0}
+        run: |
+          cd .dotfiles
+          bash bootstrap.sh

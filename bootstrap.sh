@@ -13,6 +13,9 @@ git submodule update --init --recursive
 sudo cp -f root/etc/pacman.conf /etc/
 sudo pacman -Syuu --noconfirm
 
+# configure makepkg
+sudo cp -f root/etc/makepkg.conf /etc/
+
 # installing yay manually before using yay
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin
@@ -53,11 +56,11 @@ sudo systemctl enable                                       \
 
 # install packages
 yay -S --noconfirm --answerdiff=None --sudoloop                             \
-    audacity antigravity antigravity-cli bc bluetui bun discord firefox     \
+    act audacity antigravity antigravity-cli bc bluetui bun discord firefox \
     fish freecad fd flatpak ggml-cuda github-cli ghostscript gimp git-lfs   \
     gparted imagemagick inkscape jq kicad kicad-library kicad-library-3d    \
     libreoffice-fresh llama-cpp ltspice lutris macchina man-db neovim       \
-    nodejs npm parallel perl-image-exiftool picom-git polkit-gnome          \
+    nodejs npm parallel perl-image-exiftool picom-git podman polkit-gnome   \
     pre-commit prismlauncher prusa-slicer pyenv python-huggingface-hub      \
     python-pydantic python-pydantic-settings rpi-imager ripgrep rclone      \
     rsync rofi ruby steam thunderbird trash-cli tree tree-sitter-cli unzip  \
@@ -102,20 +105,20 @@ pi install git:github.com/earendil-works/pi-review
 
 # install config files
 mkdir -p ~/.config
-ln -s -f $PWD/config/* ~/.config/
+ln -s -f "$PWD"/config/* ~/.config/
 
 # install home files by hand (NOTE: ~/ is far less flat than ~/.config)
-ln -s -f $PWD/home/.bashrc ~/
-ln -s -f $PWD/home/.xinitrc ~/
-ln -s -f $PWD/home/.Xresources ~/
+ln -s -f "$PWD"/home/.bashrc ~/
+ln -s -f "$PWD"/home/.xinitrc ~/
+ln -s -f "$PWD"/home/.Xresources ~/
 mkdir -p ~/.local/bin
-ln -s -f $PWD/home/.local/bin/* ~/.local/bin/
+ln -s -f "$PWD"/home/.local/bin/* ~/.local/bin/
 mkdir -p ~/.local/share/applications
-ln -s -f $PWD/home/.local/share/applications/* ~/.local/share/applications/
+ln -s -f "$PWD"/home/.local/share/applications/* ~/.local/share/applications/
 mkdir -p ~/.pi/agent
-ln -s -f $PWD/home/.pi/agent/* ~/.pi/agent/
+ln -s -f "$PWD"/home/.pi/agent/* ~/.pi/agent/
 
-cp -r -f $PWD/home/.var/app/* ~/.var/app/
+cp -r -f "$PWD"/home/.var/app/* ~/.var/app/
 
 # libvirt is actually a root service!
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ 
@@ -123,7 +126,7 @@ sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/
 # deal with rclone config edge case
 unlink ~/.config/rclone # undo symlink b/c it eventually contains keys we don't want to commit...
 mkdir ~/.config/rclone  #  ...so we'll only copy the config files
-cp ~/.dotfiles/config/rclone/rclone.conf ~/.config/rclone/
+cp "$PWD"/config/rclone/rclone.conf ~/.config/rclone/
 # rclone is not authorized yet, so authorize manually in recovery.sh
 
 # other config
@@ -132,7 +135,8 @@ sudo systemctl enable libvirtd.service
 xdg-mime default yazi.desktop inode/directory # by default, vscode seems to be the default file manager
 crontab crontab.bak
 
-systemctl --user enable ssh-agent.service
+systemctl --user enable ssh-agent.socket
+systemctl --user enable podman.socket
 
 # </USER>
 

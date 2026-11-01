@@ -27,6 +27,7 @@ set -gx TRITON_HOME "$XDG_CACHE_HOME"/triton
 set -gx BUN_INSTALL_CACHE_DIR "$HOME"/.cache/bun
 set -gx BUN_INSTALL_BIN "$HOME"/.local/bin
 set -gx BUN_INSTALL "$XDG_DATA_HOME"/bun
+set -gx DOCKER_HOST unix://"$XDG_RUNTIME_DIR"/podman/podman.sock
 
 # pyenv setup and build options
 set -gx PYTHON_CONFIGURE_OPTS '--enable-optimizations --with-lto'
