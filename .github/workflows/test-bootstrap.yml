@@ -10,10 +10,10 @@ jobs:
     services:
       archlinux:
         image: archlinux:base
+        env:
+          container: docker
         volumes:
           - /etc/machine-id:/etc/machine-id:ro
-          - /sys/fs/cgroup:/sys/fs/cgroup
-          - /sys/fs/fuse:/sys/fs/fuse
         options: >-
           --label service=archlinux
           --privileged
