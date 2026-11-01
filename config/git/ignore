@@ -1,0 +1,10 @@
+# Neovim (configuration, traditionally not shared)
+.nvim.lua
+.nvimrc
+.exrc
+
+# Neovim clangd (LSP cache)
+.cache
+
+# Neovim LTeX (LSP user data)
+.ltex/

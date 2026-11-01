@@ -1,3 +1,0 @@
-Zotero
-Logseq
-LTeX
