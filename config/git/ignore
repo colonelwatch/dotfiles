@@ -4,7 +4,7 @@
 .exrc
 
 # Neovim clangd (LSP cache)
-.cache
+.cache/clangd/
 
 # Neovim LTeX (LSP user data)
 .ltex/
