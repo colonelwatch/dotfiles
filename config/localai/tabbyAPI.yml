@@ -110,7 +110,17 @@ model:
   # Names of args to use as a fallback for API load requests (default: []).
   # For example, if you always want cache_mode to be Q4 instead of on the inital model load, add "cache_mode" to this array.
   # Example: ['max_seq_len', 'cache_mode'].
-  use_as_default: ['tensor_parallel', 'tensor_parallel_backend', 'cache_mode', 'vision', 'vision_offload', 'draft_mode', 'draft_cache_mode', 'dynamic_draft', 'draft_confidence', 'hybrid_draft_tokens']
+  use_as_default:
+    - tensor_parallel
+    - tensor_parallel_backend
+    - cache_mode
+    - vision
+    - vision_offload
+    - draft_mode
+    - draft_cache_mode
+    - dynamic_draft
+    - draft_confidence
+    - hybrid_draft_tokens
 
   # Backend to use for this model (auto-detect if not specified)
   # Options: exllamav3
