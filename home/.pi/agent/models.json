@@ -8,17 +8,41 @@
         {
           "id": "Ornith-1.5-35B-A3B-exl3",
           "contextWindow": 262144,
-          "maxTokens": 262144
+          "maxTokens": 262144,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "off",
+            "minimal": null,
+            "low": null,
+            "medium": "medium",
+            "high": null
+          }
         },
         {
           "id": "Swift-1.5-Qwen3.8-27B-EXL3",
           "contextWindow": 262144,
-          "maxTokens": 262144
+          "maxTokens": 262144,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "off",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh"
+          }
         },
         {
           "id": "Qwen3.8-Flash-Next-exl3",
           "contextWindow": 262144,
-          "maxTokens": 262144
+          "maxTokens": 262144,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "off",
+            "minimal": null,
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh"
+          }
         }
       ]
     }
