@@ -36,7 +36,7 @@ CUDA_DEVICES: Final[list[str]] = [  # triple Nvidia A2s in Sonnet Echo III
 ]
 PYTHON_VER: Final[tuple[int, int, int]] = (3, 14, 8)
 TABBYAPI_NAME: Final[str] = "tabbyAPI"
-TABBYAPI_SHA: Final[str] = "a270c555db91a5178d72f7dee7bdd34951ac1dad"
+TABBYAPI_SHA: Final[str] = "8f92fac5d9307bf1e09668c3715b32ff46ad0333"
 TABBYAPI_URL: Final[str] = "https://github.com/theroyallab/tabbyAPI.git"
 SHARP_SHA: Final[str] = "6a78b888557f8c9987f51bca98d02d8f69682044"
 
