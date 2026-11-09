@@ -13,3 +13,8 @@ repos:
       language: system
       types: [shell]
       exclude_types: [fish]
+    - id: shellcheck-non-executable
+      name: Run shellcheck (non-executable scripts)
+      entry: scripts/test_shellcheck_nonexecutable.py
+      language: system
+      types: [non-executable, text]
