@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+case "$1" in --version|-v) exec bun -e 'console.log(process.version)';; esac
+if [ ! -f "$1" ]; then
+	# this node shim is only good for files with node shebangs
+	echo "Error: Did not call node shim with an existing file" >&2
+	echo "Usage: node <FILE> [ARGS...]" >&2
+	exit 2
+fi
+exec bun "$@"
