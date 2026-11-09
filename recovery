@@ -1,3 +1,5 @@
+#!/bin/bash
+
 chsh -s /bin/fish # change default shell to fish
 
 rm -rf ~/.thunderbird # remove default thunderbird config (should be empty folder)

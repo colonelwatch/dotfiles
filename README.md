@@ -32,7 +32,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 5. Install `git` with the command `sudo pacman -S git`
 
-6. Clone this repository with the command `git clone --recurse-submodules https://github.com/colonelwatch/dotfiles .dotfiles`, call `cd .dotfiles && bash ./bootstrap.sh`
+6. Clone this repository with the command `git clone --recurse-submodules https://github.com/colonelwatch/dotfiles .dotfiles`, call `cd .dotfiles && ./bootstrap`
 
 7. Restart
 
@@ -40,7 +40,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
 08. Connect to Wi-Fi network again through `nmtui`
 
-09. Call `cd .dotfiles && bash ./recovery.sh`, which includes manual prompts and recovery
+09. Call `cd .dotfiles && ./recovery`, which includes manual prompts and recovery
 
     - Enter user password to set `fish` as the login shell
     - Authorize `rclone` recovery (though recovery will be through `rsync` if possible)

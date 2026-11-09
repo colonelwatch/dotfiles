@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # <SETUP>
 
 # check if pwd is ~/.dotfiles
@@ -18,10 +20,11 @@ sudo cp -f root/etc/makepkg.conf /etc/
 
 # installing yay manually before using yay
 git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg --syncdeps --rmdeps --noconfirm
-sudo pacman -U *.pkg.tar.zst --noconfirm
-cd ..
+(
+  cd yay-bin || exit
+  makepkg --syncdeps --rmdeps --noconfirm
+  sudo pacman -U -- *.pkg.tar.zst --noconfirm
+)
 rm -rf yay-bin
 
 # </SETUP>
@@ -83,9 +86,9 @@ for ver in "23.08" "24.08" "25.08"; do
     rm $f
 done
 for app in "io.github.streetpea.Chiaki4deck" "net.rpcs3.RPCS3"; do
-    flatpak override --user --filesystem $HOME/.config/lsfg-vk:ro "$app"
+    flatpak override --user --filesystem "$HOME"/.config/lsfg-vk:ro "$app"
     flatpak override --user     \
-        --env LSFG_CONFIG=$HOME/.config/lsfg-vk/conf.toml "$app"
+        --env LSFG_CONFIG="$HOME"/.config/lsfg-vk/conf.toml "$app"
 done
 
 # given Logseq access to pre-commit
@@ -127,7 +130,7 @@ sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/
 unlink ~/.config/rclone # undo symlink b/c it eventually contains keys we don't want to commit...
 mkdir ~/.config/rclone  #  ...so we'll only copy the config files
 cp "$PWD"/config/rclone/rclone.conf ~/.config/rclone/
-# rclone is not authorized yet, so authorize manually in recovery.sh
+# rclone is not authorized yet, so authorize manually in recovery
 
 # other config
 sudo usermod -a -G uucp,libvirt kenny # needed for arduino and virt-manager

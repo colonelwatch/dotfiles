@@ -29,6 +29,7 @@ fi
 
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  # shellcheck source=/dev/null
   [ -x "$f" ] && . "$f"
  done
  unset f
@@ -43,7 +44,10 @@ fi
 xrandr --newmode "1440x900" 182.75  1440 1488 1520 1600  900 903 909 953 +hsync -vsync
 xrandr --addmode eDP-1 1440x900
 
-cd $HOME/Automations/anti_burn_in && python3 ./set_and_apply_shift.py
-cd $HOME # return to home directory
+# run anti burn-in shift in a subshell so cwd is restored automatically
+(
+  cd "$HOME"/Automations/anti_burn_in || exit
+  python3 ./set_and_apply_shift.py
+)
 
 exec awesome

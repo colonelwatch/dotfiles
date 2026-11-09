@@ -96,4 +96,4 @@ jobs:
       - shell: archlinux-user-sh {0}
         run: |
           cd .dotfiles
-          bash bootstrap.sh
+          ./bootstrap
