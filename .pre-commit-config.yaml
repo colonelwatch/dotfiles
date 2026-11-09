@@ -7,3 +7,9 @@ repos:
       entry: scripts/test_submodules_are_http.sh
       language: system
       types: [gitmodules]
+    - id: shellcheck
+      name: Run shellcheck
+      entry: shellcheck
+      language: system
+      types: [shell]
+      exclude_types: [fish]

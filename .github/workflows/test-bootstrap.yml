@@ -5,7 +5,29 @@ on:
       - main
       - dev
 jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: true
+      - run: apt-get update && apt-get -y install shellcheck
+      - name: Run shellcheck on identified shell files
+        shell: bash
+        run: |
+          declare -a scripts
+          git_ls() { git ls-files --recurse-submodules ':!3rdparty/' "$@"; }
+          scripts_mapfile() { mapfile -O ${#scripts[@]} -t scripts; }
+          scripts_mapfile < <(git_ls '*.sh' '*.bash' '*.bats')
+          scripts_mapfile < \
+            <(git_ls ':(exclude,glob)**/?*.*' |                       \
+              xargs -r -- file --mime-type -N -- |                    \
+              awk -F ': ' '$2 == "text/x-shellscript" { print $1 }')
+          if [ ${#scripts[@]} -gt 0 ]; then
+            shellcheck "${scripts[@]}"
+          fi
   bootstrap:
+    needs: [shellcheck]
     runs-on: ubuntu-latest
     services:
       archlinux:

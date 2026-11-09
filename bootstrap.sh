@@ -63,8 +63,8 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     parallel perl-image-exiftool picom-git podman polkit-gnome pre-commit   \
     prismlauncher prusa-slicer pyenv python-huggingface-hub python-pydantic \
     python-pydantic-settings rpi-imager ripgrep rclone rsync rofi ruby      \
-    steam thunderbird trash-cli tree tree-sitter-cli unzip virt-manager vlc \
-    xclip yazi zip zopfli
+    shellcheck steam thunderbird trash-cli tree tree-sitter-cli unzip       \
+    virt-manager vlc xclip yazi zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
