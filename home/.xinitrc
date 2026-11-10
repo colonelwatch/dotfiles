@@ -44,6 +44,10 @@ fi
 xrandr --newmode "1440x900" 182.75  1440 1488 1520 1600  900 903 909 953 +hsync -vsync
 xrandr --addmode eDP-1 1440x900
 
+udiskie &
+picom -b
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
 # run anti burn-in shift in a subshell so cwd is restored automatically
 (
   cd "$HOME"/Automations/anti_burn_in || exit

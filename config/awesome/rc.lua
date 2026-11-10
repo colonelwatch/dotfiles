@@ -705,7 +705,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 -- Autorun on start of AwesomeWM
-awful.spawn.spawn('udiskie')
-awful.spawn.spawn('picom')
-awful.spawn.spawn('/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1')
 -- }}}
