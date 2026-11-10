@@ -1,4 +1,4 @@
-#!/bin/sh
+# shellcheck shell=sh
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -51,3 +51,5 @@ xrandr --addmode eDP-1 1440x900
 )
 
 exec awesome
+
+# vim: set ft=sh:
