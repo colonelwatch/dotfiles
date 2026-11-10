@@ -16,6 +16,13 @@
             "low": null,
             "medium": "medium",
             "high": null
+          },
+          "samplingParamsByThinkingLevel": {
+            "off": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "presence_penalty": 1.5
+            }
           }
         },
         {
@@ -29,6 +36,13 @@
             "low": "low",
             "medium": "medium",
             "high": "xhigh"
+          },
+          "samplingParamsByThinkingLevel": {
+            "off": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "presence_penalty": 1.5
+            }
           }
         },
         {
@@ -42,6 +56,13 @@
             "low": "low",
             "medium": "medium",
             "high": "xhigh"
+          },
+          "samplingParamsByThinkingLevel": {
+            "off": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "presence_penalty": 1.5
+            }
           }
         }
       ]
