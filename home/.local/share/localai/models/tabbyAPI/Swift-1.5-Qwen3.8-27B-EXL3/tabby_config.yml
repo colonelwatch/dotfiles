@@ -1,6 +1,7 @@
 model:
   cache_size: 262144
   cache_mode: FP16
+  prompt_template: sharp
   sampling:
     override_preset: safe_defaults
     temperature:
@@ -12,6 +13,8 @@ model:
     min_p:
       override: 0.0
       force: true
+  template_vars_default:
+    terse: false
 draft_model:
   draft_mode: mtp
   draft_cache_mode: FP16
