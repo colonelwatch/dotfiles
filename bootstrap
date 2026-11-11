@@ -40,6 +40,10 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     sof-firmware woff2-font-awesome ttf-ia-writer ttf-jetbrains-mono-nerd   \
     ttf-ms-win10-cdn udiskie udisks2
 
+# build swapfile
+sudo systemctl stop swapfile.swap || true  # stop using swap if it is being used
+sudo mkswap -U clear --size 16G --file /swapfile
+
 # install config files
 sudo rm /boot/loader/entries/* # remove default entries
 sudo cp -rvf --no-preserve=mode,ownership root/boot/loader/* /boot/loader/
@@ -49,7 +53,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable                                       \
     bluetooth.service cpupower.service cronie.service       \
     intel-rapl-performance.service NetworkManager.service   \
-    reflector.service
+    reflector.service swapfile.swap
 
 # </ROOT>
 

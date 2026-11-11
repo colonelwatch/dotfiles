@@ -18,6 +18,7 @@ If I ever need to nuke the Linux install on my laptop, this repo documents every
 
    - `Mirror region`: self-explanatory
    - `Drives`: Main HDD, nuke all partitions, and no separate home partition
+   - `Swap`: No (this is "swap on zram", and a swapfile is set up later)
    - `hostname`: `kenny-laptop`
    - `User account`: self-explanatory
    - `Profile`: `desktop`, `awesome`, `Intel (open source)`
