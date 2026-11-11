@@ -6,7 +6,7 @@
       "apiKey": "no-api-key",
       "models": [
         {
-          "id": "Ornith-1.5-35B-A3B-exl3",
+          "id": "Ornith-1.5-35B-A3B-EXL3-4bpw",
           "contextWindow": 262144,
           "maxTokens": 262144,
           "reasoning": true,

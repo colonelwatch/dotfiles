@@ -105,7 +105,7 @@ model:
   # An initial model to load.
   # Make sure the model is located in the model directory!
   # REQUIRED: This must be filled out to load a model on startup.
-  model_name: Ornith-1.5-35B-A3B-exl3
+  model_name: Ornith-1.5-35B-A3B-EXL3-4bpw
 
   # Names of args to use as a fallback for API load requests (default: []).
   # For example, if you always want cache_mode to be Q4 instead of on the inital model load, add "cache_mode" to this array.
