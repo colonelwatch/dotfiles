@@ -1,11 +1,14 @@
 [Unit]
 Description=Configure processor power for maximum performance.
-Wants=modprobe@intel_rapl_msr.service
-After=modprobe@intel_rapl_msr.service
+Requires=sys-class-powercap-intel\x2drapl:0.device sys-class-powercap-intel\x2drapl\x2dmmio:0.device
+After=sys-class-powercap-intel\x2drapl:0.device sys-class-powercap-intel\x2drapl\x2dmmio:0.device
 
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/sh -c 'echo 65000000 > /sys/class/powercap/intel-rapl/intel-rapl:0/constraint_0_power_limit_uw'
+ExecStart=/usr/bin/sh -c 'echo 115000000 > /sys/class/powercap/intel-rapl/intel-rapl:0/constraint_1_power_limit_uw'
+ExecStart=/usr/bin/sh -c 'echo 115000000 > /sys/class/powercap/intel-rapl-mmio/intel-rapl-mmio:0/constraint_0_power_limit_uw'
+ExecStart=/usr/bin/sh -c 'echo 115000000 > /sys/class/powercap/intel-rapl-mmio/intel-rapl-mmio:0/constraint_1_power_limit_uw'
 
 [Install]
 WantedBy=multi-user.target
