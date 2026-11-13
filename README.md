@@ -64,6 +64,10 @@ Besides signing in, some programs need specific configurations that cannot be ju
   - Checkout the `dev` branch
   - Enable the pre-commit scripts with `pre-commit install`
 - Open Logseq graph at `~/Logseq` and add the Git plugin
+- Set up the Pi coding agent and the `localai` runtime
+  <!-- TODO: can/should the install or recovery script ensure this? -->
+  - Ensure the `PYTHON_VERSION` specified in `localai` is available in pyenv, then run `localai install`.
+  - In the Pi coding agent, if `./recovery` did not restore prior authorizations, login to all MCP servers and the llama.cpp decisions server (`localai launch --decisions`).
 
 ## Virtualization
 
