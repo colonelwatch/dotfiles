@@ -43,6 +43,7 @@ ensure_model() {
 ensure_model ultimatechris/Ornith-1.5-35B-A3B-EXL3-4bpw
 ensure_model turboderp/Qwen3.8-Flash-Next-exl3 1.66bpw_h4_ng3
 ensure_model erlidev/Swift-1.5-Qwen3.8-27B-EXL3 SC_4.00bpw_H5_V6
+ensure_model colonelwatch/Ornith-1.5-35B-A3B-DFlash2-exl3-4.0bpw
 
 chmod +x ~/Automations/anti_burn_in/*.py # make sure the scripts here are executable
 

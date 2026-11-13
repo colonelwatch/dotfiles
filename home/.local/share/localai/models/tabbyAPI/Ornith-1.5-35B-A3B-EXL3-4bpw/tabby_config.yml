@@ -14,5 +14,8 @@ model:
       override: 0.0
       force: true
 draft_model:
-  draft_mode: mtp
-  draft_cache_mode: FP16
+  draft_mode: model
+  draft_model_name: Ornith-1.5-35B-A3B-DFlash2-exl3-4.0bpw
+  draft_cache_mode: Q8
+  draft_num_tokens: 7
+  draft_confidence: 0.50
