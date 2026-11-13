@@ -129,6 +129,7 @@ class CudaVars(BaseVars):
 
 class TabbyApiVars(BaseVars):
     tabby_model_model_dir: Path | None = None
+    tabby_draft_model_draft_model_dir: Path | None = None
 
 
 class DecisionsLlamaServerVars(BaseVars):
@@ -306,7 +307,11 @@ class Launch(BaseFrozenSettings, cli_ignore_unknown_args=True):
             return
 
         tabbyapi_vars = (
-            TabbyApiVars(tabby_model_model_dir=env.tabbyapi_models) | TabbyApiVars()
+            TabbyApiVars(
+                tabby_model_model_dir=env.tabbyapi_models,
+                tabby_draft_model_draft_model_dir=env.tabbyapi_models,
+            )
+            | TabbyApiVars()
         )
         if not env.installed_flag.exists():
             sys.exit(f"error: runtime not installed, run '{APP_NAME} install' first")
@@ -323,9 +328,46 @@ class Launch(BaseFrozenSettings, cli_ignore_unknown_args=True):
             sys.exit(128 + SIGINT)
 
 
+class Convert(BaseFrozenSettings, cli_ignore_unknown_args=True):
+    args_implicit: CliUnknownArgs
+    args_explicit: CliPositionalArg[list[str]] = []
+
+    def cli_cmd(self) -> None:
+        env = Env()
+
+        cuda_vars = CudaVars(cuda_visible_devices=",".join(CUDA_DEVICES)) | CudaVars()
+
+        if not env.installed_flag.exists():
+            sys.exit(f"error: runtime not installed, run '{APP_NAME} install' first")
+        try:
+            _run(
+                env.tabbyapi_venv / "bin/python",
+                "-c",
+                "; ".join(
+                    [  # NOTE: this is inline Python!
+                        "import sys",
+                        (
+                            "from exllamav3.conversion.convert_model "
+                            "import parser, main, prepare"
+                        ),
+                        "args = parser.parse_args()",
+                        "in_args, job_state, ok, err = prepare(args)",
+                        (
+                            "main(in_args, job_state) if ok "
+                            'else (print(f" !! Error: {err}"), sys.exit(1))'
+                        ),
+                    ]
+                ),
+                *self.args_implicit,
+                *self.args_explicit,
+                env=cuda_vars.to_env(),
+            )
+        except KeyboardInterrupt:
+            sys.exit(128 + SIGINT)
+
+
 class LocalAi(
-    BaseSettings,
-    frozen=True,
+    BaseFrozenSettings,
     case_sensitive=True,
     cli_hide_none_type=True,
     cli_avoid_json=True,
@@ -335,6 +377,7 @@ class LocalAi(
 ):
     install: CliSubCommand[Install]
     launch: CliSubCommand[Launch]
+    convert: CliSubCommand[Convert]
 
     def cli_cmd(self) -> None:
         CliApp.run_subcommand(self)
