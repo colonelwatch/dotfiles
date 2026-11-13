@@ -44,8 +44,8 @@ DECISIONS_CUDA_DEVICES: Final[list[str]] = [  # RTX 2060
     "GPU-fb4c16df-3aab-5891-65e2-727aa49bc210"
 ]
 LLAMA_SERVER_NAME: Final[str] = "llama-server"
-DECISIONS_HF_REPO: Final[str] = "ggml-org/Bespoke-Nimble-9B-v3-GGUF"
-DECISIONS_HF_FILE: Final[str] = "Bespoke-Nimble-9B-v3-Q4_K_M.gguf"
+DECISIONS_HF_REPO: Final[str] = "mradermacher/elephant-1-GGUF"
+DECISIONS_HF_FILE: Final[str] = "elephant-1.Q4_K_M.gguf"
 
 EnvType = dict[str, str | Path]
 _env_type_validator = TypeAdapter(EnvType)
