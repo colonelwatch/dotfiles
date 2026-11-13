@@ -113,6 +113,7 @@ model:
   use_as_default:
     - tensor_parallel
     - tensor_parallel_backend
+    - autosplit_reserve
     - cache_mode
     - vision
     - vision_offload
@@ -160,7 +161,7 @@ model:
   # excluding every GPU will fail to load.
   # Ignored for a model whose placement is already set by gpu_split
   # or draft_gpu_split.
-  autosplit_reserve: [96]
+  autosplit_reserve: [96, 96, 96]
 
   # Array of VRAM sizes to split between GPUs, in GB (default: []).
   # Used both with and without tensor parallelism.
