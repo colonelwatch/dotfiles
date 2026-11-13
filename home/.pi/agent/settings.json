@@ -1,9 +1,15 @@
 {
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.2",
   "theme": "system",
   "packages": [
     "git:github.com/earendil-works/pi-review"
   ],
   "defaultProvider": "tabbyAPI",
-  "defaultModel": "Ornith-1.5-35B-A3B-EXL3-4bpw"
+  "defaultModel": "Ornith-1.5-35B-A3B-EXL3-4bpw",
+  "selfUpdateCommand": [
+    "bun",
+    "update",
+    "-g",
+    "@earendil-works/pi-coding-agent"
+  ]
 }
