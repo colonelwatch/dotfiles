@@ -5,6 +5,7 @@ After=sys-class-powercap-intel\x2drapl:0.device sys-class-powercap-intel\x2drapl
 
 [Service]
 Type=oneshot
+ExecCondition=/usr/bin/sh -c '[ "$(cat /sys/class/dmi/id/product_name)" = "VivoBook_ASUSLaptop S5402ZA_S5402ZA" ]'
 ExecStart=/usr/bin/sh -c 'echo 65000000 > /sys/class/powercap/intel-rapl/intel-rapl:0/constraint_0_power_limit_uw'
 ExecStart=/usr/bin/sh -c 'echo 115000000 > /sys/class/powercap/intel-rapl/intel-rapl:0/constraint_1_power_limit_uw'
 ExecStart=/usr/bin/sh -c 'echo 115000000 > /sys/class/powercap/intel-rapl-mmio/intel-rapl-mmio:0/constraint_0_power_limit_uw'
