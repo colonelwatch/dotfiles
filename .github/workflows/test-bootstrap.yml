@@ -63,8 +63,13 @@ jobs:
             sh "$@"
           EOF
           chmod +x /usr/local/bin/archlinux-sh
-          echo "ARCHLINUX_ID=$(docker ps -q -f label=service=archlinux)" >>   \
-            "$GITHUB_ENV"
+          archlinux_id=$(docker ps -q -f label=service=archlinux)
+          if [ -z "$archlinux_id" ]; then
+            echo "ERROR: archlinux service container not found; " \
+                 "container may have exited" >&2
+            exit 1
+          fi
+          echo "ARCHLINUX_ID=$archlinux_id" >> "$GITHUB_ENV"
       - name: Create user ${{ env.ARCHLINUX_USER }}
         run: useradd -m -G wheel "$ARCHLINUX_USER"
       - name: Give all wheel users passwordless sudo
