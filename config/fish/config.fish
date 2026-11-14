@@ -28,6 +28,11 @@ set -gx BUN_INSTALL_CACHE_DIR "$HOME"/.cache/bun
 set -gx BUN_INSTALL_BIN "$HOME"/.local/bin
 set -gx BUN_INSTALL "$XDG_DATA_HOME"/bun
 set -gx DOCKER_HOST unix://"$XDG_RUNTIME_DIR"/podman/podman.sock
+set -gx ARDUINO_CONFIG_FILE "$XDG_CONFIG_HOME"/arduino-cli.yaml
+set -gx ARDUINO_DIRECTORIES_DATA "$XDG_DATA_HOME"/arduino-cli
+set -gx ARDUINO_BUILD_CACHE_PATH "$XDG_CACHE_HOME"/arduino-cli/build
+set -gx ARDUINO_DIRECTORIES_DOWNLOADS "$XDG_CACHE_HOME"/arduino-cli/downloads
+set -gx ARDUINO_DIRECTORIES_USER "$XDG_DATA_HOME"/arduino-cli
 
 # pyenv setup and build options
 set -gx PYTHON_CONFIGURE_OPTS '--enable-optimizations --with-lto'
