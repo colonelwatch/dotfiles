@@ -115,6 +115,11 @@ pi install git:github.com/earendil-works/pi-review
 mkdir -p ~/.config
 ln -s -f "$PWD"/config/* ~/.config/
 
+# install git.yazi plugin (if not already installed)
+if [ ! -d "$PWD"/config/yazi/plugins/git.yazi ]; then
+    ya pkg add yazi-rs/plugins:git
+fi
+
 # install home files by hand (NOTE: ~/ is far less flat than ~/.config)
 ln -s -f "$PWD"/home/.bashrc ~/
 ln -s -f "$PWD"/home/.xinitrc ~/

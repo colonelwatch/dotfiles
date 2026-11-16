@@ -1,4 +1,6 @@
 config/lutris/games
 config/lutris/lutris.conf
 config/fish/fish_variables
+config/yazi/package.toml
+config/yazi/plugins/
 lazy-lock.json
