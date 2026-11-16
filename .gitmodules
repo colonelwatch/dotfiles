@@ -7,3 +7,6 @@
 [submodule "3rdparty/adw-colors"]
 	path = 3rdparty/adw-colors
 	url = https://github.com/lassekongo83/adw-colors.git
+[submodule "home/.pi/skills"]
+	path = home/.pi/agent/skills
+	url = https://github.com/colonelwatch/skills
