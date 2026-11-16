@@ -23,7 +23,7 @@ git clone https://aur.archlinux.org/yay-bin.git
 (
   cd yay-bin || exit
   makepkg --syncdeps --rmdeps --noconfirm
-  sudo pacman -U -- *.pkg.tar.zst --noconfirm
+  sudo pacman -U --noconfirm -- *.pkg.tar.zst
 )
 rm -rf yay-bin
 
