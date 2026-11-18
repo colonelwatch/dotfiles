@@ -83,8 +83,8 @@ jobs:
           #!/bin/bash
           set -e
           login_sh_cmd=(
-            machinectl '--uid="$ARCHLINUX_USER"' shell .host
-              /bin/sh '"$0"' '"$@"'
+            systemd-run -G -P -p 'User="$ARCHLINUX_USER"' -p PAMName=login
+              -p 'WorkingDirectory="~"' /bin/sh '"$0"' '"$@"'
           )
           archlinux-sh -c "${login_sh_cmd[*]}" "$@"
           EOF
