@@ -44,7 +44,9 @@ jobs:
           --mount type=tmpfs,destination=/run/lock
           --entrypoint /sbin/init
     env:
-      ARCHLINUX_USER: kenny
+      # NOTE: `act` containers make/inherit `/home/kenny/.dotfiles`, so don't
+      #       use `kenny` because `act` and GitHub Actions diverge on this
+      ARCHLINUX_USER: lenny
     defaults:
       run:
         shell: archlinux-sh {0}
@@ -76,6 +78,17 @@ jobs:
         run: |
           mkdir -p /etc/sudoers.d
           echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
+      - name: Give all wheel users passwordless remote polkit actions
+        run: |
+          mkdir -p /etc/polkit-1/rules.d
+          cat > /etc/polkit-1/rules.d/90-wheel.rules <<'EOF'
+          polkit.addRule(function(action, subject) {
+            if (subject.isInGroup("wheel")) {
+              return polkit.Result.YES;
+            }
+            return polkit.Result.NOT_HANDLED;
+          });
+          EOF
       - name: Create archlinux-user-sh
         shell: bash
         run: |
