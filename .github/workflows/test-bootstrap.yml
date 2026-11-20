@@ -112,6 +112,4 @@ jobs:
                    /home/"$ARCHLINUX_USER"/.dotfiles
       - run: pacman --noconfirm -Syu base-devel git openssh wget
       - shell: archlinux-user-sh {0}
-        run: |
-          cd .dotfiles
-          ./bootstrap
+        run: cd .dotfiles && ./bootstrap
