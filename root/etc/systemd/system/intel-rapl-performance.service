@@ -1,6 +1,6 @@
 [Unit]
 Description=Configure processor power for maximum performance.
-Requires=sys-class-powercap-intel\x2drapl:0.device sys-class-powercap-intel\x2drapl\x2dmmio:0.device
+Wants=sys-class-powercap-intel\x2drapl:0.device sys-class-powercap-intel\x2drapl\x2dmmio:0.device
 After=sys-class-powercap-intel\x2drapl:0.device sys-class-powercap-intel\x2drapl\x2dmmio:0.device
 
 [Service]

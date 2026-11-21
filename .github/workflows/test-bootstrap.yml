@@ -19,13 +19,11 @@ jobs:
           git_ls() { git ls-files --recurse-submodules ':!3rdparty/' "$@"; }
           scripts_mapfile() { mapfile -O ${#scripts[@]} -t scripts; }
           scripts_mapfile < <(git_ls '*.sh' '*.bash' '*.bats')
-          scripts_mapfile < \
-            <(git_ls ':(exclude,glob)**/?*.*' |                       \
-              xargs -r -- file --mime-type -N -- |                    \
-              awk -F ': ' '$2 == "text/x-shellscript" { print $1 }')
           if [ ${#scripts[@]} -gt 0 ]; then
             shellcheck "${scripts[@]}"
           fi
+          git_ls ':(exclude,glob)**/?*.*' |
+            xargs -r -d $'\n' ./scripts/test_shellcheck_nonexecutable.py
   bootstrap:
     needs: [shellcheck]
     runs-on: ubuntu-latest
