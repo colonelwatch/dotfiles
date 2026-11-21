@@ -19,6 +19,7 @@ utility is missing or fails (a linter gate must not silently under-detect);
 exits 0 when nothing is forwarded.
 """
 
+import os
 import re
 import subprocess
 import sys
@@ -100,6 +101,9 @@ def is_shell_relevant(path: str) -> bool:
         `True` if the file's MIME type is `text/x-shellscript` or it carries a
         file-wide `shell=` directive, `False` otherwise.
     """
+    # Ignore directories (e.g. git submodules): only regular files are read.
+    if not os.path.isfile(path):
+        return False
     return mime_type(path) == "text/x-shellscript" or has_shell_directive(path)
 
 
