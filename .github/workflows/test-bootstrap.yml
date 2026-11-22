@@ -39,7 +39,7 @@ jobs:
     env:
       # NOTE: `act` containers make/inherit `/home/kenny/.dotfiles`, so don't
       #       use `kenny` because `act` and GitHub Actions diverge on this
-      ARCHLINUX_USER: lenny
+      MY_USER: lenny
     defaults:
       run:
         shell: archlinux-sh {0}
@@ -54,8 +54,7 @@ jobs:
           chmod a+r "$script"  # ensure non-root users can read it
           docker exec "$ARCHLINUX_ID" mkdir -p "$(dirname "$script")"
           docker cp "$script" "$ARCHLINUX_ID":"$script"
-          docker exec -e ARCHLINUX_USER="$ARCHLINUX_USER" "$ARCHLINUX_ID"     \
-            sh "$@"
+          docker exec -e MY_USER="$MY_USER" "$ARCHLINUX_ID" sh "$@"
           EOF
           chmod +x /usr/local/bin/archlinux-sh
           archlinux_id=$(docker ps -q -f label=service=archlinux)
@@ -65,8 +64,8 @@ jobs:
             exit 1
           fi
           echo "ARCHLINUX_ID=$archlinux_id" >> "$GITHUB_ENV"
-      - name: Create user ${{ env.ARCHLINUX_USER }}
-        run: useradd -m -G wheel "$ARCHLINUX_USER"
+      - name: Create user ${{ env.MY_USER }}
+        run: useradd -m -G wheel "$MY_USER"
       - name: Give all wheel users passwordless sudo
         run: |
           mkdir -p /etc/sudoers.d
@@ -89,7 +88,7 @@ jobs:
           #!/bin/bash
           set -e
           login_sh_cmd=(
-            systemd-run -G -P -p 'User="$ARCHLINUX_USER"' -p PAMName=login
+            systemd-run -G -P -p 'User="$MY_USER"' -p PAMName=login
               -p 'WorkingDirectory="~"' /bin/sh '"$0"' '"$@"'
           )
           archlinux-sh -c "${login_sh_cmd[*]}" "$@"
@@ -99,10 +98,9 @@ jobs:
         with:
           submodules: true
       - shell: bash
-        run: docker cp . "$ARCHLINUX_ID":/home/"$ARCHLINUX_USER"/.dotfiles
+        run: docker cp . "$ARCHLINUX_ID":/home/"$MY_USER"/.dotfiles
       - run: |
-          chown -R "$ARCHLINUX_USER":"$ARCHLINUX_USER"  \
-                   /home/"$ARCHLINUX_USER"/.dotfiles
+          chown -R "$MY_USER":"$MY_USER" /home/"$MY_USER"/.dotfiles
       - run: pacman --noconfirm -Syu base-devel git openssh wget
       - shell: archlinux-user-sh {0}
         run: cd .dotfiles && ./bootstrap
