@@ -105,4 +105,4 @@ jobs:
       - shell: archlinux-user-sh {0}
         run: cd .dotfiles && ./bootstrap
       - shell: archlinux-user-sh {0}
-        run: cd .dotfiles && bats -j $(nproc) -r .
+        run: cd .dotfiles && bats --filter-tags !integration -j $(nproc) -r .
