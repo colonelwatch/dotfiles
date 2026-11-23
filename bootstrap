@@ -67,32 +67,29 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     bats-file bats-support bc bluetui bun discord firefox fish freecad fd   \
     flatpak ggml-cuda github-cli ghostscript gimp git-lfs gparted           \
     imagemagick inkscape jq kicad kicad-library kicad-library-3d            \
-    libreoffice-fresh llama-cpp ltspice lutris macchina man-db neovim       \
-    parallel perl-image-exiftool picom-git podman polkit-gnome pre-commit   \
-    prismlauncher prusa-slicer pyenv python-huggingface-hub python-pydantic \
-    python-pydantic-settings rpi-imager ripgrep rclone rsync rofi ruby      \
-    rumdl shellcheck steam thunderbird trash-cli tree tree-sitter-cli unzip \
-    virt-manager vlc xclip yazi zip zopfli
+    libreoffice-fresh llama-cpp lsfg-vk ltspice lutris macchina man-db      \
+    neovim parallel perl-image-exiftool picom-git podman polkit-gnome       \
+    pre-commit prismlauncher prusa-slicer pyenv python-huggingface-hub      \
+    python-pydantic python-pydantic-settings rpi-imager ripgrep rclone      \
+    rsync rofi ruby rumdl shellcheck steam thunderbird trash-cli tree       \
+    tree-sitter-cli unzip virt-manager vlc xclip yazi zip zopfli
 
 # install awesome-luajit-git with docs explicitly disabled (breaks with Lua 5.5)
 _BUILD_DOCS=0 yay -S --noconfirm --answerdiff=None awesome-luajit-git
 
-flatpak install --noninteractive flathub                                    \
-    com.google.Chrome org.zotero.Zotero io.github.streetpea.Chiaki4deck     \
-    io.github.shundhammer.qdirstat net.rpcs3.RPCS3 com.logseq.Logseq
+flatpak install --noninteractive flathub    \
+    com.google.Chrome org.zotero.Zotero io.github.streetpea.Chiaki4deck \
+    io.github.shundhammer.qdirstat net.rpcs3.RPCS3 com.logseq.Logseq    \
+    org.freedesktop.Platform.VulkanLayer.lsfgvk//24.08                  \
+    org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08                  \
+    org.freedesktop.Platform.VulkanLayer.lsfgvk//26.08
 
-# install and set up lsfg-vk for flatpak
-ver="v1.0.0"
-prefix="https://github.com/PancakeTAS/lsfg-vk/releases/download/$ver"
-for ver in "23.08" "24.08" "25.08"; do
-    f="org.freedesktop.Platform.VulkanLayer.lsfg_vk_$ver.flatpak"
-    wget "$prefix/$f"
-    flatpak install --noninteractive --user $f
-    rm $f
-done
+# give Vulkan applications access to lsfg-vk config
 for app in "io.github.streetpea.Chiaki4deck" "net.rpcs3.RPCS3"; do
     flatpak override --user --filesystem "$HOME"/.config/lsfg-vk:ro "$app"
-    flatpak override --user     \
+    flatpak override --user \
+        --filesystem "$HOME"/.local/share/Steam/steamapps/common:ro "$app"
+    flatpak override --user \
         --env LSFG_CONFIG="$HOME"/.config/lsfg-vk/conf.toml "$app"
 done
 
