@@ -101,8 +101,34 @@ jobs:
         run: docker cp . "$ARCHLINUX_ID":/home/"$MY_USER"/.dotfiles
       - run: |
           chown -R "$MY_USER":"$MY_USER" /home/"$MY_USER"/.dotfiles
-      - run: pacman --noconfirm -Syu base-devel git openssh wget
+      - name: Prepare pacman package cache directory
+        shell: bash
+        run: rm -rf .pacman-pkg && mkdir .pacman-pkg
+      - name: Restore pacman package cache
+        uses: actions/cache/restore@v6
+        with:
+          path: .pacman-pkg
+          key: pacman-pkg-v1-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            pacman-pkg-v1-${{ github.ref_name }}-
+            pacman-pkg-v1-
+      - name: Move restored cache into archlinux
+        shell: bash
+        run: docker cp .pacman-pkg/. "$ARCHLINUX_ID":/var/cache/pacman/pkg/
+      - run: pacman --noconfirm -Syu base-devel git openssh wget pacman-contrib
       - shell: archlinux-user-sh {0}
         run: cd .dotfiles && ./bootstrap
       - shell: archlinux-user-sh {0}
         run: cd .dotfiles && bats --filter-tags !integration -j $(nproc) -r .
+      - name: Prune pacman cache
+        run: paccache -rk1 && paccache -ruk0
+      - name: Move pruned cache out of archlinux
+        shell: bash
+        run: |
+          rm -rf .pacman-pkg && mkdir .pacman-pkg
+          docker cp "$ARCHLINUX_ID":/var/cache/pacman/pkg/. .pacman-pkg/
+      - name: Save pacman package cache
+        uses: actions/cache/save@v6
+        with:
+          path: .pacman-pkg
+          key: pacman-pkg-v1-${{ github.ref_name }}-${{ github.run_id }}

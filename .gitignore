@@ -3,4 +3,5 @@ config/lutris/lutris.conf
 config/fish/fish_variables
 config/yazi/package.toml
 config/yazi/plugins/
+.pacman-pkg/
 lazy-lock.json
