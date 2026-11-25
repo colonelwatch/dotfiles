@@ -54,7 +54,7 @@ jobs:
           chmod a+r "$script"  # ensure non-root users can read it
           docker exec "$ARCHLINUX_ID" mkdir -p "$(dirname "$script")"
           docker cp "$script" "$ARCHLINUX_ID":"$script"
-          docker exec -e MY_USER="$MY_USER" "$ARCHLINUX_ID" sh "$@"
+          docker exec -e MY_USER="$MY_USER" -e CI="$CI" "$ARCHLINUX_ID" sh "$@"
           EOF
           chmod +x /usr/local/bin/archlinux-sh
           archlinux_id=$(docker ps -q -f label=service=archlinux)

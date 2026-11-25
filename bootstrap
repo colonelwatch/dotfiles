@@ -55,8 +55,19 @@ sudo systemctl enable                                       \
     reflector.service swapfile.swap
 
 # build swapfile
+if [ -z "$CI" ]; then
+    # NOTE: multiple is `zswap.max_pool_percent` x 2.5 (assumed compression)
+    swap_kib=$(awk '
+        /^MemTotal:/ {
+            mem = $2 * 1.5; cap = 32 * 1024 * 1024
+            print (mem < cap ? mem : cap)
+        }
+    ' /proc/meminfo)
+else
+    swap_kib=1048576  # 1 GiB
+fi
 sudo systemctl stop swapfile.swap || true  # stop using swap if it is being used
-sudo mkswap -U clear --size 16G --file /swapfile
+sudo mkswap -U clear --size "$swap_kib"KiB --file /swapfile
 
 # </ROOT>
 
