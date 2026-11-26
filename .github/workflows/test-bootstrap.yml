@@ -28,7 +28,7 @@ jobs:
         env:
           container: docker
         volumes:
-          - /etc/machine-id:/etc/machine-id:ro
+          - /dev/null:/etc/systemd/system/systemd-firstboot.service:ro
           - /etc/os-release:/run/host/os-release:ro
         options: >-
           --label service=archlinux
