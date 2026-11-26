@@ -28,15 +28,6 @@ jobs:
         env:
           container: docker
         volumes:
-          # Bind-mounting the host's /etc/machine-id on purpose: the systemd
-          # container interface (https://systemd.io/CONTAINER_INTERFACE/) wants
-          # each container to have a unique machine-id, but this image ships
-          # without one, so systemd-firstboot.service (ConditionFirstBoot=yes)
-          # otherwise runs interactively on the container's TTY and hangs boot.
-          # The random-UUIDv4 fallback and container_uuid both leave firstboot's
-          # host-config probes unset, so it still prompts; only a pre-existing
-          # /etc/machine-id skips the service. Kept since e147299; spec conformance
-          # deferred to an image-level change.
           - /etc/machine-id:/etc/machine-id:ro
           - /etc/os-release:/run/host/os-release:ro
         options: >-
