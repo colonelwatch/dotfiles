@@ -28,15 +28,12 @@ jobs:
         env:
           container: docker
         volumes:
+          # mask `systemd-firstboot.service` because it awaits user input on TTY
           - /dev/null:/etc/systemd/system/systemd-firstboot.service:ro
           - /etc/os-release:/run/host/os-release:ro
+          # NOTE: read-only cgroup breaks systemd, but Podman doesn't use Docker
+          #       security-opt for read-write private cgroup, so use host cgroup
           - /sys/fs/cgroup:/sys/fs/cgroup
-        # NOTE: Docker mounts `/sys/fs/cgroup` read-only for unprivileged
-        #       containers (no shared writable-cgroups flag with podman),
-        #       and `services.*.options` cannot express an entrypoint
-        #       wrapper, so use the spec-sanctioned full-hierarchy model:
-        #       host cgroupns + rw bind of the whole tree. Caveat: the
-        #       upper host hierarchy is writable and visible in-container.
         options: >-
           --label service=archlinux
           --tty
