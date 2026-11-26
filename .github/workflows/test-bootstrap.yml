@@ -47,6 +47,11 @@ jobs:
           --security-opt apparmor=unconfined
           --mount type=tmpfs,destination=/tmp
           --mount type=tmpfs,destination=/run
+          --health-cmd "systemctl is-system-running"
+          --health-interval 2s
+          --health-timeout 1s
+          --health-retries 1
+          --health-start-period 10s
           --mount type=tmpfs,destination=/run/lock
           --entrypoint /sbin/init
     env:
