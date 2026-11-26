@@ -29,8 +29,11 @@ jobs:
           container: docker
         volumes:
           - /etc/machine-id:/etc/machine-id:ro
+          - /etc/os-release:/run/host/os-release:ro
         options: >-
           --label service=archlinux
+          --tty
+          --stop-signal=SIGRTMIN+3
           --privileged
           --mount type=tmpfs,destination=/tmp
           --mount type=tmpfs,destination=/run
