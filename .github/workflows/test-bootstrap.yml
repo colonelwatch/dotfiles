@@ -30,11 +30,24 @@ jobs:
         volumes:
           - /dev/null:/etc/systemd/system/systemd-firstboot.service:ro
           - /etc/os-release:/run/host/os-release:ro
+          - /sys/fs/cgroup:/sys/fs/cgroup
+        # NOTE: Docker mounts `/sys/fs/cgroup` read-only for unprivileged
+        #       containers (no shared writable-cgroups flag with podman),
+        #       and `services.*.options` cannot express an entrypoint
+        #       wrapper, so use the spec-sanctioned full-hierarchy model:
+        #       host cgroupns + rw bind of the whole tree. Caveat: the
+        #       upper host hierarchy is writable and visible in-container.
         options: >-
           --label service=archlinux
           --tty
           --stop-signal=SIGRTMIN+3
-          --privileged
+          --cgroupns=host
+          --cap-add=SYS_ADMIN
+          --cap-drop=AUDIT_WRITE
+          --cap-drop=AUDIT_CONTROL
+          --cap-drop=AUDIT_READ
+          --security-opt seccomp=unconfined
+          --security-opt apparmor=unconfined
           --mount type=tmpfs,destination=/tmp
           --mount type=tmpfs,destination=/run
           --mount type=tmpfs,destination=/run/lock
