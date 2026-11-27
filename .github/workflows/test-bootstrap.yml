@@ -143,6 +143,8 @@ jobs:
         run: |
           docker cp .pacman-pkg/. "$ARCHLINUX_ID":/var/cache/pacman/pkg/
           docker cp .yay-pkg/. "$ARCHLINUX_ID":/home/"$MY_USER"/.cache/yay/
+      - name: Restore user ownership of yay package cache directory in archlinux
+        run: chown -R "$MY_USER":"$MY_USER" /home/"$MY_USER"/.cache/yay
       - run: pacman --noconfirm -Syu base-devel git openssh wget pacman-contrib
       - shell: archlinux-user-sh {0}
         run: cd .dotfiles && ./bootstrap
