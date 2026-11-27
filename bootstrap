@@ -135,19 +135,17 @@ if [ ! -d "$PWD"/config/yazi/plugins/git.yazi ]; then
     ya pkg add yazi-rs/plugins:git
 fi
 
-# install home files by hand (NOTE: ~/ is far less flat than ~/.config)
-mkdir -p ~/.local/bin
-mkdir -p ~/.local/share/applications
-mkdir -p ~/.pi/agent
-ln -s -f "$PWD"/home/.bashrc ~/
-ln -s -f "$PWD"/home/.xinitrc ~/
-ln -s -f "$PWD"/home/.Xresources ~/
-ln -s -f "$PWD"/home/.local/bin/* ~/.local/bin/
-ln -s -f "$PWD"/home/.local/share/applications/* ~/.local/share/applications/
-ln -s -f "$PWD"/home/.pi/agent/* ~/.pi/agent/
+# symlink home files by hand (NOTE: ~/ is far less flat than ~/.config)
+ln -sf "$PWD"/home/.bashrc ~/
+ln -sf "$PWD"/home/.xinitrc ~/
+ln -sf "$PWD"/home/.Xresources ~/
+mkdir -p ~/.local/bin && ln -sf "$PWD"/home/.local/bin/* ~/.local/bin/
+mkdir -p ~/.local/share/applications && \
+    ln -sf "$PWD"/home/.local/share/applications/* ~/.local/share/applications/
+mkdir -p ~/.pi/agent && ln -sf "$PWD"/home/.pi/agent/* ~/.pi/agent/
 
-mkdir -p ~/.var/app
-cp -r -f "$PWD"/home/.var/app/* ~/.var/app/
+# copy in home files by hand
+mkdir -p ~/.var/app && cp -r -f "$PWD"/home/.var/app/* ~/.var/app/
 
 # libvirt is actually a root service!
 sudo cp -f root/etc/libvirt/libvirtd.conf /etc/libvirt/ 
