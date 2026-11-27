@@ -7,7 +7,6 @@ end
 set fish_greeting
 
 set -gx EDITOR nvim
-set -gx GEM_HOME "$(gem env user_gemhome)"
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # set XDG spec (for life of script, so below behaves like new silent defaults)
@@ -40,7 +39,6 @@ set -gx PYTHON_CFLAGS '-march=native -mtune=native'
 set -gx MAKE_OPTS "-j$(nproc)"
 pyenv init - fish | source
 
-fish_add_path -g "$GEM_HOME/bin"
 fish_add_path -g "$HOME"/.local/bin
 
 # Unlike other interactive cmds, run macchina last to stop a graphical glitch
