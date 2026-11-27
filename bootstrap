@@ -60,7 +60,7 @@ if [ -z "$CI" ]; then
     swap_kib=$(awk '
         /^MemTotal:/ {
             mem = $2 * 1.5; cap = 32 * 1024 * 1024
-            print (mem < cap ? mem : cap)
+            printf "%.0f\n", (mem < cap ? mem : cap)
         }
     ' /proc/meminfo)
     swap_name=swapfile
