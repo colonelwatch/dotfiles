@@ -120,20 +120,29 @@ jobs:
         run: docker cp . "$ARCHLINUX_ID":/home/"$MY_USER"/.dotfiles
       - run: |
           chown -R "$MY_USER":"$MY_USER" /home/"$MY_USER"/.dotfiles
-      - name: Prepare pacman package cache directory
+      - name: Prepare package cache directories
         shell: bash
-        run: rm -rf .pacman-pkg && mkdir .pacman-pkg
-      - name: Restore pacman package cache
+        run: |
+          rm -rf .pacman-pkg && mkdir .pacman-pkg
+          rm -rf .yay-pkg && mkdir .yay-pkg
+      - name: Prepare yay package cache directory in archlinux
+        shell: archlinux-user-sh {0}
+        run: mkdir -p .cache/yay
+      - name: Restore package caches
         uses: actions/cache/restore@v6
         with:
-          path: .pacman-pkg
-          key: pacman-pkg-v1-${{ github.ref_name }}-${{ github.run_id }}
+          path: |
+            .pacman-pkg
+            .yay-pkg
+          key: bootstrap-pkg-v1-${{ github.ref_name }}-${{ github.run_id }}
           restore-keys: |
-            pacman-pkg-v1-${{ github.ref_name }}-
-            pacman-pkg-v1-
-      - name: Move restored cache into archlinux
+            bootstrap-pkg-v1-${{ github.ref_name }}-
+            bootstrap-pkg-v1-
+      - name: Move restored caches into archlinux
         shell: bash
-        run: docker cp .pacman-pkg/. "$ARCHLINUX_ID":/var/cache/pacman/pkg/
+        run: |
+          docker cp .pacman-pkg/. "$ARCHLINUX_ID":/var/cache/pacman/pkg/
+          docker cp .yay-pkg/. "$ARCHLINUX_ID":/home/"$MY_USER"/.cache/yay/
       - run: pacman --noconfirm -Syu base-devel git openssh wget pacman-contrib
       - shell: archlinux-user-sh {0}
         run: cd .dotfiles && ./bootstrap
@@ -141,13 +150,26 @@ jobs:
         run: cd .dotfiles && bats --filter-tags !integration -j $(nproc) -r .
       - name: Prune pacman cache
         run: paccache -rk1 && paccache -ruk0
+      - name: Prune yay cache
+        shell: archlinux-user-sh {0}
+        run: |
+          if ! command -v yaycache > /dev/null; then
+            exit 1
+          fi
+          yaycache -rk1
+          yaycache --remove-build-files -rk1 antigravity-cli ltspice
+          yaycache --remove-uninstalled-dirs -ruk0
       - name: Move pruned cache out of archlinux
         shell: bash
         run: |
-          rm -rf .pacman-pkg && mkdir .pacman-pkg
-          docker cp "$ARCHLINUX_ID":/var/cache/pacman/pkg/. .pacman-pkg/
+          rm -rf .pacman-pkg && mkdir .pacman-pkg && \
+            docker cp "$ARCHLINUX_ID":/var/cache/pacman/pkg/. .pacman-pkg/
+          rm -rf .yay-pkg && mkdir .yay-pkg && \
+            docker cp "$ARCHLINUX_ID":/home/"$MY_USER"/.cache/yay/. .yay-pkg/
       - name: Save pacman package cache
         uses: actions/cache/save@v6
         with:
-          path: .pacman-pkg
-          key: pacman-pkg-v1-${{ github.ref_name }}-${{ github.run_id }}
+          path: |
+            .pacman-pkg
+            .yay-pkg
+          key: bootstrap-pkg-v1-${{ github.ref_name }}-${{ github.run_id }}
