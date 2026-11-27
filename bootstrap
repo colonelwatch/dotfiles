@@ -63,11 +63,15 @@ if [ -z "$CI" ]; then
             print (mem < cap ? mem : cap)
         }
     ' /proc/meminfo)
+    swap_name=swapfile
 else
+    # in CI, `/swapfile` may already exist, and a real one wastes space
+    # NOTE: once it starts to matter, add an override to `swapfile.swap.d`
     swap_kib=1048576  # 1 GiB
+    swap_name=swapfile2  # avoid conflict with `/swapfile`
 fi
 sudo systemctl stop swapfile.swap || true  # stop using swap if it is being used
-sudo mkswap -U clear --size "$swap_kib"KiB --file /swapfile
+sudo mkswap -U clear --size "$swap_kib"KiB --file /"$swap_name"
 
 # </ROOT>
 
