@@ -146,6 +146,7 @@ ln -s -f "$PWD"/home/.local/bin/* ~/.local/bin/
 ln -s -f "$PWD"/home/.local/share/applications/* ~/.local/share/applications/
 ln -s -f "$PWD"/home/.pi/agent/* ~/.pi/agent/
 
+mkdir -p ~/.var/app
 cp -r -f "$PWD"/home/.var/app/* ~/.var/app/
 
 # libvirt is actually a root service!
