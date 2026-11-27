@@ -53,6 +53,7 @@ jobs:
           --health-retries 1
           --health-start-period 10s
           --mount type=tmpfs,destination=/run/lock
+          --device /dev/fuse
           --entrypoint /sbin/init
     env:
       # NOTE: `act` containers make/inherit `/home/kenny/.dotfiles`, so don't
