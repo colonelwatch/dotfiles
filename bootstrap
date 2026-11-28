@@ -36,9 +36,10 @@ rm -rf yay-bin
 yay -S --noconfirm --answerdiff=None --sudoloop                             \
     acpi adw-gtk-theme alsa-utils bluez bolt brightnessctl cpupower cronie  \
     dnsmasq exfatprogs fuse2 jre-openjdk linux-zen-headers networkmanager   \
-    nvidia-open-dkms otf-ipafont pacman-contrib playerctl qemu-desktop      \
-    reflector samba sof-firmware woff2-font-awesome ttf-ia-writer           \
-    ttf-jetbrains-mono-nerd ttf-ms-fonts udiskie udisks2
+    noto-fonts nvidia-open-dkms otf-ipafont pacman-contrib playerctl        \
+    qemu-desktop reflector samba sof-firmware woff2-font-awesome            \
+    ttf-caladea ttf-carlito ttf-ia-writer ttf-jetbrains-mono-nerd           \
+    ttf-liberation ttf-ms-fonts udiskie udisks2
 
 # install config files
 sudo rm /boot/loader/entries/* # remove default entries
