@@ -38,7 +38,7 @@ yay -S --noconfirm --answerdiff=None --sudoloop                             \
     dnsmasq exfatprogs fuse2 jre-openjdk linux-zen-headers networkmanager   \
     nvidia-open-dkms otf-ipafont pacman-contrib playerctl qemu-desktop      \
     reflector samba sof-firmware woff2-font-awesome ttf-ia-writer           \
-    ttf-jetbrains-mono-nerd ttf-ms-win10-cdn udiskie udisks2
+    ttf-jetbrains-mono-nerd ttf-ms-fonts udiskie udisks2
 
 # install config files
 sudo rm /boot/loader/entries/* # remove default entries
