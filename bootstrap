@@ -164,11 +164,3 @@ systemctl --user enable ssh-agent.socket
 systemctl --user enable podman.socket
 
 # </USER>
-
-
-
-# <CLEANUP>
-
-yay -Sc --noconfirm
-
-# </CLEANUP>
